@@ -30,63 +30,77 @@ void processInput(GLFWwindow* window);
 void Floor(Shader ourShader, glm::mat4 moveMatrix, glm::vec4 color);
 //fuctions prototypes
 void load_texture(unsigned int& texture, string image_name, GLenum format);//texture loading function
-void drawField(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
-void drawFBsideWalk(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift,unsigned int texture);
-void drawLRsideWalk(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
-void drawMidsideWalk(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
-void drawExtBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
-void drawMosjidBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
-void drawMidBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
-void drawTopBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+//draw function
+void Field(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void FBsideWalk(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift,unsigned int texture);
+void LRsideWalk(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void MainMosjidBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void Mosjid1stFloor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void Mosjid2ndFloor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void Ojubase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void OjuKhana(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void MainGate(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void Frontwing(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void Sidewing(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void MidGate(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void StairTower1(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void StairTower2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+
+void MidsideWalk(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void ExtBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void MosjidBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void MidBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void TopBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
 
 //Pillar
-void drawPillar(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void Pillar(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
 //Minar
-void drawMinar(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void Minar(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
 
 //horizontal
-void drawFrontHoriWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
-void drawMiddle_Back_3_HoriWall_hieght_2_5(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
-void drawMidBack_6_HoriWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
-void drawFinal_Back_HoriWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void FrontHoriWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void Middle_Back_3_HoriWall_hieght_2_5(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void MidBack_6_HoriWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void Final_Back_HoriWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
 
-void drawHoriWall_top_wall_3_box(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
-void drawHoriWall_top_wall_1(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
-void drawHoriWall_top_wall_4(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void HoriWall_top_wall_3_box(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void HoriWall_top_wall_1(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void HoriWall_top_wall_4(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
 
 
 
 //vertical
-void drawVertiWall_14_2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
-void drawVertiWall_3(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
-void drawVertiWall_1_height_2_5(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void VertiWall_14_2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void VertiWall_3(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void VertiWall_1_height_2_5(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
 
-void drawVertiWall_top_wall_3(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void VertiWall_top_wall_3(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
 
 //Doors
-void drawLeftFrontDoors(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
-void drawRightFrontDoors(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void LeftFrontDoors(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void RightFrontDoors(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
 
 //AGER
-void drawFloor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Floor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
 
-void drawMainFloor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void MainFloor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
 
-void drawSofa3(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
-void drawSofa21(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
-void drawSofa22(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
-void drawTV(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
-void drawShelf(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
-void drawTable(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
-void drawSpeaker(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Sofa3(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Sofa21(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Sofa22(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void TV(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Shelf(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Table(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Speaker(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
 
-void drawCup(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
-void drawLamp(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, int style);
-void drawSideWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
-void drawFBWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
-void drawRoof(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
-void drawFan(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
-void drawLadder(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Cup(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Lamp(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, int style);
+void SideWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void FBWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Roof(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Fan(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Ladder(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
 
 
 // settings
@@ -108,7 +122,7 @@ float scale_Y = 1.0;
 float scale_Z = 1.0;
 
 // camera
-Camera camera(glm::vec3(10.0f, 1.0f, 2.0f));//camera position
+Camera camera(glm::vec3(5.0f, 1.0f, -22.0f));//camera position
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -934,318 +948,408 @@ int main()
         //creating objects
         glActiveTexture(GL_TEXTURE0);
 
-        //testing--------------------------------------------------
+        //testing--------------------------------------------------curve
         float x_shift = 0;
         float y_shift = 0;
         float z_shift = 0;
-        glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-        glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
-        //universal translate
-        uni_translate = glm::translate(identityMatrix, glm::vec3(0.5 * x_shift, 0.5 * y_shift, 0.5 * z_shift));
-        translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.0f, 0.0f));
-        scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.0f, 2.0f, 2.0f));
-        model = uni_translate * translateMatrix * scaleMatrix;
-        bezier.drawBezierCurve(ourShader, model);
-        //testing end--------------------------------------------------------------
+        //glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+        //glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+        ////universal translate
+        //uni_translate = glm::translate(identityMatrix, glm::vec3(0.5 * x_shift, 0.5 * y_shift, 0.5 * z_shift));
+        //translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.0f, 0.0f));
+        //scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.0f, 2.0f, 2.0f));
+        //model = uni_translate * translateMatrix * scaleMatrix;
+        //bezier.drawBezierCurve(ourShader, model);
+        ////testing end--------------------------------------------------------------eurve
 
         //Grass Field------------------------------
-        //float x_shift = 0;
-        //float y_shift = 0;
-        //float z_shift = 0;
         x_shift = 0;
         y_shift = 0;
         z_shift = 0;
-        drawField(cubeVAO5, ourShader, x_shift, y_shift, z_shift, texture1);
+        Field(cubeVAO5, ourShader, x_shift, y_shift, z_shift, texture1);
 
-        //front side walk-----------------------------
+        ////front balcony walk-----------------------------
         x_shift = 10;
         y_shift = 0;
-        z_shift = 10;
-        drawFBsideWalk(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-        //back side walk
-        x_shift = 10;
-        y_shift = 0;
-        z_shift = 87;
-        drawFBsideWalk(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+        z_shift = 12;
+        FBsideWalk(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
 
-        //left side walk------------------------------------
+        ////left side walk------------------------------------
         x_shift = 10;
         y_shift = 0;
-        z_shift = 13;
-        drawLRsideWalk(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+        z_shift = 12;
+        LRsideWalk(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
         //right side walk
-        x_shift = 87;
+        x_shift = 61;
         y_shift = 0;
-        z_shift = 13;
-        drawLRsideWalk(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+        z_shift = 12;
+        LRsideWalk(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
 
-        //mid walk------------------------------------
-        x_shift = 47.5;
+        //Main Mosjid
+        //Mosjid base
+        x_shift = 15.5;
         y_shift = 0;
-        z_shift = 13;
-        drawMidsideWalk(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+        z_shift = 43;
+        MainMosjidBase(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
 
-        //Ext base------------------------------------
-        x_shift = 20;
+        //Mosjid 1st floor
+        x_shift = 0;
         y_shift = 0;
-        z_shift = 30;
-        drawExtBase(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+        z_shift = 0;
+        Mosjid1stFloor(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
 
-        //Mosjid base------------------------------------
-        x_shift = 21;
+        //Mosjid 2nd floor
+        x_shift = 0;
         y_shift = 0;
-        z_shift = 31;
-        drawMosjidBase(cubeVAO4, ourShader, x_shift, y_shift, z_shift, texture8);
-
-        //Mid layer base------------------------------------
-        x_shift = 21;
-        y_shift = 1;
-        z_shift = 32;
-        drawMidBase(cubeVAO4, ourShader, x_shift, y_shift, z_shift, texture8);
-
-        //Top layer base------------------------------------
-        x_shift = 21;
-        y_shift = 1.6;
-        z_shift = 33;
-        drawTopBase(cubeVAO4, ourShader, x_shift, y_shift, z_shift, texture8);
+        z_shift = 0;
+        Mosjid2ndFloor(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
 
 
-        //Pillers--------------------------------------------------------------------------------------------------
-        //front left piller
-        x_shift = 21.5;
-        y_shift = 2.2;
-        z_shift = 33.5;
-        drawPillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+        //ojukhana---------------------------------------------------
+        //ojukhana base
+        //left front
+        x_shift = 8.5;
+        y_shift = 0;
+        z_shift = 10.5;
+        Ojubase(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
 
-        //front right piller
-        x_shift = 78.5;
-        y_shift = 2.2;
-        z_shift = 33.5;
-        drawPillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-
-        //front 2nd piller
-        x_shift = 38;
-        y_shift = 2.2;
-        z_shift = 33.5;
-        drawPillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-
-        //front 3rd piller
-        x_shift = 62;
-        y_shift = 2.2;
-        z_shift = 33.5;
-        drawPillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+        x_shift = 0;
+        y_shift = 0;
+        z_shift = 0;
+        OjuKhana(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+        //Toilet
+        //right front
+        x_shift = 59.5;
+        y_shift = 0;
+        z_shift = 10.5;
+        Ojubase(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+        x_shift = 59.5-8.5;
+        y_shift = 0;
+        z_shift = 10.5-10.5;
+        Toilet(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
 
 
-        //left back piller
-        x_shift = 21.5;
-        y_shift = 2.2;
-        z_shift = 78.5;
-        drawPillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-
-        //left 1st piller
-        x_shift = 21.5;
-        y_shift = 2.2;
-        z_shift = 48.5;
-        drawPillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-
-        //left 2nd piller
-        x_shift = 21.5;
-        y_shift = 2.2;
-        z_shift = 63.5;
-        drawPillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-
-        //right back piller
-        x_shift = 78.5;
-        y_shift = 2.2;
-        z_shift = 78.5;
-        drawPillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-
-        //right 1st piller
-        x_shift = 78.5;
-        y_shift = 2.2;
-        z_shift = 48.5;
-        drawPillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-
-        //right 2nd piller
-        x_shift = 78.5;
-        y_shift = 2.2;
-        z_shift = 63.5;
-        drawPillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+        //Main Gate
+        x_shift = 0.0;
+        y_shift = 0.0;
+        z_shift = 0.0;
+        MainGate(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
 
 
-        //Horizontal walls----------------------------------------------------------------------------------------------
-        //front left wall
-        x_shift = 26.6;
-        y_shift = 2.2;
-        z_shift = 38.6;
-        drawFrontHoriWall(cubeVAO3, ourShader, x_shift, y_shift, z_shift, texture9);
+        //front Left Wing
+        x_shift = 0.0;
+        y_shift = 0.0;
+        z_shift = 0.0;
+        Frontwing(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+        //front Right Wing
+        x_shift = 45.0- 15.5;
+        y_shift = 0.0;
+        z_shift = 10.0-10.0;
+        Frontwing(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
 
-        //front right wall
-        x_shift = 54;
-        y_shift = 2.2;
-        z_shift = 38.6;
-        drawFrontHoriWall(cubeVAO3, ourShader, x_shift, y_shift, z_shift, texture9);
+        //Mid main gate
+        x_shift = 0.0;
+        y_shift = 0.0;
+        z_shift = 0.0;
+        MidGate(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
 
-        //back horizontal 1---> left back 6
-        x_shift = 21;
-        y_shift = 2.2;
-        z_shift = 79;
-        drawMidBack_6_HoriWall(cubeVAO2, ourShader, x_shift, y_shift, z_shift, texture9);
 
-        //back horizontal 2--> left 6 len
-        x_shift = 35;
-        y_shift = 2.2;
-        z_shift = 79;
-        drawMidBack_6_HoriWall(cubeVAO2, ourShader, x_shift, y_shift, z_shift, texture9);
+        //front Left Wing
+        x_shift = 0.0;
+        y_shift = 0.0;
+        z_shift = 0.0;
+        Sidewing(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
 
-        //back horizontal 3-> right 6 len
-        x_shift = 53;
-        y_shift = 2.2;
-        z_shift = 79;
-        drawMidBack_6_HoriWall(cubeVAO2, ourShader, x_shift, y_shift, z_shift, texture9);
-
-        //back horizontal 4 -> right back 6
-        x_shift = 67;
-        y_shift = 2.2;
-        z_shift = 79;
-        drawMidBack_6_HoriWall(cubeVAO2, ourShader, x_shift, y_shift, z_shift, texture9);
-
-        //back horizontal Imam place ->  3
-        x_shift = 47;
-        y_shift = 2.2;
-        z_shift = 81;
-        drawMiddle_Back_3_HoriWall_hieght_2_5(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture5);
-
-        //back Final
-        x_shift = 21;
-        y_shift = 2.2;
-        z_shift = 85;
-        drawFinal_Back_HoriWall(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-
-        //imam box top box wall
-        x_shift = 47;
-        y_shift = 2.2+5.0;
-        z_shift = 79;
-        drawHoriWall_top_wall_3_box(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-
-        //imam room top box wall
-        x_shift = 33;
-        y_shift = 2.2 + 5.0;
-        z_shift = 79;
-        drawHoriWall_top_wall_1(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-
-        //muyajjin room top box wall
-        x_shift = 65;
-        y_shift = 2.2 + 5.0;
-        z_shift = 79;
-        drawHoriWall_top_wall_1(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-
-        //Main gate top box wall
-        x_shift = 46;
-        y_shift = 2.2 + 5.0;
-        z_shift = 38.6;
-        drawHoriWall_top_wall_4(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+        //front Right Wing
+        x_shift = 61.0-10.0;
+        y_shift = 0.0;
+        z_shift = 17.5-17.5;
+        Sidewing(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
 
 
 
-        //Vertical walls---------------------------------------------------------------------------------------------------
-        //left vertical 1-> left 14.2 len
-        x_shift = 26.6;
-        y_shift = 2.2;
-        z_shift = 50.6;
-        drawVertiWall_14_2(cubeVAO3, ourShader, x_shift, y_shift, z_shift, texture9);
+        //Stair tower
+        //Left tower
+        x_shift = 0.0;
+        y_shift = 0.0;
+        z_shift = 0.0;
+        StairTower1(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0 );
 
-        //left vertical 2-> left 3 len
-        x_shift = 26.6;
-        y_shift = 2.2;
-        z_shift = 38.6;
-        drawVertiWall_3(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture9);
-
-        //right vertical 1-> right 14.2 len
-        x_shift = 73.4 - 0.4;
-        y_shift = 2.2;
-        z_shift = 50.6;
-        drawVertiWall_14_2(cubeVAO3, ourShader, x_shift, y_shift, z_shift, texture9);
-
-        //right vertical 2-> right 3 len
-        x_shift = 73.4 - 0.4;
-        y_shift = 2.2;
-        z_shift = 38.6;
-        drawVertiWall_3(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture9);
-
-        //left back(final) vertical 1-> right 3 len
-        x_shift = 21;
-        y_shift = 2.2;
-        z_shift = 79;
-        drawVertiWall_3(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-
-        //left 2nd back(final) vertical 2-> right 3 len
-        x_shift = 41;
-        y_shift = 2.2;
-        z_shift = 79;
-        drawVertiWall_3(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-
-        //right 2nd back(final) vertical 3-> right 3 len
-        x_shift = 59-0.4;
-        y_shift = 2.2;
-        z_shift = 79;
-        drawVertiWall_3(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-
-        //right back(final) vertical 3-> right 3 len
-        x_shift = 79-0.4;
-        y_shift = 2.2;
-        z_shift = 79;
-        drawVertiWall_3(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-
-        //left back imam box vertical 1-> right 1len
-        x_shift = 47;
-        y_shift = 2.2;
-        z_shift = 79;
-        drawVertiWall_1_height_2_5(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-
-        //right back imam box vertical 2-> right 1 len
-        x_shift = 53-0.4;
-        y_shift = 2.2;
-        z_shift = 79;
-        drawVertiWall_1_height_2_5(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-
-        //left side er top box wall
-        x_shift = 26.6;
-        y_shift = 2.2 + 5.0;
-        z_shift = 44.6;
-        drawVertiWall_top_wall_3(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-
-        //right side er top box wall
-        x_shift = 73.4-0.4;
-        y_shift = 2.2 + 5.0;
-        z_shift = 44.6;
-        drawVertiWall_top_wall_3(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-
-        //Doors-----------------------------------------------
-        //front left
-        x_shift = 46;
-        y_shift = 2.2;
-        z_shift = 38.6;
-        drawLeftFrontDoors(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture12);
-
-        //front right
-        x_shift = 54;
-        y_shift = 2.2;
-        z_shift = 38.6;
-        drawRightFrontDoors(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture12);
+        //Right tower
+        x_shift = 59.5 - 8.5;
+        y_shift = 0.0;
+        z_shift = 58 - 58;
+        StairTower1(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
 
 
-        //Minars--------------------------------------------------------------
-        //left minar
-        x_shift = 17;
-        y_shift = 0.2;
-        z_shift = 17;
-        drawMinar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
-        //right minar
-        x_shift = 83;
-        y_shift = 0.2;
-        z_shift = 17;
-        drawMinar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////mid walk------------------------------------
+        //x_shift = 47.5;
+        //y_shift = 0;
+        //z_shift = 13;
+        //MidsideWalk(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////Ext base------------------------------------
+        //x_shift = 20;
+        //y_shift = 0;
+        //z_shift = 30;
+        //ExtBase(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////Mosjid base------------------------------------
+        //x_shift = 21;
+        //y_shift = 0;
+        //z_shift = 31;
+        //MosjidBase(cubeVAO4, ourShader, x_shift, y_shift, z_shift, texture8);
+
+        ////Mid layer base------------------------------------
+        //x_shift = 21;
+        //y_shift = 1;
+        //z_shift = 32;
+        //MidBase(cubeVAO4, ourShader, x_shift, y_shift, z_shift, texture8);
+
+        ////Top layer base------------------------------------
+        //x_shift = 21;
+        //y_shift = 1.6;
+        //z_shift = 33;
+        //TopBase(cubeVAO4, ourShader, x_shift, y_shift, z_shift, texture8);
+
+
+        ////Pillers--------------------------------------------------------------------------------------------------
+        ////front left piller
+        //x_shift = 21.5;
+        //y_shift = 2.2;
+        //z_shift = 33.5;
+        //Pillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////front right piller
+        //x_shift = 78.5;
+        //y_shift = 2.2;
+        //z_shift = 33.5;
+        //Pillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////front 2nd piller
+        //x_shift = 38;
+        //y_shift = 2.2;
+        //z_shift = 33.5;
+        //Pillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////front 3rd piller
+        //x_shift = 62;
+        //y_shift = 2.2;
+        //z_shift = 33.5;
+        //Pillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+
+        ////left back piller
+        //x_shift = 21.5;
+        //y_shift = 2.2;
+        //z_shift = 78.5;
+        //Pillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////left 1st piller
+        //x_shift = 21.5;
+        //y_shift = 2.2;
+        //z_shift = 48.5;
+        //Pillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////left 2nd piller
+        //x_shift = 21.5;
+        //y_shift = 2.2;
+        //z_shift = 63.5;
+        //Pillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////right back piller
+        //x_shift = 78.5;
+        //y_shift = 2.2;
+        //z_shift = 78.5;
+        //Pillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////right 1st piller
+        //x_shift = 78.5;
+        //y_shift = 2.2;
+        //z_shift = 48.5;
+        //Pillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////right 2nd piller
+        //x_shift = 78.5;
+        //y_shift = 2.2;
+        //z_shift = 63.5;
+        //Pillar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+
+        ////Horizontal walls----------------------------------------------------------------------------------------------
+        ////front left wall
+        //x_shift = 26.6;
+        //y_shift = 2.2;
+        //z_shift = 38.6;
+        //FrontHoriWall(cubeVAO3, ourShader, x_shift, y_shift, z_shift, texture9);
+
+        ////front right wall
+        //x_shift = 54;
+        //y_shift = 2.2;
+        //z_shift = 38.6;
+        //FrontHoriWall(cubeVAO3, ourShader, x_shift, y_shift, z_shift, texture9);
+
+        ////back horizontal 1---> left back 6
+        //x_shift = 21;
+        //y_shift = 2.2;
+        //z_shift = 79;
+        //MidBack_6_HoriWall(cubeVAO2, ourShader, x_shift, y_shift, z_shift, texture9);
+
+        ////back horizontal 2--> left 6 len
+        //x_shift = 35;
+        //y_shift = 2.2;
+        //z_shift = 79;
+        //MidBack_6_HoriWall(cubeVAO2, ourShader, x_shift, y_shift, z_shift, texture9);
+
+        ////back horizontal 3-> right 6 len
+        //x_shift = 53;
+        //y_shift = 2.2;
+        //z_shift = 79;
+        //MidBack_6_HoriWall(cubeVAO2, ourShader, x_shift, y_shift, z_shift, texture9);
+
+        ////back horizontal 4 -> right back 6
+        //x_shift = 67;
+        //y_shift = 2.2;
+        //z_shift = 79;
+        //MidBack_6_HoriWall(cubeVAO2, ourShader, x_shift, y_shift, z_shift, texture9);
+
+        ////back horizontal Imam place ->  3
+        //x_shift = 47;
+        //y_shift = 2.2;
+        //z_shift = 81;
+        //Middle_Back_3_HoriWall_hieght_2_5(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture5);
+
+        ////back Final
+        //x_shift = 21;
+        //y_shift = 2.2;
+        //z_shift = 85;
+        //Final_Back_HoriWall(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////imam box top box wall
+        //x_shift = 47;
+        //y_shift = 2.2+5.0;
+        //z_shift = 79;
+        //HoriWall_top_wall_3_box(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////imam room top box wall
+        //x_shift = 33;
+        //y_shift = 2.2 + 5.0;
+        //z_shift = 79;
+        //HoriWall_top_wall_1(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////muyajjin room top box wall
+        //x_shift = 65;
+        //y_shift = 2.2 + 5.0;
+        //z_shift = 79;
+        //HoriWall_top_wall_1(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////Main gate top box wall
+        //x_shift = 46;
+        //y_shift = 2.2 + 5.0;
+        //z_shift = 38.6;
+        //HoriWall_top_wall_4(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+
+
+        ////Vertical walls---------------------------------------------------------------------------------------------------
+        ////left vertical 1-> left 14.2 len
+        //x_shift = 26.6;
+        //y_shift = 2.2;
+        //z_shift = 50.6;
+        //VertiWall_14_2(cubeVAO3, ourShader, x_shift, y_shift, z_shift, texture9);
+
+        ////left vertical 2-> left 3 len
+        //x_shift = 26.6;
+        //y_shift = 2.2;
+        //z_shift = 38.6;
+        //VertiWall_3(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture9);
+
+        ////right vertical 1-> right 14.2 len
+        //x_shift = 73.4 - 0.4;
+        //y_shift = 2.2;
+        //z_shift = 50.6;
+        //VertiWall_14_2(cubeVAO3, ourShader, x_shift, y_shift, z_shift, texture9);
+
+        ////right vertical 2-> right 3 len
+        //x_shift = 73.4 - 0.4;
+        //y_shift = 2.2;
+        //z_shift = 38.6;
+        //VertiWall_3(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture9);
+
+        ////left back(final) vertical 1-> right 3 len
+        //x_shift = 21;
+        //y_shift = 2.2;
+        //z_shift = 79;
+        //VertiWall_3(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////left 2nd back(final) vertical 2-> right 3 len
+        //x_shift = 41;
+        //y_shift = 2.2;
+        //z_shift = 79;
+        //VertiWall_3(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////right 2nd back(final) vertical 3-> right 3 len
+        //x_shift = 59-0.4;
+        //y_shift = 2.2;
+        //z_shift = 79;
+        //VertiWall_3(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////right back(final) vertical 3-> right 3 len
+        //x_shift = 79-0.4;
+        //y_shift = 2.2;
+        //z_shift = 79;
+        //VertiWall_3(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////left back imam box vertical 1-> right 1len
+        //x_shift = 47;
+        //y_shift = 2.2;
+        //z_shift = 79;
+        //VertiWall_1_height_2_5(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////right back imam box vertical 2-> right 1 len
+        //x_shift = 53-0.4;
+        //y_shift = 2.2;
+        //z_shift = 79;
+        //VertiWall_1_height_2_5(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////left side er top box wall
+        //x_shift = 26.6;
+        //y_shift = 2.2 + 5.0;
+        //z_shift = 44.6;
+        //VertiWall_top_wall_3(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////right side er top box wall
+        //x_shift = 73.4-0.4;
+        //y_shift = 2.2 + 5.0;
+        //z_shift = 44.6;
+        //VertiWall_top_wall_3(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+
+        ////Doors-----------------------------------------------
+        ////front left
+        //x_shift = 46;
+        //y_shift = 2.2;
+        //z_shift = 38.6;
+        //LeftFrontDoors(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture12);
+
+        ////front right
+        //x_shift = 54;
+        //y_shift = 2.2;
+        //z_shift = 38.6;
+        //RightFrontDoors(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture12);
+
+
+        ////Minars--------------------------------------------------------------
+        ////left minar
+        //x_shift = 17;
+        //y_shift = 0.2;
+        //z_shift = 17;
+        //Minar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+        ////right minar
+        //x_shift = 83;
+        //y_shift = 0.2;
+        //z_shift = 17;
+        //Minar(hexaVAO, ourShader, x_shift, y_shift, z_shift, texture0);
 
 
     //Lights
@@ -1369,20 +1473,20 @@ void Floor(Shader ourShader, glm::mat4 moveMatrix, glm::vec4 color)
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawField(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void Field(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
     glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
 
     //universal translate
-    uni_translate = glm::translate(identityMatrix, glm::vec3( 0.5 * x_shift, 0.5 * y_shift, -0.5 * z_shift));
+    uni_translate = glm::translate(identityMatrix, glm::vec3( x_shift,  y_shift, -1.0f *z_shift));
 
     //grass layer----------------------------------------------------------------
     glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
 
     translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.0f, 0.0f));
-    scaleMatrix = glm::scale(identityMatrix, glm::vec3(100.0f, 0.2f, -100.0f));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(75.0f, 0.1f, -75.0f));
     model = uni_translate * translateMatrix * scaleMatrix;
     ourShader.setMat4("model", model);
     ourShader.setVec4("material.ambient", glm::vec4(1.0,1.0,1.0, 1.0f));
@@ -1393,20 +1497,20 @@ void drawField(unsigned int VAO, Shader ourShader, float x_shift, float y_shift,
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawFBsideWalk(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void FBsideWalk(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
     glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
 
     //universal translate
-    uni_translate = glm::translate(identityMatrix, glm::vec3(0.5 * x_shift, 0.5 * y_shift, -0.5 * z_shift));
+    uni_translate = glm::translate(identityMatrix, glm::vec3( x_shift, y_shift, -1.0 * z_shift));
 
     //grass layer----------------------------------------------------------------
     glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
 
     translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.0f, 0.0f));
-    scaleMatrix = glm::scale(identityMatrix, glm::vec3(80.0f, 0.4f, -3.0f));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(55.0f, 0.2f, -4.0f));
     model = uni_translate * translateMatrix * scaleMatrix;
     ourShader.setMat4("model", model);
     //ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
@@ -1418,20 +1522,20 @@ void drawFBsideWalk(unsigned int VAO, Shader ourShader, float x_shift, float y_s
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawLRsideWalk(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void LRsideWalk(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
     glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
 
     //universal translate
-    uni_translate = glm::translate(identityMatrix, glm::vec3(0.5 * x_shift, 0.5 * y_shift, -0.5 * z_shift));
+    uni_translate = glm::translate(identityMatrix, glm::vec3( x_shift, y_shift, -1.0f * z_shift));
 
     //grass layer----------------------------------------------------------------
     glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
 
     translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.0f, 0.0f));
-    scaleMatrix = glm::scale(identityMatrix, glm::vec3(3.0f, 0.4f, -74.0f));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(4.0f, 0.2f, -55.0f));
     model = uni_translate * translateMatrix * scaleMatrix;
     ourShader.setMat4("model", model);
     //ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
@@ -1443,7 +1547,3137 @@ void drawLRsideWalk(unsigned int VAO, Shader ourShader, float x_shift, float y_s
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawMidsideWalk(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void Ojubase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+{
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+
+    //grass layer----------------------------------------------------------------
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.0f, 0.0f));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(7.0f, 0.2f, -7.0f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+}
+
+void MainMosjidBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+{
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+
+    //grass layer----------------------------------------------------------------
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.0f, 0.0f));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(44.0f, 0.2f, -25.0f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+}
+
+
+void Mosjid1stFloor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+{
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    float x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+
+
+    //roof box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    float lbx = 15.5, lby = 2.2f + 0.2f, lbz = 43.0f;
+    float len = 44.0, ht = 2.4f;
+    float width = 25.0;
+    //fornt wall
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + width - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (width - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+}
+
+void Mosjid2ndFloor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+{
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    float x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+
+
+    //roof box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    float lbx = 15.5, lby = 6.8f + 0.2f, lbz = 44.0f;
+    float len = 44.0, ht = 1.8f;
+    float width = 23.0;
+    //fornt wall
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + width - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (width - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+    
+    //Front wall--------------------------------------------------------------------------------
+    lbx = 15.5, lby = 4.8f, lbz = 44.0f;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); 
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(44.0, 2.2f, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //back wall--------------------------------------------------------------------------------
+    lbx = 15.5, lby = 4.8f, lbz = 66.8f;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(44.0, 2.2f, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+   
+
+
+}
+
+void OjuKhana(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0) 
+{
+
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    float x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    //front left box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    float lbx = 8.5f, lby = 2.2f + 0.2f, lbz = 10.5f;
+    float len = 7.0f, width = 7.0f, ht = 1.3f;
+    //fornt wall
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + width - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (width - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+
+
+    //front wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));--
+    x_sft = 8.6f, y_sft = 0.2f, z_sft = 10.6f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f* z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(6.8f, 2.5f, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 8.6f, y_sft = 0.2f, z_sft = 10.6f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 2.5f, -6.8f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //back wall-------------------------------------------------------
+    //1
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 8.6f, y_sft = 0.2f, z_sft = 17.2f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.4f, 2.2f, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //2
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); 
+    x_sft = 13.0f, y_sft = 0.2f, z_sft = 17.2f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.4f, 2.2f, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //left wall---------------------------------------
+    //1
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 15.2f, y_sft = 0.2f, z_sft = 10.6f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 2.2f, -2.4f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //2
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 15.2f, y_sft = 0.2f, z_sft = 15.0f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 2.2f, -2.4f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //pillers
+    //leftbot
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 8.5f, y_sft = 0.2f, z_sft = 10.5f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 2.2f, -0.5f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //lefttop
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 8.5f, y_sft = 0.2f, z_sft = 17;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 2.2f, -0.5f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //rightbot
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 15.0f, y_sft = 0.2f, z_sft = 10.5f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 2.2f, -0.5f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //righttop
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 15.0f, y_sft = 0.2f, z_sft = 17.0f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 2.2f, -0.5f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //INSIDE
+    //FLoor
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 9.1f, y_sft = 0.0f, z_sft = 11.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(6.1f, 0.4f, -6.1f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.7, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.7, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //seats left
+
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 9.4f, y_sft = 0.4f, z_sft = 12.6f;
+    for (int i = 0; i < 3; i++)
+    {
+        glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, (- 1.0f * z_sft)-i*1.55));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 0.5f, -0.5f));
+        model = uni_translate * translateMatrix * scaleMatrix;
+        ourShader.setMat4("model", model);
+        ourShader.setVec4("material.ambient", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.diffuse", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+        ourShader.setFloat("material.shininess", 32.0f);
+        glBindVertexArray(VAO);
+        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    }
+
+
+    //seats right
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 10.6f, y_sft = 0.4f, z_sft = 11.4f;
+
+    for (int i = 0; i < 3; i++)
+    {
+        glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft + i * 1.55f, y_sft, -1.0f * z_sft ));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 0.5f, -0.5f));
+        model = uni_translate * translateMatrix * scaleMatrix;
+        ourShader.setMat4("model", model);
+        ourShader.setVec4("material.ambient", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.diffuse", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+        ourShader.setFloat("material.shininess", 32.0f);
+        glBindVertexArray(VAO);
+        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    }
+}
+
+void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+{
+
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    float x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    //front left box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    float lbx = 8.5f, lby = 2.2f + 0.2f, lbz = 10.5f;
+    float len = 7.0f, width = 7.0f, ht = 1.3f;
+    //fornt wall
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + width - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (width - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+
+
+    //front wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = 8.6f, y_sft = 0.2f, z_sft = 10.6f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(6.8f, 2.5f, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //right wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 15.2f, y_sft = 0.2f, z_sft = 10.6f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 2.5f, -6.8f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //back wall-------------------------------------------------------
+    //1
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 8.6f, y_sft = 0.2f, z_sft = 17.2f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.4f, 2.2f, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //2
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 13.0f, y_sft = 0.2f, z_sft = 17.2f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.4f, 2.2f, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //right wall---------------------------------------
+    //1
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 8.6f, y_sft = 0.2f, z_sft = 10.6f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 2.2f, -2.4f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //2
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 8.6f, y_sft = 0.2f, z_sft = 15.0f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 2.2f, -2.4f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //pillers
+    //leftbot
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 8.5f, y_sft = 0.2f, z_sft = 10.5f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 2.2f, -0.5f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //lefttop
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 8.5f, y_sft = 0.2f, z_sft = 17;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 2.2f, -0.5f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //rightbot
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 15.0f, y_sft = 0.2f, z_sft = 10.5f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 2.2f, -0.5f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //righttop
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 15.0f, y_sft = 0.2f, z_sft = 17.0f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 2.2f, -0.5f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //INSIDE
+    //FLoor
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 8.8f, y_sft = 0.0f, z_sft = 10.8f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(6.1f, 0.4f, -6.4f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.7, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.7, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //seats left
+
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 14.0f, y_sft = 0.4f, z_sft = 13.0f;
+    for (int i = 1; i < 3; i++)
+    {
+        glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, (-1.0f * z_sft) - i * 1.55));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 0.5f, -0.5f));
+        model = uni_translate * translateMatrix * scaleMatrix;
+        ourShader.setMat4("model", model);
+        ourShader.setVec4("material.ambient", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.diffuse", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+        ourShader.setFloat("material.shininess", 32.0f);
+        glBindVertexArray(VAO);
+        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    }
+
+
+    //seats right
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 9.1f, y_sft = 0.4f, z_sft = 11.1f;
+
+    for (int i = 0; i < 4; i++)
+    {
+        glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft + i * 1.8f, y_sft, -1.0f * z_sft));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 2.0f, -1.5f));
+        model = uni_translate * translateMatrix * scaleMatrix;
+        ourShader.setMat4("model", model);
+        ourShader.setVec4("material.ambient", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.diffuse", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+        ourShader.setFloat("material.shininess", 32.0f);
+        glBindVertexArray(VAO);
+        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    }
+    
+
+    //bath_room top border wall
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 9.1f, y_sft = 1.8f, z_sft = 12.4f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(5.6f, 0.6f, -0.1f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.7, 0.549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.7, 0.549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //bath_inside_left wall
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 9.3f, y_sft = 0.4f, z_sft = 12.4f;
+    for (int i = 0; i < 3; i++)
+    {
+        glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft + i * 1.8f, y_sft, -1.0f * z_sft));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 1.4f, -0.1f));
+        model = uni_translate * translateMatrix * scaleMatrix;
+        ourShader.setMat4("model", model);
+        ourShader.setVec4("material.ambient", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.diffuse", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+        ourShader.setFloat("material.shininess", 32.0f);
+        glBindVertexArray(VAO);
+        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    }
+
+    //bath_inside_right wall
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 9.3f+(0.5f+0.6f), y_sft = 0.4f, z_sft = 12.4f;
+    for (int i = 0; i < 3; i++)
+    {
+        glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft + i * 1.8f, y_sft, -1.0f * z_sft));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 1.4f, -0.1f));
+        model = uni_translate * translateMatrix * scaleMatrix;
+        ourShader.setMat4("model", model);
+        ourShader.setVec4("material.ambient", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.diffuse", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+        ourShader.setFloat("material.shininess", 32.0f);
+        glBindVertexArray(VAO);
+        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    }
+
+    //Doors------------------------------------------------------------------------------------------------------
+    //1st door
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 9.8f, y_sft = 0.42f, z_sft = 12.4f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft + 0 * 1.8f, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.6f, 1.36f, -0.05f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.6, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.6, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //2nd door
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 9.8f, y_sft = 0.42f, z_sft = 12.4f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft + 1 * 1.8f, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.6f, 1.36f, -0.05f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.6, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.6, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //3rd door
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 9.8f, y_sft = 0.42f, z_sft = 12.4f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft + 2 * 1.8f, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.6f, 1.36f, -0.05f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.6, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.6, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //Doors----------------------------------------------------------------------------------------END
+
+    //Flush
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = 10.0f, y_sft = 0.4f+0.5, z_sft = 11.1f;
+    for (int i = 0; i < 3; i++)
+    {
+        glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft + i * 1.8f, y_sft, -1.0f * z_sft));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3( 0.4f, 0.4f, -0.1f));
+        model = uni_translate * translateMatrix * scaleMatrix;
+        ourShader.setMat4("model", model);
+        ourShader.setVec4("material.ambient", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.diffuse", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+        ourShader.setFloat("material.shininess", 32.0f);
+        glBindVertexArray(VAO);
+        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    }
+
+}
+
+void MainGate(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+{
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    float x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+
+
+    //front left box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    float lbx = 30.0f, lby = 0.2f, lbz = 11.0f;
+    float len = 2.0, ht = 3.75;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+    x_sft = lbx, y_sft = lby, z_sft = lbz +len - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx +len-0.2, y_sft = lby , z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht+lby) -0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len-0.2, 0.2f, -1.0f * (len-0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+    //back left box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 30.0f, lby = 0.2f, lbz = 15.0f;
+    len = 2.0, ht = 3.75;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + len - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (len - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+
+    //front right box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 43.0f, lby = 0.2f, lbz = 11.0f;
+    len = 2.0, ht = 3.75;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + len - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (len - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+    //back right box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 43.0f, lby = 0.2f, lbz = 15.0f;
+    len = 2.0, ht = 3.75;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + len - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (len - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+    //Mid Main box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 34.0, lby = 3.0f + 0.2f, lbz = 10.5f;
+    len = 7.0, ht = 1.0;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + len - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (len - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+    
+    //Mid Main gate front left box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 34.0, lby = 0.2f, lbz = 10.5f;
+    len = 1.75, ht = 3.0;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + len - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (len - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+    //Mid Main gate back left box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 34.0, lby = 0.2f, lbz = 15.75f;
+    len = 1.75, ht = 3.0;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + len - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (len - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+    //Mid Main gate front right box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 39.25, lby = 0.2f, lbz = 10.5f;
+    len = 1.75, ht = 3.0;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + len - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (len - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+
+    //Mid Main gate back right box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 39.25, lby = 0.2f, lbz = 15.75;
+    len = 1.75, ht = 3.0;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + len - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (len - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+    //left mid wing box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 30, lby = 2.2f + 0.2f, lbz = 11.5f;
+    len = 4.0f, ht = 1.0f;
+    float width = 5.0;
+    //fornt wall
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + width - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (width - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+    //right mid wing box-------------------------------------------------------
+        //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 41, lby = 2.2f + 0.2f, lbz = 11.5f;
+    len = 4.0f, ht = 1.0f;
+    width = 5.0;
+    //fornt wall
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + width - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (width - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+}
+
+void Frontwing(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+{
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    float x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    //front left box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    float lbx = 15.5, lby = 2.2f + 0.2f, lbz = 12.0f;
+    float len = 14.5, width = 4.0, ht = 1.0f;
+    //fornt wall
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + width - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (width - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+}
+
+void Sidewing(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+{
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    float x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+
+
+    //front left box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    float lbx = 10.0, lby = 2.2f + 0.2f, lbz = 17.5f;
+    float len = 4.0, width = 40.5, ht = 1.0f;
+    //fornt wall
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + width - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (width - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+}
+
+void MidGate(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+{
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    float x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+
+
+    //front left box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    float lbx = 31.5f, lby = 0.2f, lbz = 35.5f;
+    float len = 2.0, ht = 5.0;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + len - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (len - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+
+    //front right box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 41.0f, lby = 0.2f, lbz = 35.5f;
+    len = 2.0, ht = 5.0;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + len - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (len - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+    //Mid Gate main box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+     lbx = 32.0, lby = 2.2f + 0.2f, lbz = 36.0f;
+     len = 11.0, ht = 2.4f;
+     float width = 7.0;
+    //fornt wall
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + width - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (width - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+    //Left wing_+_+_+_+_+
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 14.0, lby = 2.2f + 0.2f, lbz = 37.5f;
+    len = 18, ht = 1.0f;
+    width = 4.0;
+    //fornt wall
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + width - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (width - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+    //right wing_+_+_+_+_+
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 43.0, lby = 2.2f + 0.2f, lbz = 37.5f;
+    len = 18, ht = 1.0f;
+    width = 4.0;
+    //fornt wall
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + width - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (width - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+}
+
+void StairTower1(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+{
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    float x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+
+
+    //front left box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    float lbx = 8.5f, lby = 0.2f, lbz = 58.0f;
+    float len = 2.0, ht = 8.2;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + len - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3((len - 0.2), 0.2f, -1.0f * (len - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+    //back left box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 8.5f, lby = 0.2f, lbz = 63.0f;
+    len = 2.0, ht = 8.2;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + len - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3((len - 0.2), 0.2f, -1.0f * (len - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+
+    //front right box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 13.5, lby = 0.2f, lbz = 58.0f;
+    len = 2.0, ht = 8.2;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + len - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (len - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+    //back right box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 13.5, lby = 0.2f, lbz = 63.0f;
+    len = 2.0, ht = 8.2;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + len - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (len - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+    //main box tower-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 8.5, lby = 2.2f + 0.2f, lbz = 58.0f;
+    len = 7.0, ht = 5.6f;
+    float width = 7.0;
+    //fornt wall
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + width - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (width - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+}
+
+void StairTower2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+{
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    float x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+
+
+    //front left box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    float lbx = 8.5f, lby = 0.2f, lbz = 58.0f;
+    float len = 2.0, ht = 3.75;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + len - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3((len - 0.2), 0.2f, -1.0f * (len - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+    //back left box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 8.5f, lby = 0.2f, lbz = 63.0f;
+    len = 2.0, ht = 3.75;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + len - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3((len - 0.2), 0.2f, -1.0f * (len - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+
+    //front right box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 13.5, lby = 0.2f, lbz = 58.0f;
+    len = 2.0, ht = 3.75;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + len - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (len - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+    //back right box-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 13.5, lby = 0.2f, lbz = 63.0f;
+    len = 2.0, ht = 3.75;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + len - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * len));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (len - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+    //main box tower-------------------------------------------------------
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 8.5, lby = 2.2f + 0.2f, lbz = 58.0f;
+    len = 7.0, ht = 1.0f;
+    float width = 7.0;
+    //fornt wall
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //left wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //BACK wall-------------------------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
+        x_sft = lbx, y_sft = lby, z_sft = lbz + width - 0.2;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //RIGHT wall---------------------------------------
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //top box
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (width - 0.2f)));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+}
+
+
+
+void MidsideWalk(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -1468,7 +4702,7 @@ void drawMidsideWalk(unsigned int VAO, Shader ourShader, float x_shift, float y_
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawExtBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void ExtBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -1493,7 +4727,7 @@ void drawExtBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawMosjidBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void MosjidBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -1518,7 +4752,7 @@ void drawMosjidBase(unsigned int VAO, Shader ourShader, float x_shift, float y_s
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawMidBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void MidBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -1543,7 +4777,7 @@ void drawMidBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawTopBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void TopBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -1570,7 +4804,7 @@ void drawTopBase(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
 
 //Pillar-------------------------------------------------------
 
-void drawPillar(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void Pillar(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -1689,7 +4923,7 @@ void drawPillar(unsigned int VAO, Shader ourShader, float x_shift, float y_shift
 }
 
 //Minars
-void drawMinar(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void Minar(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -1873,7 +5107,7 @@ void drawMinar(unsigned int VAO, Shader ourShader, float x_shift, float y_shift,
 
 
 //Horizontal walls---------------------------------------------------
-void drawFrontHoriWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void FrontHoriWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -1898,7 +5132,7 @@ void drawFrontHoriWall(unsigned int VAO, Shader ourShader, float x_shift, float 
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawMiddle_Back_3_HoriWall_hieght_2_5(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void Middle_Back_3_HoriWall_hieght_2_5(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -1923,7 +5157,7 @@ void drawMiddle_Back_3_HoriWall_hieght_2_5(unsigned int VAO, Shader ourShader, f
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawMidBack_6_HoriWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void MidBack_6_HoriWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -1948,7 +5182,7 @@ void drawMidBack_6_HoriWall(unsigned int VAO, Shader ourShader, float x_shift, f
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawFinal_Back_HoriWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void Final_Back_HoriWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -1973,7 +5207,7 @@ void drawFinal_Back_HoriWall(unsigned int VAO, Shader ourShader, float x_shift, 
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawHoriWall_top_wall_3_box(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void HoriWall_top_wall_3_box(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -1998,7 +5232,7 @@ void drawHoriWall_top_wall_3_box(unsigned int VAO, Shader ourShader, float x_shi
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawHoriWall_top_wall_1(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void HoriWall_top_wall_1(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -2023,7 +5257,7 @@ void drawHoriWall_top_wall_1(unsigned int VAO, Shader ourShader, float x_shift, 
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawHoriWall_top_wall_4(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void HoriWall_top_wall_4(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -2049,7 +5283,7 @@ void drawHoriWall_top_wall_4(unsigned int VAO, Shader ourShader, float x_shift, 
 }
 
 //Vertical walls---------------------------------------------------------------
-void drawVertiWall_14_2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void VertiWall_14_2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -2074,7 +5308,7 @@ void drawVertiWall_14_2(unsigned int VAO, Shader ourShader, float x_shift, float
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawVertiWall_3(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void VertiWall_3(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -2099,7 +5333,7 @@ void drawVertiWall_3(unsigned int VAO, Shader ourShader, float x_shift, float y_
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawVertiWall_1_height_2_5(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void VertiWall_1_height_2_5(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -2124,7 +5358,7 @@ void drawVertiWall_1_height_2_5(unsigned int VAO, Shader ourShader, float x_shif
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawVertiWall_top_wall_3(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void VertiWall_top_wall_3(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -2150,7 +5384,7 @@ void drawVertiWall_top_wall_3(unsigned int VAO, Shader ourShader, float x_shift,
 }
 
 //Doors
-void drawLeftFrontDoors(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void LeftFrontDoors(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -2188,7 +5422,7 @@ void drawLeftFrontDoors(unsigned int VAO, Shader ourShader, float x_shift, float
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawRightFrontDoors(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void RightFrontDoors(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -2235,13 +5469,7 @@ void drawRightFrontDoors(unsigned int VAO, Shader ourShader, float x_shift, floa
 
 
 
-
-
-
-
-
-
-void drawFloor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+void Floor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
 
     // Modelling Transformation
@@ -2263,62 +5491,10 @@ void drawFloor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift,
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
-    ////left_bot_white------------------------------------------------------
-    //translateMatrix = glm::translate(identityMatrix, glm::vec3((0.5f * 0.01f), (0.5f * 0.01f), 0.5f * 0.01f));
-    //scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.48f, 0.02f, 0.48f));
-    //model = uni_translate * translateMatrix * scaleMatrix;
-    //ourShader.setMat4("model", model);
-    ////ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    //ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    //ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    //ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    //ourShader.setFloat("material.shininess", 32.0f);
-    //glBindVertexArray(VAO);
-    //glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-
-    ////right_bot_black-------------------------------------------------
-    //translateMatrix = glm::translate(identityMatrix, glm::vec3((0.5f * 0.51f), (0.5f * 0.01f), 0.5f * 0.01f));
-    //scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.48f, 0.02f, 0.48f));
-    //model = uni_translate * translateMatrix * scaleMatrix;
-    //ourShader.setMat4("model", model);
-    ////ourShader.setVec4("color", glm::vec4(0.21176470588235294, 0.27058823529411763, 0.30980392156862746, 1.0f));
-    //ourShader.setVec4("material.ambient", glm::vec4(0.21176470588235294, 0.27058823529411763, 0.30980392156862746, 1.0f));
-    //ourShader.setVec4("material.diffuse", glm::vec4(0.21176470588235294, 0.27058823529411763, 0.30980392156862746, 1.0f));
-    //ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    //ourShader.setFloat("material.shininess", 32.0f);
-    //glBindVertexArray(VAO);
-    //glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-
-    ////left_up_black
-    //translateMatrix = glm::translate(identityMatrix, glm::vec3((0.5f * 0.01f), (0.5f * 0.01f), 0.5f * 0.51f));
-    //scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.48f, 0.02f, 0.48f));
-    //model = uni_translate * translateMatrix * scaleMatrix;
-    //ourShader.setMat4("model", model);
-    ////ourShader.setVec4("color", glm::vec4(0.21176470588235294, 0.27058823529411763, 0.30980392156862746, 1.0f));
-    //ourShader.setVec4("material.ambient", glm::vec4(0.21176470588235294, 0.27058823529411763, 0.30980392156862746, 1.0f));
-    //ourShader.setVec4("material.diffuse", glm::vec4(0.21176470588235294, 0.27058823529411763, 0.30980392156862746, 1.0f));
-    //ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    //ourShader.setFloat("material.shininess", 32.0f);
-    //glBindVertexArray(VAO);
-    //glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-
-    ////right_up_white
-    //translateMatrix = glm::translate(identityMatrix, glm::vec3((0.5f * 0.51f), (0.5f * 0.01f), 0.5f * 0.51f));
-    //scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.48f, 0.02f, 0.48f));
-    //model = uni_translate * translateMatrix * scaleMatrix;
-    //ourShader.setMat4("model", model);
-    ////ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    //ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    //ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    //ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    //ourShader.setFloat("material.shininess", 32.0f);
-    //glBindVertexArray(VAO);
-    //glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-
 }
 
 
-void drawLamp(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift , int style)
+void Lamp(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift , int style)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -2428,7 +5604,7 @@ void drawLamp(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, 
 
 }
 
-void drawMainFloor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+void MainFloor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
 
     // Modelling Transformation
@@ -2450,62 +5626,10 @@ void drawMainFloor(unsigned int VAO, Shader ourShader, float x_shift, float y_sh
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
-    ////left_bot_white------------------------------------------------------
-    //translateMatrix = glm::translate(identityMatrix, glm::vec3((0.5f * 0.01f), (0.5f * 0.01f), 0.5f * 0.01f));
-    //scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.48f, 0.02f, 0.48f));
-    //model = uni_translate * translateMatrix * scaleMatrix;
-    //ourShader.setMat4("model", model);
-    ////ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    //ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    //ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    //ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    //ourShader.setFloat("material.shininess", 32.0f);
-    //glBindVertexArray(VAO);
-    //glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-
-    ////right_bot_black-------------------------------------------------
-    //translateMatrix = glm::translate(identityMatrix, glm::vec3((0.5f * 0.51f), (0.5f * 0.01f), 0.5f * 0.01f));
-    //scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.48f, 0.02f, 0.48f));
-    //model = uni_translate * translateMatrix * scaleMatrix;
-    //ourShader.setMat4("model", model);
-    ////ourShader.setVec4("color", glm::vec4(0.21176470588235294, 0.27058823529411763, 0.30980392156862746, 1.0f));
-    //ourShader.setVec4("material.ambient", glm::vec4(0.21176470588235294, 0.27058823529411763, 0.30980392156862746, 1.0f));
-    //ourShader.setVec4("material.diffuse", glm::vec4(0.21176470588235294, 0.27058823529411763, 0.30980392156862746, 1.0f));
-    //ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    //ourShader.setFloat("material.shininess", 32.0f);
-    //glBindVertexArray(VAO);
-    //glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-
-    ////left_up_black
-    //translateMatrix = glm::translate(identityMatrix, glm::vec3((0.5f * 0.01f), (0.5f * 0.01f), 0.5f * 0.51f));
-    //scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.48f, 0.02f, 0.48f));
-    //model = uni_translate * translateMatrix * scaleMatrix;
-    //ourShader.setMat4("model", model);
-    ////ourShader.setVec4("color", glm::vec4(0.21176470588235294, 0.27058823529411763, 0.30980392156862746, 1.0f));
-    //ourShader.setVec4("material.ambient", glm::vec4(0.21176470588235294, 0.27058823529411763, 0.30980392156862746, 1.0f));
-    //ourShader.setVec4("material.diffuse", glm::vec4(0.21176470588235294, 0.27058823529411763, 0.30980392156862746, 1.0f));
-    //ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    //ourShader.setFloat("material.shininess", 32.0f);
-    //glBindVertexArray(VAO);
-    //glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-
-    ////right_up_white
-    //translateMatrix = glm::translate(identityMatrix, glm::vec3((0.5f * 0.51f), (0.5f * 0.01f), 0.5f * 0.51f));
-    //scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.48f, 0.02f, 0.48f));
-    //model = uni_translate * translateMatrix * scaleMatrix;
-    //ourShader.setMat4("model", model);
-    ////ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    //ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    //ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    //ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    //ourShader.setFloat("material.shininess", 32.0f);
-    //glBindVertexArray(VAO);
-    //glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-
 }
 
 //draw functions
-void drawSofa3(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+void Sofa3(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
 
     // Modelling Transformation
@@ -2597,7 +5721,7 @@ void drawSofa3(unsigned int VAO, Shader ourShader, float x_shift, float y_shift,
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawSofa21(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+void Sofa21(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
 
     // Modelling Transformation
@@ -2689,7 +5813,7 @@ void drawSofa21(unsigned int VAO, Shader ourShader, float x_shift, float y_shift
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawSofa22(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+void Sofa22(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
 
     // Modelling Transformation
@@ -2781,7 +5905,7 @@ void drawSofa22(unsigned int VAO, Shader ourShader, float x_shift, float y_shift
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawTV(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+void TV(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
 
     // Modelling Transformation
@@ -2896,7 +6020,7 @@ void drawTV(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
 
 }
 
-void drawShelf(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+void Shelf(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
 
     // Modelling Transformation
@@ -3000,7 +6124,7 @@ void drawShelf(unsigned int VAO, Shader ourShader, float x_shift, float y_shift,
 
 }
 
-void drawTable(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+void Table(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
 
     // Modelling Transformation
@@ -3077,7 +6201,7 @@ void drawTable(unsigned int VAO, Shader ourShader, float x_shift, float y_shift,
 
 }
 
-void drawSpeaker(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+void Speaker(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
 
     // Modelling Transformation
@@ -3194,7 +6318,7 @@ void drawSpeaker(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
 }
 
 
-void drawCup(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+void Cup(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -3275,7 +6399,7 @@ void drawCup(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, f
 
 
 
-void drawSideWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+void SideWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
     glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
@@ -3296,7 +6420,7 @@ void drawSideWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shi
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawFBWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+void FBWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
     glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
@@ -3318,7 +6442,7 @@ void drawFBWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawRoof(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+void Roof(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
     glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
@@ -3340,7 +6464,7 @@ void drawRoof(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, 
 
 }
 
-void drawFan(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+void Fan(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -3442,7 +6566,7 @@ void drawFan(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, f
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 }
 
-void drawLadder(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+void Ladder(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
     glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
