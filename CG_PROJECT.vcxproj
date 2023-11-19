@@ -139,6 +139,7 @@
   <ItemGroup>
     <ClInclude Include="basic_camera.h" />
     <ClInclude Include="BezierCurve.h" />
+    <ClInclude Include="BezierCurveArch.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="directionalLight.h" />
     <ClInclude Include="pointLight.h" />
