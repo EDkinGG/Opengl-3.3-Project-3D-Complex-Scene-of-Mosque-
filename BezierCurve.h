@@ -21,8 +21,9 @@ public:
     glm::vec4 diffuse;
     glm::vec4 specular;
     float shininess;
+    unsigned int texture;
     // ctor/dtor
-    BezierCurve(GLfloat controlpoints[], int size, glm::vec4 amb = glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f), glm::vec4 diff = glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f), glm::vec4 spec = glm::vec4(0.1f, 0.1f, 0.1f, 0.5f), float shiny = 32.0f)
+    BezierCurve(GLfloat controlpoints[], int size, unsigned int tex, glm::vec4 amb = glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f), glm::vec4 diff = glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f), glm::vec4 spec = glm::vec4(0.1f, 0.1f, 0.1f, 0.5f), float shiny = 32.0f)
     {
         for (int i = 0; i < size; i++)
         {
@@ -32,6 +33,7 @@ public:
         this->diffuse = diff;
         this->specular = spec;
         this->shininess = shiny;
+        this->texture = tex;
         sphereVAO = hollowBezier(cntrlPoints.data(), ((unsigned int)cntrlPoints.size() / 3) - 1);
 
     }
@@ -39,14 +41,13 @@ public:
     // draw in VertexArray mode
     void drawBezierCurve(Shader& lightingShader, glm::mat4 model) const      // draw surface
     {
+        glBindTexture(GL_TEXTURE_2D, this->texture);
         lightingShader.use();
-
-        lightingShader.setVec3("material.ambient", this->ambient);
-        lightingShader.setVec3("material.diffuse", this->diffuse);
-        lightingShader.setVec3("material.specular", this->specular);
-        lightingShader.setFloat("material.shininess", this->shininess);
-
         lightingShader.setMat4("model", model);
+        lightingShader.setVec4("material.ambient", this->ambient);
+        lightingShader.setVec4("material.diffuse", this->diffuse);
+        lightingShader.setVec4("material.specular", this->specular);
+        lightingShader.setFloat("material.shininess", this->shininess);
 
         glBindVertexArray(sphereVAO);
         glDrawElements(GL_TRIANGLES,                    // primitive type
@@ -102,7 +103,7 @@ private:
         float x, y, z, r;                //current coordinates
         float theta;
         float nx, ny, nz, lengthInv;    // vertex normal
-
+        float u, v; // texturecoord
 
         const float dtheta = 2 * pi / ntheta;        //angular step size
 
@@ -118,6 +119,8 @@ private:
             theta = 0;
             t += dt;
             lengthInv = 1.0 / r;
+            u = 0;
+            v = 0.025 * (nt - i);//(1/40)
 
             for (j = 0; j <= ntheta; ++j)
             {
@@ -139,6 +142,12 @@ private:
                 normals.push_back(nx);
                 normals.push_back(ny);
                 normals.push_back(nz);
+
+                u = j*0.05;//(1/20)
+                v = v;
+
+                texCoords.push_back(u);
+                texCoords.push_back(v);
 
                 theta += dtheta;
             }
@@ -171,15 +180,20 @@ private:
         }
 
         size_t count = coordinates.size();
-        for (int i = 0; i < count; i += 3)
+        size_t counttex = texCoords.size();
+        for (int i = 0, j = 0; i < count; i += 3, j += 2)
         {
             vertices.push_back(coordinates[i]);
             vertices.push_back(coordinates[i + 1]);
             vertices.push_back(coordinates[i + 2]);
 
-            vertices.push_back(-1*normals[i]);
-            vertices.push_back(-1*normals[i + 1]);
-            vertices.push_back(-1*normals[i + 2]);
+
+            vertices.push_back(-1 * normals[i]);
+            vertices.push_back(-1 * normals[i + 1]);
+            vertices.push_back(-1 * normals[i + 2]);
+
+            vertices.push_back(texCoords[j]);
+            vertices.push_back(texCoords[j + 1]);
         }
 
         unsigned int bezierVAO;
@@ -205,13 +219,16 @@ private:
             GL_STATIC_DRAW);                   // usage
 
         // activate attrib arrays
-        glEnableVertexAttribArray(0);
-        glEnableVertexAttribArray(1);
+ 
 
         // set attrib arrays with stride and offset
-        int stride = 24;     // should be 24 bytes
-        glVertexAttribPointer(0, 3, GL_FLOAT, false, stride, (void*)0);
-        glVertexAttribPointer(1, 3, GL_FLOAT, false, stride, (void*)(sizeof(float) * 3));
+        int stride = 32;     // should be 24 bytes
+        glVertexAttribPointer(0, 3, GL_FLOAT, false, 8 * sizeof(float), (void*)0);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(1, 3, GL_FLOAT, false, 8 * sizeof(float), (void*)(sizeof(float) * 3));
+        glEnableVertexAttribArray(1);
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)24);
+        glEnableVertexAttribArray(2);
 
         // unbind VAO, VBO and EBO
         glBindVertexArray(0);
@@ -231,6 +248,7 @@ private:
     vector<float> normals;
     vector<unsigned int> indices;
     vector<float> coordinates;
+    vector<float> texCoords;
     int verticesStride;                 // # of bytes to hop to the next vertex (should be 24 bytes)
 
 };

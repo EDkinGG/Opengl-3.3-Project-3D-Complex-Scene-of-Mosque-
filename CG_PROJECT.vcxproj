@@ -159,19 +159,32 @@
     <None Include="vertexShaderForPhongShading.vs" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="arch1.png" />
+    <Image Include="balcony_tiles.jpg" />
+    <Image Include="balcony_tiles1.jpg" />
+    <Image Include="balcony_tiles2.jpg" />
     <Image Include="Blank_Wall_Pattern.jpg" />
     <Image Include="brickwall_1.jpg" />
     <Image Include="brickwall_2.jpg" />
+    <Image Include="Concrete007_1K-JPG_Color.jpg" />
+    <Image Include="Concrete037_1K-JPG_Color.jpg" />
     <Image Include="concrete1.PNG" />
     <Image Include="concrete2.PNG" />
     <Image Include="concrete3.PNG" />
+    <Image Include="golden.jpg" />
     <Image Include="grass.jpg" />
     <Image Include="grass_2.png" />
     <Image Include="grass_3.jpg" />
     <Image Include="Grass_3.PNG" />
+    <Image Include="ground_1k.jpg" />
+    <Image Include="ground_2k.jpg" />
     <Image Include="leftdoor.jpg" />
+    <Image Include="Marble012_1K-JPG_Color.jpg" />
+    <Image Include="Marble012_1K-JPG_Displacement.jpg" />
     <Image Include="Mehrab_squared.jpg" />
+    <Image Include="metal_0065_color_1k.jpg" />
     <Image Include="pillardesign_squared.jpg" />
+    <Image Include="Piller_concrete_1.jpg" />
     <Image Include="Right_door.jpg" />
     <Image Include="road.jpg" />
     <Image Include="SijdahPlace_squared.jpg" />

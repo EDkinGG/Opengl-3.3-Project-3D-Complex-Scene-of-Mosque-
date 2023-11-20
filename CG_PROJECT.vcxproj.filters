@@ -141,5 +141,44 @@
     <Image Include="Grass_3.PNG">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="arch1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Piller_concrete_1.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ground_1k.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ground_2k.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Concrete037_1K-JPG_Color.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Concrete007_1K-JPG_Color.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="metal_0065_color_1k.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="golden.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Marble012_1K-JPG_Displacement.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Marble012_1K-JPG_Color.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="balcony_tiles.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="balcony_tiles2.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="balcony_tiles1.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

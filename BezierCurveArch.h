@@ -21,8 +21,10 @@ public:
     glm::vec4 diffuse;
     glm::vec4 specular;
     float shininess;
+    float offset;
+    unsigned int texture;
     // ctor/dtor
-    BezierCurveArch(GLfloat controlpoints[], int size, glm::vec4 amb = glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f), glm::vec4 diff = glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f), glm::vec4 spec = glm::vec4(0.1f, 0.1f, 0.1f, 0.5f), float shiny = 32.0f)
+    BezierCurveArch(GLfloat controlpoints[], int size, unsigned int tex, float offset, glm::vec4 amb = glm::vec4(1.0, 1.0, 1.0, 1.0f), glm::vec4 diff = glm::vec4(1.0, 1.0, 1.0, 1.0f), glm::vec4 spec = glm::vec4(0.1f, 0.1f, 0.1f, 0.5f), float shiny = 32.0f)
     {
         for (int i = 0; i < size; i++)
         {
@@ -32,6 +34,9 @@ public:
         this->diffuse = diff;
         this->specular = spec;
         this->shininess = shiny;
+        this->offset = offset;
+        this->texture = tex;
+        //cout << this->texture << endl;
         sphereVAO = hollowBezier(cntrlPoints.data(), ((unsigned int)cntrlPoints.size() / 3) - 1);
 
     }
@@ -39,14 +44,21 @@ public:
     // draw in VertexArray mode
     void drawBezierCurve(Shader& lightingShader, glm::mat4 model) const      // draw surface
     {
-        lightingShader.use();
+        glBindTexture(GL_TEXTURE_2D, this->texture);
 
-        lightingShader.setVec3("material.ambient", this->ambient);
-        lightingShader.setVec3("material.diffuse", this->diffuse);
-        lightingShader.setVec3("material.specular", this->specular);
+        //ourShader.setMat4("model", model);
+        //ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+        //ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+        //ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+        //ourShader.setFloat("material.shininess", 32.0f);
+        lightingShader.use();
+        lightingShader.setMat4("model", model);
+        lightingShader.setVec4("material.ambient", this->ambient);
+        lightingShader.setVec4("material.diffuse", this->diffuse);
+        lightingShader.setVec4("material.specular", this->specular);
         lightingShader.setFloat("material.shininess", this->shininess);
 
-        lightingShader.setMat4("model", model);
+        
 
         glBindVertexArray(sphereVAO);
         glDrawElements(GL_TRIANGLES,                    // primitive type
@@ -103,13 +115,22 @@ private:
         float theta;
         float nx, ny, nz, lengthInv;    // vertex normal
         float lnx, lny, lnz;
+        float u, v; // texturecoord
+
+        float xx, yy, zz;
 
         const float dtheta = 2 * pi / ntheta;        //angular step size
-
+        const float theta1 = 2 * pi / 4;
+        const float theta2 = 3 * pi / 2;
         float t = 0;
         float dt = 1.0 / nt;
         float xy[2];
-
+        u_add.push_back(0.0);
+        u_add.push_back(0.45);
+        u_add.push_back(0.55);
+        u_add.push_back(1.0);
+        u = 0;
+        v = 1;
         for (i = 0; i <= nt; ++i)              //step through y
         {
             BezierCurveFN(t, xy, ctrlpoints, L);
@@ -118,30 +139,45 @@ private:
             theta = 0;
             t += dt;
             lengthInv = 1.0 / r;
-
-            for (int i = 0; i < 2; i++)
+            u = 0;
+            v = 0.025 * (nt - i);
+            for (int j = 0; j < 2; j++)
             {
-                if (i == 0)
+                if (j == 0)
                 {
                     double cosa = cos(theta);
                     double sina = sin(theta);
                     z = r * cosa;
                     x = r * sina;
-                    //mahamaham
-                    float difz = -1.0-z;
+                    //MAHAMAMAMM*************************************
+                    float difz = -1*this->offset-z;
                     float lftx = x;
                     float lfty = y;
                     float lftz = z+difz;
                     coordinates.push_back(lftx);
                     coordinates.push_back(lfty);
                     coordinates.push_back(lftz);
-                    lnx = lftx-5.0;
-                    lny = lfty;
-                    lnz = lftz;
+                    //MY MODE FOR NORMAL
+                    double cosaa = cos(theta2);
+                    double sinaa = sin(theta2);
+                    zz = r * cosaa;
+                    xx = r * sinaa;
+                    yy = y;
+                    //nx = (x - 0) * lengthInv;
+                    //ny = (y - y) * lengthInv;
+                    //nz = (z - 0) * lengthInv;
+                    lnx = (xx- 0) * lengthInv;
+                    lny = (yy - yy) * lengthInv;
+                    lnz = (zz- 0) * lengthInv;
                     normals.push_back(lnx);
                     normals.push_back(lny);
                     normals.push_back(lnz);
-                    //mahamaham
+                    //MY MODE FOR NORMAL END
+                    u =  u_add[j*2+0];
+                    v = v;
+                    texCoords.push_back(u);
+                    texCoords.push_back(v);
+                    //AHAHHAHAMAMMAMMAMAMMA********************
 
                     coordinates.push_back(x);
                     coordinates.push_back(y);
@@ -155,6 +191,10 @@ private:
                     normals.push_back(-1.0 * nx);
                     normals.push_back(-1.0 * ny);
                     normals.push_back(-1.0 * nz);
+                    u = u_add[j * 2 + 1];
+                    v = v;
+                    texCoords.push_back(u);
+                    texCoords.push_back(v);
                 }
                 else
                 {
@@ -177,39 +217,81 @@ private:
                     normals.push_back(-1.0 * ny);
                     normals.push_back(-1.0 * nz);
 
+                    u = u_add[j * 2 + 0];
+                    v = v;
+                    texCoords.push_back(u);
+                    texCoords.push_back(v);
+
                     //mahamaham
-                    float difz = -1.0 - z;
+                    float difz = -1 * this->offset - z;
                     float lftx = x - 0.2;
                     float lfty = y;
                     float lftz = z + difz;
                     coordinates.push_back(lftx);
                     coordinates.push_back(lfty);
                     coordinates.push_back(lftz);
-                    lnx = lftx + 5.0;
-                    lny = lfty;
-                    lnz = lftz;
+                    //lnx = lftx - 1.0;
+                    //lny = lfty;
+                    //lnz = lftz;
+                    //normals.push_back(-1.0*lnx);
+                    //normals.push_back(-1.0 * lny);
+                    //normals.push_back(-1.0 * lnz);
+                    //MY MODE FOR NORMAL
+                    double cosaa = cos(theta1);
+                    double sinaa = sin(theta1);
+                    zz = r * cosaa;
+                    xx = r * sinaa;
+                    yy = y;
+                    //nx = (x - 0) * lengthInv;
+                    //ny = (y - y) * lengthInv;
+                    //nz = (z - 0) * lengthInv;
+                    lnx = (xx - 0) * lengthInv;
+                    lny = (yy - yy) * lengthInv;
+                    lnz = (zz - 0) * lengthInv;
                     normals.push_back(lnx);
                     normals.push_back(lny);
                     normals.push_back(lnz);
+                    //MY MODE FOR NORMAL END
+
+                    u = u_add[j * 2 + 1];
+                    v = v;
+                    texCoords.push_back(u);
+                    texCoords.push_back(v);
                     //mahamaham
                 }
 
             }
 
         }
+        //int cnt = 1;
+        //cout << texCoords.size() << endl;
+        //for( int i = 0 ; i < texCoords.size() ; i++ )
+        //{
+        //    if (cnt < 8)
+        //    {
+        //        cnt++;
+        //        cout << texCoords[i] << " ";
+        //    }
+        //    else
+        //    {
+        //        cnt = 1;
+        //        cout << texCoords[i] << endl;
+        //    }
+        //}
+
         int cnt = 1;
-        cout << normals.size() << endl;
-        for( int i = 0 ; i < normals.size() ; i++ )
+        cout << coordinates.size() << endl;
+        for (int i = 0; i < coordinates.size(); i++)
         {
             if (cnt < 3)
             {
                 cnt++;
-                cout << normals[i] << " ";
+                cout << coordinates[i] << " ";
             }
             else
             {
                 cnt = 1;
-                cout << normals[i] << endl;
+                cout << coordinates[i] << endl;
             }
         }
 
@@ -244,15 +326,20 @@ private:
         }
 
         size_t count = coordinates.size();
-        for (int i = 0; i < count; i += 3)
+        size_t counttex = texCoords.size();
+        for (int i = 0 , j = 0; i < count; i += 3,j += 2 )
         {
             vertices.push_back(coordinates[i]);
             vertices.push_back(coordinates[i + 1]);
             vertices.push_back(coordinates[i + 2]);
 
+
             vertices.push_back(-1 * normals[i]);
             vertices.push_back(-1 * normals[i + 1]);
             vertices.push_back(-1 * normals[i + 2]);
+
+            vertices.push_back(texCoords[j]);
+            vertices.push_back(texCoords[j + 1]);
         }
 
         unsigned int bezierVAO;
@@ -278,13 +365,17 @@ private:
             GL_STATIC_DRAW);                   // usage
 
         // activate attrib arrays
-        glEnableVertexAttribArray(0);
-        glEnableVertexAttribArray(1);
+        
+        
 
         // set attrib arrays with stride and offset
-        int stride = 24;     // should be 24 bytes
-        glVertexAttribPointer(0, 3, GL_FLOAT, false, stride, (void*)0);
-        glVertexAttribPointer(1, 3, GL_FLOAT, false, stride, (void*)(sizeof(float) * 3));
+        int stride = 32;     // should be 24 bytes
+        glVertexAttribPointer(0, 3, GL_FLOAT, false, 8 * sizeof(float), (void*)0);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(1, 3, GL_FLOAT, false, 8 * sizeof(float), (void*)(sizeof(float) * 3));
+        glEnableVertexAttribArray(1);
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)24);
+        glEnableVertexAttribArray(2);
 
         // unbind VAO, VBO and EBO
         glBindVertexArray(0);
@@ -302,6 +393,8 @@ private:
     const int ntheta = 3;//actually 2 ta ache but 0 to 1 range  bole ek disi
     vector<float> vertices;
     vector<float> normals;
+    vector<float> texCoords;
+    vector<float>u_add;
     vector<unsigned int> indices;
     vector<float> coordinates;
     int verticesStride;                 // # of bytes to hop to the next vertex (should be 24 bytes)
