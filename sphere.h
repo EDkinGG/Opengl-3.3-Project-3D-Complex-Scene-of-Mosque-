@@ -1,9 +1,4 @@
-//
-//  sphere.h
-//  test
-//
-//  Created by Nazirul Hasan on 26/9/23.
-//
+// dhttp://www.songho.ca/opengl/gl_sphere.html#:~:text=In%20order%20to%20draw%20the,triangle%20strip%20cannot%20be%20used.
 
 #ifndef sphere_h
 #define sphere_h
@@ -145,16 +140,16 @@ public:
     }
 
     // draw in VertexArray mode
-    void drawSphere(Shader& lightingShader, glm::mat4 model) const      // draw surface
+    void drawSphere(Shader& lightingShader) const      // draw surface
     {
         lightingShader.use();
 
-        lightingShader.setVec3("material.ambient", this->ambient);
+        /*lightingShader.setVec3("material.ambient", this->ambient);
         lightingShader.setVec3("material.diffuse", this->diffuse);
         lightingShader.setVec3("material.specular", this->specular);
-        lightingShader.setFloat("material.shininess", this->shininess);
+        lightingShader.setFloat("material.shininess", this->shininess);*/
 
-        lightingShader.setMat4("model", model);
+        //lightingShader.setMat4("model", model);
 
         // draw a sphere with VAO
         glBindVertexArray(sphereVAO);
@@ -318,5 +313,4 @@ private:
 
 
 #endif /* sphere_h */
-
 

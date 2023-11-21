@@ -1,9 +1,12 @@
 #ifndef pointLight_h
 #define pointLight_h
 
+#include <iostream>
+#include <stdlib.h>
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 #include "shader.h"
+using namespace std;
 
 class PointLight {
 public:
@@ -32,14 +35,18 @@ public:
 
     void setUpLight(Shader& lightingShader)
     {
+        string temp = "pointLights[";
+        temp += to_string(lightNumber - 1);
+        temp += "]";
+
         lightingShader.use();
-        lightingShader.setVec4("pointLight.ambient", ambient * ambientOn * isOn);
-        lightingShader.setVec4("pointLight.diffuse", diffuse * diffuseOn * isOn);
-        lightingShader.setVec4("pointLight.specular", specular * specularOn * isOn);
-        lightingShader.setVec3("pointLight.position", position);
-        lightingShader.setFloat("pointLight.Kc", Kc);
-        lightingShader.setFloat("pointLight.Kl", Kl);
-        lightingShader.setFloat("pointLight.Kq", Kq);
+        lightingShader.setVec4(temp + ".ambient", ambient * ambientOn * isOn);
+        lightingShader.setVec4(temp + ".diffuse", diffuse * diffuseOn * isOn);
+        lightingShader.setVec4(temp + ".specular", specular * specularOn * isOn);
+        lightingShader.setVec3(temp + ".position", position);
+        lightingShader.setFloat(temp + ".Kc", Kc);
+        lightingShader.setFloat(temp + ".Kl", Kl);
+        lightingShader.setFloat(temp + ".Kq", Kq);
     }
 
     void turnOff()

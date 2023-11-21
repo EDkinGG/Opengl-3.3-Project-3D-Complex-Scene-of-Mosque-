@@ -2,7 +2,7 @@
 //  shader.h
 //  3D Object Drawing
 //
-//  Created by Rashedul Ghani on 4/9/23.
+//  Created by Waliul Islam Sumon on 4/9/23.
 //
 
 #ifndef SHADER_H

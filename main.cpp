@@ -15,6 +15,7 @@
 #include "BezierCurve.h"
 #include "BezierCurveArch.h"
 #include "Hexa.h"
+#include "sphere.h"
 
 #include "stb_image.h"
 
@@ -23,6 +24,8 @@
 #include<windows.h>  
 
 using namespace std;
+
+void SetupPointLight(PointLight& pointLight, Shader ourShader, int lightNum);
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -131,24 +134,32 @@ BasicCamera basic_camera(eyeX, eyeY, eyeZ, lookAtX, lookAtY, lookAtZ, V);
 
 // timing
 float deltaTime = 0.0f;    // time between current frame and last frame
-float lastFrame = 0.0f;
+float lastFrame = 0.0f,lastTimeSky = 0.0f;
 
 
 // Light initialization
+const int noOfPointLights = 4;
+
 glm::vec3 lightPositions[] = {
-        glm::vec3(0.95f, 0.7f, -2.7f),         //Directional Light
-        glm::vec3(10.1f, 1.28f, 14.37f),
-        glm::vec3(6.2f, 1.35f, 7.98f)
+        glm::vec3(-0.95f, 1.4f, -2.7f),         //Directional Light
+        glm::vec3(10.2f, 1.35f, 14.48f),
+        glm::vec3(6.2f, 1.35f, -4.52f),
+        glm::vec3(10.2f, 1.35f, 1.48f),
+        glm::vec3(6.2f, 1.35f, 7.98f),
+        glm::vec3(5.0f, 1.35f, 8.18f)
 
 };
 
 glm::vec3 lightDirections[] = {
-    glm::vec3(0.4f, -0.2f, -1.0f)
+    glm::vec3(-2.0f, -0.2f, -1.3f)
 };
 
-DirectionalLight directionalLight(lightPositions[0], glm::vec4(0.4f, 0.4f, 0.4f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(0.2f, 0.2f, 0.2f, 0.2f), 1);
-SpotLight spotLight(lightPositions[2], lightDirections[0], 8.5f, 15.5f, glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.5f, 0.5f, 0.5f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.0014f, 0.000007f, 1);
-PointLight pointLight(lightPositions[1], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 1);
+DirectionalLight directionalLight(-lightPositions[0], glm::vec4(0.4f, 0.4f, 0.4f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(0.2f, 0.2f, 0.2f, 0.2f), 1);
+SpotLight spotLight(lightPositions[5], lightDirections[0], 4.5f, 7.5f, glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.5f, 0.5f, 0.5f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.0014f, 0.000007f, 1);
+PointLight pointLight1(lightPositions[1], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 1);
+PointLight pointLight2(lightPositions[2], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 2);
+PointLight pointLight3(lightPositions[3], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 3);
+PointLight pointLight4(lightPositions[4], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 4);
 
 //texture
 //style1-- 1X1//used
@@ -227,7 +238,7 @@ float TXmax1020 = 1.0f + 9.0;
 float TYmin1020 = 0.0f;
 float TYmax1020 = 1.0f + 4.0;
 
-
+//LIGHT SWITCH
 bool lightingOn = true;
 float ambientOn = 1.0;
 float diffuseOn = 1.0;
@@ -235,13 +246,49 @@ float specularOn = 1.0;
 bool dark = false;
 
 float directionalLightOn = 1.0;
-float pointLightOn = 0.0;
+float pointLightOn[noOfPointLights] = { 0.0, 0.0, 0.0, 0.0 };
 float spotLightOn = 0.0;
 
 //Texture variables
 unsigned int texture0, texture1, texture2, texture3, texture4, texture5, texture6, texture7, texture8, texture9, texture10, texture11, texture12, texture13, frontwall1,frontwall2,sidewall1,sidewall2,blankwall;
 unsigned int mehrab, mehrabside;
 unsigned int water[10];
+
+
+// Skybox
+float skyboxVertices[] =
+{
+    -1.0f, -1.0f, 1.0f,
+     1.0f, -1.0f, 1.0f,
+     1.0f, -1.0f, -1.0f,
+    -1.0f, -1.0f, -1.0f,
+    -1.0f, 1.0f, 1.0f,
+    1.0f, 1.0f, 1.0f,
+    1.0f, 1.0f, -1.0f,
+    -1.0f, 1.0f, -1.0f
+};
+
+unsigned int skyboxIndices[] =
+{
+    // Right
+    1, 2, 6,
+    6, 5, 1,
+    //Left
+    0, 4, 7,
+    7, 3, 0,
+    //Top
+    4, 5, 6,
+    6, 7, 4,
+    //Bottom
+    0, 3, 2,
+    2, 1, 0,
+    //Back
+    0, 1, 5,
+    5, 4, 0,
+    //Front
+    3, 7, 6,
+    6, 2, 3
+};
 
 int main()
 {
@@ -289,7 +336,7 @@ int main()
     // ------------------------------------
     Shader ourShader("vertexShader.vs", "fragmentShader.fs");//for other objects
     Shader lightCubeShader("lightVertexShader.vs", "lightFragmentShader.fs");//only for light cubes
-
+    //Shader skyboxShader("skybox.vert", "skybox.frag");
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
 
@@ -608,82 +655,6 @@ int main()
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)24);
     glEnableVertexAttribArray(2);
 
-
-    ////1x4
-    //float cube_vertices14[] = {
-    //    //    pos        //     normals      // texture cords
-    //    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, TXmax14, TYmin14,
-    //    1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, TXmin14, TYmin14,
-    //    1.0f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f, TXmin14, TYmax14,
-    //    0.0f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f, TXmax14, TYmax14,
-
-    //    1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, TXmax14, TYmin14,
-    //    1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, TXmax14, TYmax14,
-    //    1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, TXmin14, TYmin14,
-    //    1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, TXmin14, TYmax14,
-
-    //    0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, TXmin14, TYmin14,
-    //    1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, TXmax14, TYmin14,
-    //    1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, TXmax14, TYmax14,
-    //    0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, TXmin14, TYmax14,
-
-    //    0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f, TXmax14, TYmin14,
-    //    0.0f, 1.0f, 1.0f, -1.0f, 0.0f, 0.0f, TXmax14, TYmax14,
-    //    0.0f, 1.0f, 0.0f, -1.0f, 0.0f, 0.0f, TXmin14, TYmax14,
-    //    0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, TXmin14, TYmin14,
-
-    //    1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, TXmax14, TYmin14,
-    //    1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, TXmax14, TYmax14,
-    //    0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, TXmin14, TYmax14,
-    //    0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, TXmin14, TYmin14,
-
-    //    0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, TXmin14, TYmin14,
-    //    1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, TXmax14, TYmin14,
-    //    1.0f, 0.0f, 1.0f, 0.0f, -1.0f, 0.0f, TXmax14, TYmax14,
-    //    0.0f, 0.0f, 1.0f, 0.0f, -1.0f, 0.0f, TXmin14, TYmax14
-    //};
-    //unsigned int cube_indices14[] = {
-    //    0, 3, 2,
-    //    2, 1, 0,
-
-    //    4, 5, 7,
-    //    7, 6, 4,
-
-    //    8, 9, 10,
-    //    10, 11, 8,
-
-    //    12, 13, 14,
-    //    14, 15, 12,
-
-    //    16, 17, 18,
-    //    18, 19, 16,
-
-    //    20, 21, 22,
-    //    22, 23, 20
-    //};
-
-    ////cube3 
-    //unsigned int cubeVAO14, cubeVBO14, cubeEBO14;
-    //glGenVertexArrays(1, &cubeVAO14);
-    //glGenBuffers(1, &cubeVBO14);
-    //glGenBuffers(1, &cubeEBO14);
-
-    //glBindVertexArray(cubeVAO14);
-
-    //glBindBuffer(GL_ARRAY_BUFFER, cubeVBO14);
-    //glBufferData(GL_ARRAY_BUFFER, sizeof(cube_vertices14), cube_vertices14, GL_STATIC_DRAW);
-
-    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, cubeEBO14);
-    //glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(cube_indices14), cube_indices14, GL_STATIC_DRAW);
-    //// position attribute
-    //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
-    //glEnableVertexAttribArray(0);
-    ////vertex normal attribute
-    //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)12);
-    //glEnableVertexAttribArray(1);
-    ////texture attribute
-    //glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)24);
-    //glEnableVertexAttribArray(2);
 
 
     //cube 1X6-----------------------------------------------------------------------------
@@ -1389,6 +1360,84 @@ int main()
     glEnableVertexAttribArray(0);
 
 
+    ////For Skybox
+    //unsigned int skyboxVAO, skyboxVBO, skyboxEBO;
+    //glGenVertexArrays(1, &skyboxVAO);
+    //glGenBuffers(1, &skyboxVBO);
+    //glGenBuffers(1, &skyboxEBO);
+    //glBindVertexArray(skyboxVAO);
+    //glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
+    //glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
+    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, skyboxEBO);
+    //glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(skyboxIndices), &skyboxIndices, GL_STATIC_DRAW);
+    //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    //glEnableVertexAttribArray(0);
+    //glBindBuffer(GL_ARRAY_BUFFER, 0);
+    //glBindVertexArray(0);
+    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    ////Day
+    //string facesCubemapDay[6] = {
+    //    "right.png",
+    //    "left.png",
+    //    "top.png",
+    //    "bottom.png",
+    //    "front.png",
+    //    "back.png"
+    //};
+    //unsigned int cubemapTextureDay;
+    //glGenTextures(1, &cubemapTextureDay);
+    //glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTextureDay);
+    //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+    //for (unsigned int i = 0; i < 6; i++)
+    //{
+    //    int width, height, nrChannels;
+    //    unsigned char* data = stbi_load(facesCubemapDay[i].c_str(), &width, &height, &nrChannels, 0);
+    //    if (data)
+    //    {
+    //        stbi_set_flip_vertically_on_load(false);
+    //        glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    //        glGenerateMipmap(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i);
+    //    }
+    //    else
+    //        cout << "Failed to load texture: " << facesCubemapDay[i] << endl;
+    //    stbi_image_free(data);
+    //}
+    ////Night
+    //string facesCubemapNight[6] = {
+    //    "night_right.jpeg",
+    //    "night_left.jpeg",
+    //    "night_top.jpeg",
+    //    "night_bottom.jpeg",
+    //    "night_front.jpeg",
+    //    "night_back.jpeg"
+    //};
+    //unsigned int cubemapTextureNight;
+    //glGenTextures(1, &cubemapTextureNight);
+    //glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTextureNight);
+    //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    //glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+    //for (unsigned int i = 0; i < 6; i++)
+    //{
+    //    int width, height, nrChannels;
+    //    unsigned char* data = stbi_load(facesCubemapNight[i].c_str(), &width, &height, &nrChannels, 0);
+    //    if (data)
+    //    {
+    //        stbi_set_flip_vertically_on_load(false);
+    //        glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+    //        glGenerateMipmap(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i);
+    //    }
+    //    else
+    //        cout << "Failed to load texture: " << facesCubemapNight[i] << endl;
+    //    stbi_image_free(data);
+    //}
+
 
 
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -1584,6 +1633,8 @@ int main()
     // render loop
     // -----------
 
+        Sphere sphere = Sphere();
+
     while (!glfwWindowShouldClose(window))
     {
         // per-frame time logic
@@ -1614,7 +1665,9 @@ int main()
         ourShader.setMat4("view", view);
 
 
-        //Directional Light
+        //**************lighting**************
+
+     //Setting up Directional Light
         directionalLight.setUpLight(ourShader);
         if (!directionalLightOn)
             directionalLight.turnOff();
@@ -1625,18 +1678,13 @@ int main()
         if (!specularOn)
             directionalLight.turnSpecularOff();
 
-        //Set Point Lights (2ta)
-        pointLight.setUpLight(ourShader);
-        if (!pointLightOn)
-            pointLight.turnOff();
-        if (!ambientOn)
-            pointLight.turnAmbientOff();
-        if (!diffuseOn)
-            pointLight.turnDiffuseOff();
-        if (!specularOn)
-            pointLight.turnSpecularOff();
+        //Setting up Point Light
+        SetupPointLight(pointLight1, ourShader, 1);
+        SetupPointLight(pointLight2, ourShader, 2);
+        SetupPointLight(pointLight3, ourShader, 3);
+        SetupPointLight(pointLight4, ourShader, 4);
 
-
+        //Setting up Spot Light
         spotLight.setUpLight(ourShader);
         if (!spotLightOn)
             spotLight.turnOff();
@@ -1650,14 +1698,8 @@ int main()
         //Camera and Others
         ourShader.setVec3("viewPos", camera.Position);
         ourShader.setBool("lightingOn", lightingOn);
-        //ourShader.setFloat("ambientOn", ambientOn);
-        //ourShader.setFloat("diffuseOn", diffuseOn);
-        //ourShader.setFloat("specularOn", specularOn);
-        //ourShader.setFloat("pointLightOn", pointLightOn);
-        //ourShader.setFloat("directionalLightOn", directionalLightOn);
-        //ourShader.setFloat("spotLightOn", spotLightOn);
-        //ourShader.setBool("dark", dark);
 
+        //cout << camera.Position[0] << " " << camera.Position[1] << " " << camera.Position[2] << endl;
 
 
         //glBindVertexArray(cubeVAO);//by default cubeVAO
@@ -1895,39 +1937,75 @@ int main()
 
 
 
-    //Lights
-    lightCubeShader.use();
+       //********* END of Object Making **********
+
+          //Lights
+       lightCubeShader.use();
+       scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.13f, 0.1f, 0.13f));
+
+       for (int i = 1; i <= 5; i++)
+       {
+
+           /*glm::vec3 lightColor;
+           lightColor.x = sin(glfwGetTime() * 1.0f);
+           lightColor.y = sin(glfwGetTime() * 0.35f);
+           lightColor.z = sin(glfwGetTime() * 0.7f);
+           glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f);
+           lightCubeShader.setVec4("bodyColor", glm::vec4(diffuseColor, 1.0f));*/
+
+           glm::vec4 bodyColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+
+           //emissive
+           glm::vec3 val = glm::vec3(0.5f);
+           if (i == 1 and pointLightOn[0] == 0.0)
+               bodyColor = glm::vec4(val, 1.0f);
+           if (i == 2 and pointLightOn[1] == 0.0)
+               bodyColor = glm::vec4(val, 1.0f);
+           if (i == 3 and pointLightOn[2] == 0.0)
+               bodyColor = glm::vec4(val, 1.0f);
+           if (i == 4 and pointLightOn[3] == 0.0)
+               bodyColor = glm::vec4(val, 1.0f);
+           if (i == 5 and spotLightOn == 0.0)
+               bodyColor = glm::vec4(val, 1.0f);
 
 
-    for (int i = 1; i <= 2; i++)
-    {
+           lightCubeShader.setVec4("bodyColor", bodyColor);
+           glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+           lightCubeShader.setMat4("projection", projection);
+           glm::mat4 view = camera.GetViewMatrix();
+           lightCubeShader.setMat4("view", view);
+           glm::mat4 tempModel = glm::mat4(1.0f);
+           tempModel = glm::translate(tempModel, lightPositions[i]);
+           lightCubeShader.setMat4("model", tempModel * scaleMatrix);
+           sphere.drawSphere(lightCubeShader);
 
-        glm::vec4 bodyColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+       }
 
-        //emissive
-        glm::vec3 val = glm::vec3(0.5f);
-        if (i == 1 and pointLightOn == 0.0)
-            bodyColor = glm::vec4(val, 1.0f);
-        if (i == 2 and spotLightOn == 0.0)
-            bodyColor = glm::vec4(val, 1.0f);
-        /*if (i == 4 and spotLightOn == 0.0)
-            bodyColor = glm::vec4(val, 1.0f);*/
+       ////Texture drawing
+       //glDepthFunc(GL_LEQUAL);
 
+       //skyboxShader.use();
+       //glm::mat4 view1 = glm::mat4(1.0f);
+       //glm::mat4 projection1 = glm::mat4(1.0f);
+       //view1 = glm::mat4(glm::mat3(glm::lookAt(camera.Position, camera.Position + camera.Front, camera.Up)));
+       //projection1 = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+       //skyboxShader.setMat4("view", view1);
+       //skyboxShader.setMat4("projection", projection1);
 
-        lightCubeShader.setVec4("bodyColor", bodyColor);
-        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-        lightCubeShader.setMat4("projection", projection);
-        glm::mat4 view = camera.GetViewMatrix();
-        lightCubeShader.setMat4("view", view);
-        glm::mat4 tempModel = glm::mat4(1.0f);
-        tempModel = glm::translate(tempModel, lightPositions[i]);
-        tempModel = glm::scale(tempModel, glm::vec3(0.5f));
-        lightCubeShader.setMat4("model", tempModel);
+       //glBindVertexArray(skyboxVAO);
+       //glActiveTexture(GL_TEXTURE0);
+       //if (dark)
+       //{
+       //    glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTextureNight);
+       //}
+       //else
+       //{
+       //    glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTextureDay);
+       //}
+       //glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+       //glBindVertexArray(0);
 
-        glBindVertexArray(lightCubeVAO);
-        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-
-    }
+       //glDepthFunc(GL_LESS);
 
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
@@ -1998,6 +2076,18 @@ int main()
     return 0;
 }
 
+void SetupPointLight(PointLight& pointLight, Shader ourShader, int lightNum)
+{
+    pointLight.setUpLight(ourShader);
+    if (!pointLightOn[pointLight.lightNumber - 1])
+        pointLight.turnOff();
+    if (!ambientOn)
+        pointLight.turnAmbientOff();
+    if (!diffuseOn)
+        pointLight.turnDiffuseOff();
+    if (!specularOn)
+        pointLight.turnSpecularOff();
+}
 
 //Texture Loading function
 void load_texture(unsigned int& texture, string image_name, GLenum format)
@@ -5342,19 +5432,21 @@ void processInput(GLFWwindow* window)
         if (ambientOn == 0.0)
         {
             ambientOn = 1.0;
-            pointLight.turnAmbientOn();
+            pointLight1.turnAmbientOn();
+            pointLight2.turnAmbientOn();
+            pointLight3.turnAmbientOn();
+            pointLight4.turnAmbientOn();
             spotLight.turnAmbientOn();
-            //spotLight1.turnAmbientOn();
-            //spotLight2.turnAmbientOn();
             directionalLight.turnAmbientOn();
         }
         else
         {
             ambientOn = 0.0;
-            pointLight.turnAmbientOff();
+            pointLight1.turnAmbientOff();
+            pointLight2.turnAmbientOff();
+            pointLight3.turnAmbientOff();
+            pointLight4.turnAmbientOff();
             spotLight.turnAmbientOff();
-            //spotLight1.turnAmbientOff();
-            //spotLight2.turnAmbientOff();
             directionalLight.turnAmbientOff();
         }
 
@@ -5364,19 +5456,21 @@ void processInput(GLFWwindow* window)
         if (diffuseOn == 0.0)
         {
             diffuseOn = 1.0;
-            pointLight.turnDiffuseOn();
+            pointLight1.turnDiffuseOn();
+            pointLight2.turnDiffuseOn();
+            pointLight3.turnDiffuseOn();
+            pointLight4.turnDiffuseOn();
             spotLight.turnDiffuseOn();
-            //spotLight1.turnAmbientOn();
-            //spotLight2.turnAmbientOn();
             directionalLight.turnDiffuseOn();
         }
         else
         {
             diffuseOn = 0.0;
-            pointLight.turnDiffuseOff();
+            pointLight1.turnDiffuseOff();
+            pointLight2.turnDiffuseOff();
+            pointLight3.turnDiffuseOff();
+            pointLight4.turnDiffuseOff();
             spotLight.turnDiffuseOff();
-            //spotLight1.turnAmbientOff();
-            //spotLight2.turnAmbientOff();
             directionalLight.turnDiffuseOff();
         }
     }
@@ -5386,80 +5480,114 @@ void processInput(GLFWwindow* window)
         if (specularOn == 0.0)
         {
             specularOn = 1.0;
-            pointLight.turnSpecularOn();
+            pointLight1.turnSpecularOn();
+            pointLight2.turnSpecularOn();
+            pointLight3.turnSpecularOn();
+            pointLight4.turnSpecularOn();
             spotLight.turnSpecularOn();
-            //spotLight1.turnAmbientOn();
-            //spotLight2.turnAmbientOn();
             directionalLight.turnSpecularOn();
         }
         else
         {
             specularOn = 0.0;
-            pointLight.turnSpecularOff();
+            pointLight1.turnSpecularOff();
+            pointLight2.turnSpecularOff();
+            pointLight3.turnSpecularOff();
+            pointLight4.turnSpecularOff();
             spotLight.turnSpecularOff();
-            //spotLight1.turnAmbientOff();
-            //spotLight2.turnAmbientOff();
             directionalLight.turnSpecularOff();
         }
 
     }
     if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)                   //Point Light On
     {
-        if (pointLightOn == 0)
+        if (pointLightOn[0] == 0.0)
         {
-            pointLightOn = 1.0;
-            pointLight.turnOn();
-            Sleep(100);
+            pointLightOn[0] = 1.0;
+            pointLight1.turnOn();
+
+            pointLightOn[1] = 1.0;
+            pointLight2.turnOn();
+
+            pointLightOn[2] = 1.0;
+            pointLight3.turnOn();
+
+            pointLightOn[3] = 1.0;
+            pointLight4.turnOn();
         }
         else
         {
-            pointLightOn = 0.0;
-            pointLight.turnOff();
-            Sleep(100);
+            pointLightOn[0] = 0.0;
+            pointLight1.turnOff();
+
+            pointLightOn[1] = 0.0;
+            pointLight2.turnOff();
+
+            pointLightOn[2] = 0.0;
+            pointLight3.turnOff();
+
+            pointLightOn[3] = 0.0;
+            pointLight4.turnOff();
         }
 
     }
     if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)                   //Directional Light On/off
     {
-        if (directionalLightOn == 0)
+        if (directionalLightOn == 0.0)
         {
             directionalLightOn = 1.0;
             directionalLight.turnOn();
-            Sleep(100);
         }
         else
         {
             directionalLightOn = 0.0;
             directionalLight.turnOff();
-            Sleep(100);
         }
 
     }
     if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)                   //Spot Light On/off
     {
-        if (spotLightOn == 0)
+        if (spotLightOn == 0.0)
         {
             spotLightOn = 1.0;
             spotLight.turnOn();
-            //spotLight1.turnOn();
-            //spotLight2.turnOn();
-            Sleep(100);
         }
         else
         {
             spotLightOn = 0.0;
             spotLight.turnOff();
-            //spotLight1.turnOff();
-            //spotLight2.turnOff();
-            Sleep(100);
         }
         
     }
     if (glfwGetKey(window, GLFW_KEY_0) == GLFW_PRESS)                   //Dark On-Off
     {
         dark ^= true;
-        cout << dark << endl;
-        Sleep(100);
+        if (dark)
+        {
+            pointLightOn[0] = 1.0;
+            pointLight1.turnOn();
+            pointLightOn[1] = 1.0;
+            pointLight2.turnOn();
+            pointLightOn[2] = 1.0;
+            pointLight3.turnOn();
+            pointLightOn[3] = 1.0;
+            pointLight4.turnOn();
+            directionalLightOn = 0.0;
+            directionalLight.turnOff();
+        }
+        else
+        {
+            pointLightOn[0] = 0.0;
+            pointLight1.turnOff();
+            pointLightOn[1] = 0.0;
+            pointLight2.turnOff();
+            pointLightOn[2] = 0.0;
+            pointLight3.turnOff();
+            pointLightOn[3] = 0.0;
+            pointLight4.turnOff();
+            directionalLightOn = 1.0;
+            directionalLight.turnOn();
+        }
     }
 }
 
