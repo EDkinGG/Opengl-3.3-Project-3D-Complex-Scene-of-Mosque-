@@ -45,7 +45,7 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
 void MainGate(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
 void Frontwing(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
 void Sidewing(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
-void MidGate(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void MidGate(unsigned int VAO1, unsigned int VAO14, unsigned int VAO16, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
 void StairTower1(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
 void StairTower2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
 
@@ -1650,7 +1650,7 @@ int main()
         x_shift = 0.0;
         y_shift = 0.2;
         z_shift = 0.0;
-        MidGate(cubeVAO, cubeVAO14, ourShader, x_shift, y_shift, z_shift, texture7);
+        MidGate(cubeVAO, cubeVAO14, cubeVAO16, ourShader, x_shift, y_shift, z_shift, texture7);
 
 
         //side Left Wing
@@ -3309,7 +3309,7 @@ void Sidewing(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_sh
     
 }
 
-void MidGate(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void MidGate(unsigned int VAO1, unsigned int VAO14, unsigned int VAO16, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -3342,14 +3342,14 @@ void MidGate(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_shi
     lbx = 14.0, lby = 2.7f + 0.2f, lbz = 37.5f;
     len = 18, ht = 1.0f;
     width = 4.0;
-    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO1, VAO16, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
 
     //right wing_+_+_+_+_+
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     lbx = 43.0, lby = 2.7f + 0.2f, lbz = 37.5f;
     len = 18, ht = 1.0f;
     width = 4.0;
-    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO1, VAO16, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
    
     //Chipa wallllllllllllllllllll---------------------------------------=-
     //front left chipa wall
@@ -3384,14 +3384,14 @@ void MidGate(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_shi
     lbx = 14.0, lby = 0.01f, lbz = 37.5f;
     len = 17.5;
     width = 4.0;
-    GenFloor(VAO1,ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, texture4);
+    GenFloor(VAO16,ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, texture5);
 
     //right wing_+_+_+_+_+
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     lbx = 43.5, lby = 0.01, lbz = 37.5f;
     len = 17.5f;
     width = 4.0;
-    GenFloor(VAO1, ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, texture4);
+    GenFloor(VAO16, ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, texture5);
 
     //MID FLOOR_+_+_+_+_+
 //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

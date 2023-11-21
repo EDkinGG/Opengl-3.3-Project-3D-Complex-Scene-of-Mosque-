@@ -76,7 +76,7 @@ private:
 
         return ans;
     }
-//polynomial interpretation for N points
+    //polynomial interpretation for N points
     void BezierCurveFN(double t, float xy[2], GLfloat ctrlpoints[], int L)
     {
         double y = 0;
@@ -143,7 +143,7 @@ private:
                 normals.push_back(ny);
                 normals.push_back(nz);
 
-                u = j*0.05;//(1/20)
+                u = j * 0.05;//(1/20)
                 v = v;
 
                 texCoords.push_back(u);
@@ -219,7 +219,7 @@ private:
             GL_STATIC_DRAW);                   // usage
 
         // activate attrib arrays
- 
+
 
         // set attrib arrays with stride and offset
         int stride = 32;     // should be 24 bytes

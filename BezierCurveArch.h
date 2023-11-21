@@ -23,7 +23,6 @@ public:
     float shininess;
     float offset;
     unsigned int texture;
-    // ctor/dtor
     BezierCurveArch(GLfloat controlpoints[], int size, unsigned int tex, float offset, glm::vec4 amb = glm::vec4(1.0, 1.0, 1.0, 1.0f), glm::vec4 diff = glm::vec4(1.0, 1.0, 1.0, 1.0f), glm::vec4 spec = glm::vec4(0.1f, 0.1f, 0.1f, 0.5f), float shiny = 32.0f)
     {
         for (int i = 0; i < size; i++)
@@ -58,7 +57,7 @@ public:
         lightingShader.setVec4("material.specular", this->specular);
         lightingShader.setFloat("material.shininess", this->shininess);
 
-        
+
 
         glBindVertexArray(sphereVAO);
         glDrawElements(GL_TRIANGLES,                    // primitive type
@@ -150,10 +149,10 @@ private:
                     z = r * cosa;
                     x = r * sina;
                     //MAHAMAMAMM*************************************
-                    float difz = -1*this->offset-z;
+                    float difz = -1 * this->offset - z;
                     float lftx = x;
                     float lfty = y;
-                    float lftz = z+difz;
+                    float lftz = z + difz;
                     coordinates.push_back(lftx);
                     coordinates.push_back(lfty);
                     coordinates.push_back(lftz);
@@ -166,14 +165,14 @@ private:
                     //nx = (x - 0) * lengthInv;
                     //ny = (y - y) * lengthInv;
                     //nz = (z - 0) * lengthInv;
-                    lnx = (xx- 0) * lengthInv;
+                    lnx = (xx - 0) * lengthInv;
                     lny = (yy - yy) * lengthInv;
-                    lnz = (zz- 0) * lengthInv;
+                    lnz = (zz - 0) * lengthInv;
                     normals.push_back(lnx);
                     normals.push_back(lny);
                     normals.push_back(lnz);
                     //MY MODE FOR NORMAL END
-                    u =  u_add[j*2+0];
+                    u = u_add[j * 2 + 0];
                     v = v;
                     texCoords.push_back(u);
                     texCoords.push_back(v);
@@ -203,7 +202,7 @@ private:
                     z = r * cosa;
                     x = r * sina;
 
-                    coordinates.push_back(x-0.2);
+                    coordinates.push_back(x - 0.2);
                     coordinates.push_back(y);
                     coordinates.push_back(z);
 
@@ -305,7 +304,7 @@ private:
         int k1, k2;
         for (int i = 0; i < nt; ++i)
         {
-            k1 = i * (ntheta + 1 );     // beginning of current stack
+            k1 = i * (ntheta + 1);     // beginning of current stack
             k2 = k1 + ntheta + 1;      // beginning of next stack
             //cout<<k1<<" "<<k2<<endl;
             for (int j = 0; j < ntheta; ++j, ++k1, ++k2)
@@ -327,7 +326,7 @@ private:
 
         size_t count = coordinates.size();
         size_t counttex = texCoords.size();
-        for (int i = 0 , j = 0; i < count; i += 3,j += 2 )
+        for (int i = 0, j = 0; i < count; i += 3, j += 2)
         {
             vertices.push_back(coordinates[i]);
             vertices.push_back(coordinates[i + 1]);
@@ -365,8 +364,8 @@ private:
             GL_STATIC_DRAW);                   // usage
 
         // activate attrib arrays
-        
-        
+
+
 
         // set attrib arrays with stride and offset
         int stride = 32;     // should be 24 bytes
