@@ -389,7 +389,7 @@ private:
 
     const double pi = 3.14159265389;
     const int nt = 40;
-    const int ntheta = 3;//actually 2 ta ache but 0 to 1 range  bole ek disi
+    const int ntheta = 3;//actually 4 ta ache but 0 to 1 range  bole ek disi
     vector<float> vertices;
     vector<float> normals;
     vector<float> texCoords;

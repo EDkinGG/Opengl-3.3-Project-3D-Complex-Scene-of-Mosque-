@@ -56,6 +56,9 @@
     <ClInclude Include="BezierCurveArch.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Hexa.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="fragmentShader.fs">
@@ -223,6 +226,30 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="water1.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="con07_1.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="wall12.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="square_wall.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Wall_window.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="wallGG.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="side_wall.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="MehrabGG.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="MehrabGGSide.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
