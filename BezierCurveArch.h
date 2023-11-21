@@ -279,21 +279,21 @@ private:
         //    }
         //}
 
-        int cnt = 1;
-        cout << coordinates.size() << endl;
-        for (int i = 0; i < coordinates.size(); i++)
-        {
-            if (cnt < 3)
-            {
-                cnt++;
-                cout << coordinates[i] << " ";
-            }
-            else
-            {
-                cnt = 1;
-                cout << coordinates[i] << endl;
-            }
-        }
+        //int cnt = 1;
+        //cout << coordinates.size() << endl;
+        //for (int i = 0; i < coordinates.size(); i++)
+        //{
+        //    if (cnt < 3)
+        //    {
+        //        cnt++;
+        //        cout << coordinates[i] << " ";
+        //    }
+        //    else
+        //    {
+        //        cnt = 1;
+        //        cout << coordinates[i] << endl;
+        //    }
+        //}
 
 
         // generate index list of triangles

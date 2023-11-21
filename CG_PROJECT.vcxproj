@@ -166,6 +166,9 @@
     <Image Include="Blank_Wall_Pattern.jpg" />
     <Image Include="brickwall_1.jpg" />
     <Image Include="brickwall_2.jpg" />
+    <Image Include="ceilling_mid_1000.jpg" />
+    <Image Include="ceilling_mid_1282.jpg" />
+    <Image Include="ceilling_mid_870.jpg" />
     <Image Include="Concrete007_1K-JPG_Color.jpg" />
     <Image Include="Concrete037_1K-JPG_Color.jpg" />
     <Image Include="concrete1.PNG" />
@@ -188,8 +191,20 @@
     <Image Include="Right_door.jpg" />
     <Image Include="road.jpg" />
     <Image Include="SijdahPlace_squared.jpg" />
+    <Image Include="Stripe.JPG" />
+    <Image Include="Stripe_1.jpg" />
     <Image Include="transparent.png" />
     <Image Include="transparent_2.png" />
+    <Image Include="water1.jpg" />
+    <Image Include="water10.jpg" />
+    <Image Include="water2.jpg" />
+    <Image Include="water3.jpg" />
+    <Image Include="water4.jpg" />
+    <Image Include="water5.jpg" />
+    <Image Include="water6.jpg" />
+    <Image Include="water7.jpg" />
+    <Image Include="water8.jpg" />
+    <Image Include="water9.jpg" />
     <Image Include="WWin.PNG" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
