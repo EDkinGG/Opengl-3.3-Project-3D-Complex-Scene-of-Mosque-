@@ -252,5 +252,26 @@
     <Image Include="MehrabGGSide.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="wood.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Side_Door.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Tdoor.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Toilet_floor.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="metal.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Metal_2.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="flush.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

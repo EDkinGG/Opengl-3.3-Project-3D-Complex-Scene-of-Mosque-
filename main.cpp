@@ -57,6 +57,7 @@ void StairTower2(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
 void HorizontalWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift,  float len, float ht, float lbx, float lby, float lbz, unsigned int texture);
 void VerticalWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float ht, float lbx, float lby, float lbz, unsigned int texture);
 void GenFloor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float width, float lbx, float lby, float lbz, unsigned int texture);
+void GenFloor2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float width, float lbx, float lby, float lbz, unsigned int texture);
 void Box(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float width, float ht, float lbx, float lby, float lbz, unsigned int texture);
 void FlatBox(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float width, float ht, float lbx, float lby, float lbz, unsigned int texture);
 void HoloBox(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float width, float ht, float lbx, float lby, float lbz, unsigned int texture);
@@ -72,9 +73,14 @@ void Common_Arch_Vertical(unsigned int VAO, BezierCurveArch Main_Arch, BezierCur
 void small_tomb(unsigned int VAO,BezierCurve circle, BezierCurve spike, Shader ourShader, float x_shift, float y_shift, float z_shift);
 void mid_tomb(unsigned int VAO, BezierCurve circle1, BezierCurve spike, Shader ourShader, float x_shift, float y_shift, float z_shift);
 void Big_tomb(unsigned int VAO,  BezierCurve circle2, BezierCurve spike, Shader ourShader, float x_shift, float y_shift, float z_shift);
-
-
-
+void jharbati(unsigned int VAO, BezierCurve Round_Piller, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void AC(unsigned int VAO, BezierCurve AC_Blade_Piller_round, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void AC_FAN(unsigned int VAO, BezierCurve Fan_Bati, BezierCurve Fan_Blade, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void DoubleDoors(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture1, unsigned int texture2);
+void TDoor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void tape1(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void tape2(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void tape3(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shader ourShader, float x_shift, float y_shift, float z_shift);
 // settings
 const unsigned int SCR_WIDTH = 1500;
 const unsigned int SCR_HEIGHT = 800;
@@ -105,6 +111,17 @@ float fanspeed2 = 0.0f;
 float rotateAxis_Y_Fan2 = 0.0;
 bool Fan2_ready = true;
 
+//AC rotate
+//1st floor
+bool isAC = false;
+float ACspeed1 = 0.5f;
+float ACex = 8.0;
+float rotateAxis_Z_AC = 0.0;
+float rotateAxis_X_AC = 0.0;
+float rotateAxis_Y_AC = 0.0;
+bool pos = false;
+bool AC_ready = true;
+
 //LIFT
 bool isLift = false;
 bool lift_ready = true;
@@ -113,14 +130,26 @@ float translate_Y_Lift = 0.0;
 float translate_X_Lift = 0.0;
 float translate_Z_Lift = 0.0;
 
+//MAIN DOUBLE DOOR
+bool isDoubleDoor = false;
+float doorspeed = 1.0f;
+float rotateAxis_Y_Door = 0.0;
+bool DDoor_ready = true;
+
+//MAIN DOUBLE DOOR
+bool isTDoor = false;
+float Tspeed = 1.0f;
+float rotateAxis_Y_TDoor = 0.0;
+bool TDoor_ready = true;
+
 //water counter
 int wcnt = 0;
 
 // camera
 //Camera camera(glm::vec3(18.0f, 2.5f, -10.0f));//camera position
 //Camera camera(glm::vec3(0.0f, 1.0f, 1.0f));//camera position
-//Camera camera(glm::vec3(37.5f, 4.0f, -43.0f));//camera position
-Camera camera(glm::vec3(37.5f, 10.0f, -13.0f));//camera position
+Camera camera(glm::vec3(64.5f, 1.0f, -13.0f));//camera position
+//Camera camera(glm::vec3(37.5f, 10.0f, 10.0f));//camera position
 //Camera camera(glm::vec3(18.0f, 2.5f, -40.0f));//camera position
 //Camera camera(glm::vec3(61.0f, 2.5f, -19.5f));//camera position
 float lastX = SCR_WIDTH / 2.0f;
@@ -138,16 +167,47 @@ float lastFrame = 0.0f,lastTimeSky = 0.0f;
 
 
 // Light initialization
-const int noOfPointLights = 4;
+const int noOfPointLights = 36;
 
 glm::vec3 lightPositions[] = {
         glm::vec3(-0.95f, 1.4f, -2.7f),         //Directional Light
-        glm::vec3(10.2f, 1.35f, 14.48f),
-        glm::vec3(6.2f, 1.35f, -4.52f),
+        glm::vec3(22.5f, 3.5f, -14.00f),
+        glm::vec3(52.5f, 3.5f, -14.00f),
         glm::vec3(10.2f, 1.35f, 1.48f),
         glm::vec3(6.2f, 1.35f, 7.98f),
-        glm::vec3(5.0f, 1.35f, 8.18f)
-
+        glm::vec3(60.0f, 1.35f, 8.18f), //spot light
+        glm::vec3(12.0f, 3.5f, -14.00f),
+        glm::vec3(63.0f, 3.5f, -14.00f),
+        glm::vec3(12.0f, 3.5f, -26.5f),
+        glm::vec3(12.0f, 4.5f, -61.00f),//siri
+        glm::vec3(63.0f, 3.5f, -26.50f),
+        glm::vec3(63.0, 3.5f, -56.00f),//lift
+        glm::vec3(23.0f, 3.5f, -39.50f),
+        glm::vec3(37.5f, 3.5f, -39.50f),//mid gate
+        glm::vec3(54.5f, 3.5f, -39.50f),
+        glm::vec3(34.0f, 2.5f, -26.25f),//pond
+        glm::vec3(41.0f, 2.5f, -26.25f),//pond
+        glm::vec3(37.5f, 4.0f, -14.00f),//main gate
+        glm::vec3(15.7f, 3.5f, -67.80f),//room back left corner
+        glm::vec3(59.3f, 3.5f, -67.80f),//room back right corner
+        glm::vec3(15.7f, 7.5f, -66.80f),//room back 2nd left corner
+        glm::vec3(59.3f, 7.5f, -66.80f),//room back 2nd right corner
+        glm::vec3(15.7f, 3.5f, -43.20f),//room back left corner
+        glm::vec3(59.3f, 3.5f, -43.20f),//room back right corner
+        glm::vec3(15.7f, 7.5f, -45.20f),//room back 2nd left corner
+        glm::vec3(59.3f, 7.5f, -45.20f),//room back 2nd right corner
+        glm::vec3(29.0, 8.88f, -56.00f),//top
+        glm::vec3(46.0f, 8.88f, -56.00f),//top
+        glm::vec3(37.5f+0.9f, 3.5f, -58.00f),
+        glm::vec3(37.5f+1.8, 3.5f, -58.00f),
+        glm::vec3(37.5f, 3.5f, -58.00f-0.9),
+        glm::vec3(37.5f, 3.5f, -58.00f-1.8),
+        glm::vec3(37.5f - 0.9f, 3.5f, -58.00f),
+        glm::vec3(37.5f - 1.8, 3.5f, -58.00f),
+        glm::vec3(37.5f, 3.5f, -58.00f + 0.9),
+        glm::vec3(37.5f, 3.5f, -58.00f + 1.8),
+        glm::vec3(0.0f, 2.5f, 0.0f),
+        glm::vec3(60.5f, 3.5f, -4.00f)
 };
 
 glm::vec3 lightDirections[] = {
@@ -156,12 +216,44 @@ glm::vec3 lightDirections[] = {
 
 DirectionalLight directionalLight(-lightPositions[0], glm::vec4(0.4f, 0.4f, 0.4f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(0.2f, 0.2f, 0.2f, 0.2f), 1);
 SpotLight spotLight(lightPositions[5], lightDirections[0], 4.5f, 7.5f, glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.5f, 0.5f, 0.5f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.0014f, 0.000007f, 1);
-PointLight pointLight1(lightPositions[1], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 1);
+PointLight pointLight1(lightPositions[1], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 1);
 PointLight pointLight2(lightPositions[2], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 2);
 PointLight pointLight3(lightPositions[3], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 3);
 PointLight pointLight4(lightPositions[4], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 4);
+PointLight pointLight5(lightPositions[6], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 5);
+PointLight pointLight6(lightPositions[7], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 6);
+PointLight pointLight7(lightPositions[8], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 7);
+PointLight pointLight8(lightPositions[9], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 8);
+PointLight pointLight9(lightPositions[10], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 9);
+PointLight pointLight10(lightPositions[11], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 10);
+PointLight pointLight11(lightPositions[12], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 11);
+PointLight pointLight12(lightPositions[13], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 12);
+PointLight pointLight13(lightPositions[14], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 13);
+PointLight pointLight14(lightPositions[15], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 14);
+PointLight pointLight15(lightPositions[16], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 15);
+PointLight pointLight16(lightPositions[17], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 16);
+PointLight pointLight17(lightPositions[18], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 17);
+PointLight pointLight18(lightPositions[19], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 18);
+PointLight pointLight19(lightPositions[20], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 19);
+PointLight pointLight20(lightPositions[21], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 20);
+PointLight pointLight21(lightPositions[22], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 21);
+PointLight pointLight22(lightPositions[23], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 22);
+PointLight pointLight23(lightPositions[24], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 23);
+PointLight pointLight24(lightPositions[25], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 24);
+PointLight pointLight25(lightPositions[26], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 25);
+PointLight pointLight26(lightPositions[27], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 26);
+PointLight pointLight27(lightPositions[28], glm::vec4(0.2f, 0.0f, 0.0f, 1.0f), glm::vec4(0.2, 0, 0.0, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 27);
+PointLight pointLight28(lightPositions[29], glm::vec4(0.0f, 0.0f, 0.2f, 1.0f), glm::vec4(0.0, 0, 0.2, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 28);
+PointLight pointLight29(lightPositions[30], glm::vec4(0.2f, 0.0f, 0.0f, 1.0f), glm::vec4(0.2, 0, 0.0, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 29);
+PointLight pointLight30(lightPositions[31], glm::vec4(0.0f, 0.0f, 0.2f, 1.0f), glm::vec4(0.0, 0, 0.2, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 30);
+PointLight pointLight31(lightPositions[32], glm::vec4(0.2f, 0.0f, 0.0f, 1.0f), glm::vec4(0.2, 0, 0.0, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 31);
+PointLight pointLight32(lightPositions[33], glm::vec4(0.0f, 0.0f, 0.2f, 1.0f), glm::vec4(0.0, 0, 0.2, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 32);
+PointLight pointLight33(lightPositions[34], glm::vec4(0.2f, 0.0f, 0.0f, 1.0f), glm::vec4(0.2, 0, 0.0, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 33);
+PointLight pointLight34(lightPositions[35], glm::vec4(0.0f, 0.0f, 0.2f, 1.0f), glm::vec4(0.0, 0, 0.2, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 34);
+PointLight pointLight35(lightPositions[36], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 35);
+PointLight pointLight36(lightPositions[37], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 36);
 
-//texture
+////texture
 //style1-- 1X1//used
 float ext = 0.0f;
 float TXmin = 0.0f;
@@ -246,12 +338,14 @@ float specularOn = 1.0;
 bool dark = false;
 
 float directionalLightOn = 1.0;
-float pointLightOn[noOfPointLights] = { 0.0, 0.0, 0.0, 0.0 };
+//float pointLightOn[noOfPointLights] = { 0.0, 0.0, 0.0, 0.0, 0.0 };
+float pointLightOn[noOfPointLights] = { 0.0, 0.0, 0.0, 0.0,0.0 ,0.0, 0.0, 0.0, 0.0, 0.0,0.0, 0.0, 0.0, 0.0, 0.0,0.0, 0.0, 0.0, 0.0, 0.0,
+ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 float spotLightOn = 0.0;
 
 //Texture variables
 unsigned int texture0, texture1, texture2, texture3, texture4, texture5, texture6, texture7, texture8, texture9, texture10, texture11, texture12, texture13, frontwall1,frontwall2,sidewall1,sidewall2,blankwall;
-unsigned int mehrab, mehrabside;
+unsigned int mehrab, mehrabside, t_door, t_floor, wodden, side_door, metal_tomb, metal_tape,flu;
 unsigned int water[10];
 
 
@@ -1506,6 +1600,16 @@ int main()
     load_texture(mehrab, "MehrabGG.jpg", GL_RGB);
     load_texture(mehrabside, "MehrabGGSide.jpg", GL_RGB);
 
+    load_texture(t_door, "Tdoor.jpg", GL_RGB);
+    load_texture(t_floor, "Toilet_floor.jpg", GL_RGB);
+    load_texture(wodden, "wood.jpg", GL_RGB);
+    load_texture(side_door, "Side_Door.jpg", GL_RGB);
+
+    //load_texture(metal_tomb, "metal.jpg", GL_RGB);
+    load_texture(metal_tape, "Metal_2.jpg", GL_RGB);
+    load_texture(flu, "flush.jpg", GL_RGB);
+
+
     //Curves
     //Fan_bati
     GLfloat cp_Fan_Bati[] = {
@@ -1570,6 +1674,8 @@ int main()
            -0.5,0.0,0.0
         };
         BezierCurve Round_Piller = BezierCurve(cp_Round_Piller, 2*3, texture2);
+        //round piller 22
+        BezierCurve Round_Piller2 = BezierCurve(cp_Round_Piller, 2 * 3, metal_tape);
         //piller_nicher_border
         GLfloat cp_Piller_Border[] = {
     -0.03, 0.43, 0,
@@ -1609,6 +1715,7 @@ int main()
 -0.0001, 0, 0
         };
         BezierCurve spike = BezierCurve(cp_spike, 4 * 3, texture3);
+        BezierCurve spike2 = BezierCurve(cp_spike, 4 * 3, water[0]);
 
         //2nd circle
         GLfloat cp_circle1[] = {
@@ -1683,6 +1790,38 @@ int main()
         SetupPointLight(pointLight2, ourShader, 2);
         SetupPointLight(pointLight3, ourShader, 3);
         SetupPointLight(pointLight4, ourShader, 4);
+        SetupPointLight(pointLight5, ourShader, 5);
+        SetupPointLight(pointLight6, ourShader, 6);
+        SetupPointLight(pointLight7, ourShader, 7);
+        SetupPointLight(pointLight8, ourShader, 8);
+        SetupPointLight(pointLight9, ourShader, 9);
+        SetupPointLight(pointLight10, ourShader, 10);
+        SetupPointLight(pointLight11, ourShader, 11);
+        SetupPointLight(pointLight12, ourShader, 12);
+        SetupPointLight(pointLight13, ourShader, 13);
+        SetupPointLight(pointLight14, ourShader, 14);
+        SetupPointLight(pointLight15, ourShader, 15);
+        SetupPointLight(pointLight16, ourShader, 16);
+        SetupPointLight(pointLight17, ourShader, 17);
+        SetupPointLight(pointLight18, ourShader, 18);
+        SetupPointLight(pointLight19, ourShader, 19);
+        SetupPointLight(pointLight20, ourShader, 20);
+        SetupPointLight(pointLight21, ourShader, 21);
+        SetupPointLight(pointLight22, ourShader, 22);
+        SetupPointLight(pointLight23, ourShader, 23);
+        SetupPointLight(pointLight24, ourShader, 24);
+        SetupPointLight(pointLight25, ourShader, 25);
+        SetupPointLight(pointLight26, ourShader, 26);
+        SetupPointLight(pointLight27, ourShader, 27);
+        SetupPointLight(pointLight28, ourShader, 28);
+        SetupPointLight(pointLight29, ourShader, 29);
+        SetupPointLight(pointLight30, ourShader, 30);
+        SetupPointLight(pointLight31, ourShader, 31);
+        SetupPointLight(pointLight32, ourShader, 32);
+        SetupPointLight(pointLight33, ourShader, 33);
+        SetupPointLight(pointLight34, ourShader, 34);
+        SetupPointLight(pointLight35, ourShader, 35);
+        SetupPointLight(pointLight36, ourShader, 36);
 
         //Setting up Spot Light
         spotLight.setUpLight(ourShader);
@@ -1723,10 +1862,91 @@ int main()
         //testing end--------------------------------------------------------------eurve
 
         //Curve
-        x_shift = 0;
-        y_shift = 1;
+        // tape
+        x_shift = 8.8;
+        y_shift = 1.4;
+        z_shift = 12.85;
+        for (int i = 0; i < 3; i++)
+        {
+            tape1(cubeVAO, Round_Piller2, spike2, ourShader, x_shift, y_shift, z_shift+1.55*i);
+        }
+
+        x_shift = 10.6+.25;
+        y_shift = 1.4;
+        z_shift = 10.8;
+        for (int i = 0; i < 3; i++)
+        {
+            tape2(cubeVAO, Round_Piller2, spike2, ourShader, x_shift + 1.55 * i, y_shift, z_shift );
+        }
+
+        x_shift = 66.2;
+        y_shift = 1.4;
+        z_shift = 13.15;
+        for (int i = 1; i < 3; i++)
+        {
+            tape3(cubeVAO, Round_Piller2, spike2, ourShader, x_shift, y_shift, z_shift + 1.55 * i);
+        }
+
+        //FAN1
+        x_shift = 24;
+        y_shift = 4.3;
         z_shift = 0;
-        Fan_and_switch(cubeVAO, Fan_Bati, Fan_Blade,Fan_Tube, ourShader, x_shift, y_shift, z_shift);
+        for (int i = 0; i < 2; i++)
+        {
+            Fan_and_switch(cubeVAO, Fan_Bati, Fan_Blade, Fan_Tube, ourShader, x_shift + 27.0 * i, y_shift, 59.0);
+            Fan_and_switch(cubeVAO, Fan_Bati, Fan_Blade, Fan_Tube, ourShader, x_shift + 27.0 * i, y_shift, 49.0);
+        }
+
+        //FAN2
+        x_shift = 24;
+        y_shift = 8.25;
+        z_shift = 0;
+        for (int i = 0; i < 2; i++)
+        {
+            Fan_and_switch(cubeVAO, Fan_Bati, Fan_Blade, Fan_Tube, ourShader, x_shift + 27.0 * i, y_shift, 57.0);
+            Fan_and_switch(cubeVAO, Fan_Bati, Fan_Blade, Fan_Tube, ourShader, x_shift + 27.0 * i, y_shift, 49.0);
+        }
+        
+        //jharbati
+        x_shift = 37.5;
+        y_shift = 3.5;
+        z_shift = 58;
+        //x_shift = 0.0;
+        //y_shift = 0.0;
+        //z_shift = 0.0;
+        jharbati(cubeVAO, Round_Piller, ourShader, x_shift, y_shift, z_shift);
+
+        //AC
+
+        x_shift = 26.6;
+        y_shift = 3.5;
+        z_shift = 67.8-0.5;
+       
+        for (int i = 0; i < 2; i++)
+        {
+            AC(cubeVAO, Round_Piller, ourShader, x_shift+i*22.2, y_shift, z_shift);
+        }
+        x_shift = 27.;
+        y_shift = 4.8;
+        z_shift = 67.8 - 0.3;
+
+        for (int i = 0; i < 2; i++)
+        {
+            AC_FAN(cubeVAO, Fan_Bati, Fan_Blade, ourShader, x_shift + i * 21.8, y_shift, z_shift);
+        }
+
+        //MAIN DOOR
+        x_shift = 34.5;
+        y_shift = 0.45;
+        z_shift = 43;
+        DoubleDoors(cubeVAO,ourShader, x_shift,  y_shift,  z_shift,  texture1, texture1);
+        x_shift = 59.5 - 8.5+9.8;
+        y_shift = 0.2;
+        z_shift = 10.5 - 10.5+12.4;
+        //x_shift = 9.8;
+        //y_shift = 0.2;
+        //z_shift = 12.4;
+        TDoor(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture1);
 
         //Front Arch
         x_shift = 0;
@@ -1943,7 +2163,7 @@ int main()
        lightCubeShader.use();
        scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.13f, 0.1f, 0.13f));
 
-       for (int i = 1; i <= 5; i++)
+       for (int i = 1; i <= noOfPointLights+1; i++)
        {
 
            /*glm::vec3 lightColor;
@@ -1957,15 +2177,9 @@ int main()
 
            //emissive
            glm::vec3 val = glm::vec3(0.5f);
-           if (i == 1 and pointLightOn[0] == 0.0)
+           if (i < noOfPointLights and pointLightOn[i-1] == 0.0)
                bodyColor = glm::vec4(val, 1.0f);
-           if (i == 2 and pointLightOn[1] == 0.0)
-               bodyColor = glm::vec4(val, 1.0f);
-           if (i == 3 and pointLightOn[2] == 0.0)
-               bodyColor = glm::vec4(val, 1.0f);
-           if (i == 4 and pointLightOn[3] == 0.0)
-               bodyColor = glm::vec4(val, 1.0f);
-           if (i == 5 and spotLightOn == 0.0)
+           if (i == noOfPointLights+1 and spotLightOn == 0.0)
                bodyColor = glm::vec4(val, 1.0f);
 
 
@@ -2535,84 +2749,13 @@ void OjuKhana(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, 
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     float lbx = 8.5f, lby = 2.2f + 0.2f, lbz = 10.5f;
     float len = 7.0f, width = 7.0f, ht = 1.7f;
-    //fornt wall
-    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
-        x_sft = lbx, y_sft = lby, z_sft = lbz;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
-    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
-    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
-    model = uni_translate * translateMatrix * scaleMatrix;
-    ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    ourShader.setFloat("material.shininess", 32.0f);
-    glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-    //left wall---------------------------------------
-    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
-    x_sft = lbx, y_sft = lby, z_sft = lbz;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
-    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
-    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
-    model = uni_translate * translateMatrix * scaleMatrix;
-    ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    ourShader.setFloat("material.shininess", 32.0f);
-    glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-    //BACK wall-------------------------------------------------------
-    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
-        x_sft = lbx, y_sft = lby, z_sft = lbz + width - 0.2;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
-    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
-    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
-    model = uni_translate * translateMatrix * scaleMatrix;
-    ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    ourShader.setFloat("material.shininess", 32.0f);
-    glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-    //RIGHT wall---------------------------------------
-    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
-    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
-    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
-    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
-    model = uni_translate * translateMatrix * scaleMatrix;
-    ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    ourShader.setFloat("material.shininess", 32.0f);
-    glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-    //top box
-    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
-    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
-    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
-    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (width - 0.2f)));
-    model = uni_translate * translateMatrix * scaleMatrix;
-    ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
-    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    ourShader.setFloat("material.shininess", 32.0f);
-    glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
-
+    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
 
 
     //front wall-------------------------------------------------------
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));--
     x_sft = 8.6f, y_sft = 0.2f, z_sft = 10.6f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, frontwall1);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f* z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(6.8f, 2.5f, -0.2f));
     model = uni_translate * translateMatrix * scaleMatrix;
@@ -2627,7 +2770,7 @@ void OjuKhana(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, 
     //left wall---------------------------------------
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 8.6f, y_sft = 0.2f, z_sft = 10.6f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, blankwall);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 2.5f, -6.8f));
     model = uni_translate * translateMatrix * scaleMatrix;
@@ -2643,7 +2786,7 @@ void OjuKhana(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, 
     //1
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 8.6f, y_sft = 0.2f, z_sft = 17.2f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, blankwall);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.4f, 2.2f, -0.2f));
     model = uni_translate * translateMatrix * scaleMatrix;
@@ -2657,7 +2800,7 @@ void OjuKhana(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, 
     //2
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); 
     x_sft = 13.0f, y_sft = 0.2f, z_sft = 17.2f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, blankwall);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.4f, 2.2f, -0.2f));
     model = uni_translate * translateMatrix * scaleMatrix;
@@ -2673,7 +2816,7 @@ void OjuKhana(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, 
     //1
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 15.2f, y_sft = 0.2f, z_sft = 10.6f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, blankwall);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 2.2f, -2.4f));
     model = uni_translate * translateMatrix * scaleMatrix;
@@ -2687,7 +2830,7 @@ void OjuKhana(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, 
     //2
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 15.2f, y_sft = 0.2f, z_sft = 15.0f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, blankwall);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 2.2f, -2.4f));
     model = uni_translate * translateMatrix * scaleMatrix;
@@ -2703,13 +2846,13 @@ void OjuKhana(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, 
     //leftbot
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 8.5f, y_sft = 0.2f, z_sft = 10.5f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, blankwall);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 2.2f, -0.5f));
     model = uni_translate * translateMatrix * scaleMatrix;
     ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
     ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
     ourShader.setFloat("material.shininess", 32.0f);
     glBindVertexArray(VAO);
@@ -2717,13 +2860,13 @@ void OjuKhana(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, 
     //lefttop
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 8.5f, y_sft = 0.2f, z_sft = 17;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, blankwall);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 2.2f, -0.5f));
     model = uni_translate * translateMatrix * scaleMatrix;
     ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
     ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
     ourShader.setFloat("material.shininess", 32.0f);
     glBindVertexArray(VAO);
@@ -2731,13 +2874,13 @@ void OjuKhana(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, 
     //rightbot
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 15.0f, y_sft = 0.2f, z_sft = 10.5f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, blankwall);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 2.2f, -0.5f));
     model = uni_translate * translateMatrix * scaleMatrix;
     ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
     ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
     ourShader.setFloat("material.shininess", 32.0f);
     glBindVertexArray(VAO);
@@ -2745,13 +2888,13 @@ void OjuKhana(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, 
     //righttop
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 15.0f, y_sft = 0.2f, z_sft = 17.0f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, blankwall);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 2.2f, -0.5f));
     model = uni_translate * translateMatrix * scaleMatrix;
     ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
     ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
     ourShader.setFloat("material.shininess", 32.0f);
     glBindVertexArray(VAO);
@@ -2761,13 +2904,13 @@ void OjuKhana(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, 
     //FLoor
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 9.1f, y_sft = 0.0f, z_sft = 11.1f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, t_floor);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(6.1f, 0.4f, -6.1f));
     model = uni_translate * translateMatrix * scaleMatrix;
     ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.7, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.7, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
     ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
     ourShader.setFloat("material.shininess", 32.0f);
     glBindVertexArray(VAO);
@@ -2779,13 +2922,13 @@ void OjuKhana(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, 
     x_sft = 9.4f, y_sft = 0.4f, z_sft = 12.6f;
     for (int i = 0; i < 3; i++)
     {
-        glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+        glBindTexture(GL_TEXTURE_2D, wodden);//bindtexture
         translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, (- 1.0f * z_sft)-i*1.55));
         scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 0.5f, -0.5f));
         model = uni_translate * translateMatrix * scaleMatrix;
         ourShader.setMat4("model", model);
-        ourShader.setVec4("material.ambient", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
-        ourShader.setVec4("material.diffuse", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.ambient", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.diffuse", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
         ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
         ourShader.setFloat("material.shininess", 32.0f);
         glBindVertexArray(VAO);
@@ -2799,13 +2942,13 @@ void OjuKhana(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, 
 
     for (int i = 0; i < 3; i++)
     {
-        glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+        glBindTexture(GL_TEXTURE_2D, wodden);//bindtexture
         translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft + i * 1.55f, y_sft, -1.0f * z_sft ));
         scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 0.5f, -0.5f));
         model = uni_translate * translateMatrix * scaleMatrix;
         ourShader.setMat4("model", model);
-        ourShader.setVec4("material.ambient", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
-        ourShader.setVec4("material.diffuse", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.ambient", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.diffuse", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
         ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
         ourShader.setFloat("material.shininess", 32.0f);
         glBindVertexArray(VAO);
@@ -2824,84 +2967,14 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     float lbx = 8.5f, lby = 2.2f + 0.2f, lbz = 10.5f;
     float len = 7.0f, width = 7.0f, ht = 1.7f;
-    //fornt wall
-    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
-        x_sft = lbx, y_sft = lby, z_sft = lbz;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
-    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
-    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
-    model = uni_translate * translateMatrix * scaleMatrix;
-    ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    ourShader.setFloat("material.shininess", 32.0f);
-    glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-    //left wall---------------------------------------
-    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
-    x_sft = lbx, y_sft = lby, z_sft = lbz;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
-    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
-    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
-    model = uni_translate * translateMatrix * scaleMatrix;
-    ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    ourShader.setFloat("material.shininess", 32.0f);
-    glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-    //BACK wall-------------------------------------------------------
-    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
-        x_sft = lbx, y_sft = lby, z_sft = lbz + width - 0.2;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
-    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
-    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.2f));
-    model = uni_translate * translateMatrix * scaleMatrix;
-    ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    ourShader.setFloat("material.shininess", 32.0f);
-    glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-    //RIGHT wall---------------------------------------
-    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
-    x_sft = lbx + len - 0.2, y_sft = lby, z_sft = lbz;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
-    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
-    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, ht, -1.0f * width));
-    model = uni_translate * translateMatrix * scaleMatrix;
-    ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    ourShader.setFloat("material.shininess", 32.0f);
-    glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-    //top box
-    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
-    x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.4f, z_sft = lbz + 0.1f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
-    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
-    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (width - 0.2f)));
-    model = uni_translate * translateMatrix * scaleMatrix;
-    ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
-    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    ourShader.setFloat("material.shininess", 32.0f);
-    glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
 
 
 
     //front wall-------------------------------------------------------
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift)); --
         x_sft = 8.6f, y_sft = 0.2f, z_sft = 10.6f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, frontwall1);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(6.8f, 2.5f, -0.2f));
     model = uni_translate * translateMatrix * scaleMatrix;
@@ -2916,7 +2989,7 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
     //right wall---------------------------------------
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 15.2f, y_sft = 0.2f, z_sft = 10.6f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, blankwall);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 2.5f, -6.8f));
     model = uni_translate * translateMatrix * scaleMatrix;
@@ -2932,7 +3005,7 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
     //1
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 8.6f, y_sft = 0.2f, z_sft = 17.2f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, blankwall);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.4f, 2.2f, -0.2f));
     model = uni_translate * translateMatrix * scaleMatrix;
@@ -2946,7 +3019,7 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
     //2
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 13.0f, y_sft = 0.2f, z_sft = 17.2f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, blankwall);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.4f, 2.2f, -0.2f));
     model = uni_translate * translateMatrix * scaleMatrix;
@@ -2962,7 +3035,7 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
     //1
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 8.6f, y_sft = 0.2f, z_sft = 10.6f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, blankwall);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 2.2f, -2.4f));
     model = uni_translate * translateMatrix * scaleMatrix;
@@ -2976,7 +3049,7 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
     //2
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 8.6f, y_sft = 0.2f, z_sft = 15.0f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, blankwall);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 2.2f, -2.4f));
     model = uni_translate * translateMatrix * scaleMatrix;
@@ -2992,13 +3065,13 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
     //leftbot
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 8.5f, y_sft = 0.2f, z_sft = 10.5f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, blankwall);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 2.2f, -0.5f));
     model = uni_translate * translateMatrix * scaleMatrix;
     ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
     ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
     ourShader.setFloat("material.shininess", 32.0f);
     glBindVertexArray(VAO);
@@ -3006,13 +3079,13 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
     //lefttop
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 8.5f, y_sft = 0.2f, z_sft = 17;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, blankwall);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 2.2f, -0.5f));
     model = uni_translate * translateMatrix * scaleMatrix;
     ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
     ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
     ourShader.setFloat("material.shininess", 32.0f);
     glBindVertexArray(VAO);
@@ -3020,13 +3093,13 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
     //rightbot
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 15.0f, y_sft = 0.2f, z_sft = 10.5f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, blankwall);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 2.2f, -0.5f));
     model = uni_translate * translateMatrix * scaleMatrix;
     ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
     ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
     ourShader.setFloat("material.shininess", 32.0f);
     glBindVertexArray(VAO);
@@ -3034,13 +3107,13 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
     //righttop
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 15.0f, y_sft = 0.2f, z_sft = 17.0f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, blankwall);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 2.2f, -0.5f));
     model = uni_translate * translateMatrix * scaleMatrix;
     ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
     ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
     ourShader.setFloat("material.shininess", 32.0f);
     glBindVertexArray(VAO);
@@ -3050,13 +3123,13 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
     //FLoor
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 8.8f, y_sft = 0.0f, z_sft = 10.8f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, t_floor);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(6.1f, 0.4f, -6.4f));
     model = uni_translate * translateMatrix * scaleMatrix;
     ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.7, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.7, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9, 0.8549019607843137, 0.9, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9, 0.8549019607843137, 0.9, 1.0f));
     ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
     ourShader.setFloat("material.shininess", 32.0f);
     glBindVertexArray(VAO);
@@ -3068,13 +3141,13 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
     x_sft = 14.0f, y_sft = 0.4f, z_sft = 13.0f;
     for (int i = 1; i < 3; i++)
     {
-        glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+        glBindTexture(GL_TEXTURE_2D, wodden);//bindtexture
         translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, (-1.0f * z_sft) - i * 1.55));
         scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 0.5f, -0.5f));
         model = uni_translate * translateMatrix * scaleMatrix;
         ourShader.setMat4("model", model);
-        ourShader.setVec4("material.ambient", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
-        ourShader.setVec4("material.diffuse", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.ambient", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.diffuse", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
         ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
         ourShader.setFloat("material.shininess", 32.0f);
         glBindVertexArray(VAO);
@@ -3088,13 +3161,13 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
 
     for (int i = 0; i < 4; i++)
     {
-        glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+        glBindTexture(GL_TEXTURE_2D, wodden);//bindtexture
         translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft + i * 1.8f, y_sft, -1.0f * z_sft));
         scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.2f, 2.0f, -1.5f));
         model = uni_translate * translateMatrix * scaleMatrix;
         ourShader.setMat4("model", model);
-        ourShader.setVec4("material.ambient", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
-        ourShader.setVec4("material.diffuse", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.ambient", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.diffuse", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
         ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
         ourShader.setFloat("material.shininess", 32.0f);
         glBindVertexArray(VAO);
@@ -3105,13 +3178,13 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
     //bath_room top border wall
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 9.1f, y_sft = 1.8f, z_sft = 12.4f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, wodden);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(5.6f, 0.6f, -0.1f));
     model = uni_translate * translateMatrix * scaleMatrix;
     ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.7, 0.549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.7, 0.549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9, 0.949019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9, 0.949019607843137, 0.8, 1.0f));
     ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
     ourShader.setFloat("material.shininess", 32.0f);
     glBindVertexArray(VAO);
@@ -3122,13 +3195,13 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
     x_sft = 9.3f, y_sft = 0.4f, z_sft = 12.4f;
     for (int i = 0; i < 3; i++)
     {
-        glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+        glBindTexture(GL_TEXTURE_2D, wodden);//bindtexture
         translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft + i * 1.8f, y_sft, -1.0f * z_sft));
         scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 1.4f, -0.1f));
         model = uni_translate * translateMatrix * scaleMatrix;
         ourShader.setMat4("model", model);
-        ourShader.setVec4("material.ambient", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
-        ourShader.setVec4("material.diffuse", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.ambient", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.diffuse", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
         ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
         ourShader.setFloat("material.shininess", 32.0f);
         glBindVertexArray(VAO);
@@ -3140,13 +3213,13 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
     x_sft = 9.3f+(0.5f+0.6f), y_sft = 0.4f, z_sft = 12.4f;
     for (int i = 0; i < 3; i++)
     {
-        glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+        glBindTexture(GL_TEXTURE_2D, wodden);//bindtexture
         translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft + i * 1.8f, y_sft, -1.0f * z_sft));
         scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.5f, 1.4f, -0.1f));
         model = uni_translate * translateMatrix * scaleMatrix;
         ourShader.setMat4("model", model);
-        ourShader.setVec4("material.ambient", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
-        ourShader.setVec4("material.diffuse", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.ambient", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.diffuse", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
         ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
         ourShader.setFloat("material.shininess", 32.0f);
         glBindVertexArray(VAO);
@@ -3155,29 +3228,29 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
 
     //Doors------------------------------------------------------------------------------------------------------
     //1st door
-    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
-    x_sft = 9.8f, y_sft = 0.42f, z_sft = 12.4f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
-    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft + 0 * 1.8f, y_sft, -1.0f * z_sft));
-    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.6f, 1.36f, -0.05f));
-    model = uni_translate * translateMatrix * scaleMatrix;
-    ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.6, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.6, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    ourShader.setFloat("material.shininess", 32.0f);
-    glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    //x_sft = 9.8f, y_sft = 0.42f, z_sft = 12.4f;
+    //glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    //translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft + 0 * 1.8f, y_sft, -1.0f * z_sft));
+    //scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.6f, 1.36f, -0.05f));
+    //model = uni_translate * translateMatrix * scaleMatrix;
+    //ourShader.setMat4("model", model);
+    //ourShader.setVec4("material.ambient", glm::vec4(0.6, 0.8549019607843137, 0.8, 1.0f));
+    //ourShader.setVec4("material.diffuse", glm::vec4(0.6, 0.8549019607843137, 0.8, 1.0f));
+    //ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    //ourShader.setFloat("material.shininess", 32.0f);
+    //glBindVertexArray(VAO);
+    //glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
     //2nd door
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 9.8f, y_sft = 0.42f, z_sft = 12.4f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, t_door);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft + 1 * 1.8f, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.6f, 1.36f, -0.05f));
     model = uni_translate * translateMatrix * scaleMatrix;
     ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.6, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.6, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(1.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(1.0, 0.8549019607843137, 0.8,  1.0f));
     ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
     ourShader.setFloat("material.shininess", 32.0f);
     glBindVertexArray(VAO);
@@ -3185,13 +3258,13 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
     //3rd door
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 9.8f, y_sft = 0.42f, z_sft = 12.4f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, t_door);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft + 2 * 1.8f, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.6f, 1.36f, -0.05f));
     model = uni_translate * translateMatrix * scaleMatrix;
     ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.6, 0.8549019607843137, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.6, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(1.0, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(1.0, 0.8549019607843137, 0.8, 1.0f));
     ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
     ourShader.setFloat("material.shininess", 32.0f);
     glBindVertexArray(VAO);
@@ -3203,13 +3276,13 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
     x_sft = 10.0f, y_sft = 0.4f+0.5, z_sft = 11.1f;
     for (int i = 0; i < 3; i++)
     {
-        glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+        glBindTexture(GL_TEXTURE_2D, flu);//bindtexture
         translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft + i * 1.8f, y_sft, -1.0f * z_sft));
         scaleMatrix = glm::scale(identityMatrix, glm::vec3( 0.4f, 0.4f, -0.1f));
         model = uni_translate * translateMatrix * scaleMatrix;
         ourShader.setMat4("model", model);
-        ourShader.setVec4("material.ambient", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
-        ourShader.setVec4("material.diffuse", glm::vec4(0.2, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.ambient", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
+        ourShader.setVec4("material.diffuse", glm::vec4(0.9, 0.8549019607843137, 0.8, 1.0f));
         ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
         ourShader.setFloat("material.shininess", 32.0f);
         glBindVertexArray(VAO);
@@ -3441,20 +3514,20 @@ void MidGate(unsigned int VAO1, unsigned int VAO1020, unsigned int VAO16, Shader
     width = 21;
     GenFloor(VAO1020, ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, texture8);
 
-    //POND 
-    //HOLO BOX
-    //lbx = 31.5, lby = 0.0, lbz = 23.75;
-    //len = 6.0;
-    //width = 6.0;
-    //ht = 0.8;
-    //HoloBox(VAO16, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture8);
-    ////Water
-    //lbx = 31.7, lby = 0.4, lbz = 23.95;
-    //len = 6.0-0.4;
-    //width = 6.0 - 0.4;;
-    //GenFloor(VAO1, ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, water[wcnt/10]);
-    //wcnt++;
-    //wcnt = wcnt % 100;
+ /*   POND 
+    HOLO BOX*/
+    lbx = 34.5, lby = 0.0, lbz = 23.75;
+    len = 6.0;
+    width = 6.0;
+    ht = 0.8;
+    HoloBox(VAO16, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture8);
+    //Water
+    lbx = 34.7, lby = 0.4, lbz = 23.95;
+    len = 6.0-0.4;
+    width = 6.0 - 0.4;;
+    GenFloor(VAO1, ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, water[wcnt/10]);
+    wcnt++;
+    wcnt = wcnt % 100;
 
 }
 
@@ -4032,6 +4105,29 @@ void GenFloor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, 
     //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
 }
 
+void GenFloor2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float width, float lbx, float lby, float lbz, unsigned int texture = texture0)
+{
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    float x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    //Floor
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, 0.1f, -1.0 * width));
+    model = uni_translate * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(1.0, 1.0, 1.0, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(1.0, 1.0, 1.0, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+}
+
 void Box(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float width, float ht, float lbx, float lby, float lbz, unsigned int texture = texture0)
 {
     // Modelling Transformation
@@ -4267,7 +4363,7 @@ void Fan_and_switch(unsigned int VAO, BezierCurve Fan_Bati, BezierCurve Fan_Blad
     {
         if (fanspeed1 < 12.0)
         {
-            fanspeed1 += 0.4;
+            fanspeed1 += 0.2;
             rotateAxis_Y_Fan1 += fanspeed1;
             rotateAxis_Y_Fan1 = fmod(rotateAxis_Y_Fan1, 360);
             Fan1_ready = true;
@@ -4282,7 +4378,7 @@ void Fan_and_switch(unsigned int VAO, BezierCurve Fan_Bati, BezierCurve Fan_Blad
     {
         if (fanspeed1 > 0.0)
         {
-            fanspeed1 -= 0.2;
+            fanspeed1 -= 0.1;
             rotateAxis_Y_Fan1 += fanspeed1;
             rotateAxis_Y_Fan1 = fmod(rotateAxis_Y_Fan1, 360);
         }
@@ -4302,7 +4398,7 @@ void Fan_and_switch(unsigned int VAO, BezierCurve Fan_Bati, BezierCurve Fan_Blad
 
     //FAN BATI+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //------CURVE---START
-    lbx = 12.0, lby = 0.6, lbz = 59.0;
+    lbx = 0.0, lby = 0.0, lbz = 0.0;
     len = 0.2, ht = 0.2f;
     width = 0.2;
     //---------FN
@@ -4321,7 +4417,7 @@ void Fan_and_switch(unsigned int VAO, BezierCurve Fan_Bati, BezierCurve Fan_Blad
 
     //FAN BLADE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //------CURVE---START
-    lbx = 12.0, lby = 0.6, lbz = 59.0;
+    lbx = 0.0, lby = 0.0, lbz = 0.0;
     len = 0.33, ht = 0.275f;
     width = 0.05;
     //---------FN
@@ -4345,7 +4441,7 @@ void Fan_and_switch(unsigned int VAO, BezierCurve Fan_Bati, BezierCurve Fan_Blad
 
     //FAN BLADE Tube CONNECTOR+++++++++++++++++++++++++++++++++++++++++++++++++++
     //------CURVE---START
-    lbx = 12.0, lby = 0.6, lbz = 59.0;
+    lbx = 0.0, lby = 0.0, lbz = 0.0;
     len = 0.0667, ht = 0.15f;
     width = 0.1;
     //---------FN
@@ -4368,7 +4464,7 @@ void Fan_and_switch(unsigned int VAO, BezierCurve Fan_Bati, BezierCurve Fan_Blad
 
     //FAN RODE Tube CONNECTOR++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //------CURVE---START
-    lbx = 12.0, lby = 0.6, lbz = 59.0;
+    lbx = 0.0, lby = 0.0, lbz = 0.0;
     len = 0.1, ht = 0.15f;
     width = 0.1;
     //---------FN
@@ -5034,6 +5130,649 @@ void MinarGen(unsigned int VAO, BezierCurve Round_piller, BezierCurve circle, Be
 
 
 }
+
+void jharbati(unsigned int VAO, BezierCurve Round_Piller, Shader ourShader, float x_shift, float y_shift, float z_shift)
+{
+    //declaration
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 RS_translateMatrix, translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    float lbx = 0.0, lby = 0.0, lbz = 0.0;
+    float len = 0.0, ht = 0.0f;
+    float width = 0.0;
+    float x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    float rsx = 0.0, rsy = 0.0, rsz = 0.0;
+
+    //Sobar same tai
+    lbx = 0.0, lby = 0.0, lbz = 0.0;
+
+    //round chakti
+    //piller border+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    len = 3.6, ht = 0.1f;
+    width = 3.6;
+    //---------FN
+    x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    rsx = 0.0, rsy = 0.0, rsz = 0.0;
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, width));
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
+    model = uni_translate * translateMatrix * rotateYMatrix * RS_translateMatrix * scaleMatrix;
+    Round_Piller.drawBezierCurve(ourShader, model);
+
+    //dondo1
+    //piller border+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    len = 0.1, ht = 1.8f;
+    width = 0.1;
+    //---------FN
+    x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    rsx = 0.0, rsy = 0.0, rsz = 0.0;
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, 0.05+y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, width));
+    rotateXMatrix = glm::rotate(identityMatrix, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));//MAIN Rotation
+    model = uni_translate * translateMatrix * rotateXMatrix * RS_translateMatrix * scaleMatrix;
+    Round_Piller.drawBezierCurve(ourShader, model);
+
+    //dondo2
+    //piller border+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    len = 0.1, ht = 1.8f;
+    width = 0.1;
+    //---------FN
+    x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    rsx = 0.0, rsy = 0.0, rsz = 0.0;
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, 0.05 + y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, width));
+    rotateXMatrix = glm::rotate(identityMatrix, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));//MAIN Rotation
+    model = uni_translate * translateMatrix * rotateXMatrix * RS_translateMatrix * scaleMatrix;
+    Round_Piller.drawBezierCurve(ourShader, model);
+
+
+    //dondo3
+    //piller border+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    len = 0.1, ht = 1.8f;
+    width = 0.1;
+    //---------FN
+    x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    rsx = 0.0, rsy = 0.0, rsz = 0.0;
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, 0.05 + y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, width));
+    rotateZMatrix = glm::rotate(identityMatrix, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));//MAIN Rotation
+    model = uni_translate * translateMatrix * rotateZMatrix * RS_translateMatrix * scaleMatrix;
+    Round_Piller.drawBezierCurve(ourShader, model);
+
+    //dondo4
+    //piller border+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    len = 0.1, ht = 1.8f;
+    width = 0.1;
+    //---------FN
+    x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    rsx = 0.0, rsy = 0.0, rsz = 0.0;
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, 0.05 + y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, width));
+    rotateZMatrix = glm::rotate(identityMatrix, glm::radians(-90.0f), glm::vec3(0.0f, 0.0f, 1.0f));//MAIN Rotation
+    model = uni_translate * translateMatrix * rotateZMatrix * RS_translateMatrix * scaleMatrix;
+    Round_Piller.drawBezierCurve(ourShader, model);
+
+    //stand
+    //piller border+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    len = 0.03, ht = 9.6f;
+    width = 0.03;
+    //---------FN
+    x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    rsx = 0.0, rsy = 0.0, rsz = 0.0;
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft,  y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, width));
+    rotateZMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 0.0f, 1.0f));//MAIN Rotation
+    model = uni_translate * translateMatrix * rotateZMatrix * RS_translateMatrix * scaleMatrix;
+    Round_Piller.drawBezierCurve(ourShader, model);
+
+}
+
+void AC_FAN(unsigned int VAO, BezierCurve Fan_Bati, BezierCurve Fan_Blade, Shader ourShader, float x_shift, float y_shift, float z_shift)
+{
+    if (isAC)
+    {
+        rotateAxis_Y_AC += ACex;
+        rotateAxis_Y_AC = fmod(rotateAxis_Y_AC, 360);
+    }
+    else
+    {
+        rotateAxis_Y_AC = 0;
+    }
+    //declaration
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 RS_translateMatrix, translateMatrix, rotateXXMatrix,rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    float lbx = 0.0, lby = 0.0, lbz = 0.0;
+    float len = 0.0, ht = 0.0f;
+    float width = 0.0;
+    float x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    float rsx = 0.0, rsy = 0.0, rsz = 0.0;
+
+    //FAN BATI+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //------CURVE---START
+    lbx = 0.0 + .35, lby = 0.03 + .23, lbz = 0.0 + .27;
+    len = 0.1, ht = 0.1f;
+    width = 0.1;
+    //---------FN
+    x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    rsx = 0.0, rsy = 0.0, rsz = 0.0;
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, width));
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(rotateAxis_Y_AC), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
+    rotateXXMatrix = glm::rotate(identityMatrix, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    model = uni_translate * translateMatrix * rotateXXMatrix * rotateYMatrix * RS_translateMatrix * scaleMatrix;
+    Fan_Bati.drawBezierCurve(ourShader, model);
+    //CURVE---------END-------------------------------Curve
+
+    //FAN BLADE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //------CURVE---START
+    lbx = 0.0+.35, lby = 0.025 + .23, lbz = 0.0 + .27;
+    len = 0.15, ht = 0.05f;
+    width = 0.05;
+    //---------FN
+    x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    rsx = 0.05, rsy = 0.0, rsz = 0.0;
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, width));
+    rotateZMatrix = glm::rotate(identityMatrix, glm::radians(-90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+    rotateXMatrix = glm::rotate(identityMatrix, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    rotateXXMatrix = glm::rotate(identityMatrix, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    for (int i = 0; i < 3; i++)
+    {
+        rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f + i * 120.0f+ rotateAxis_Y_AC), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
+        model = uni_translate * translateMatrix * rotateXXMatrix * rotateYMatrix * RS_translateMatrix * rotateXMatrix * rotateZMatrix * scaleMatrix;
+        Fan_Blade.drawBezierCurve(ourShader, model);
+    }
+    //CURVE---------END----------------------------CURVE
+
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 0.0f, lby = 0.0f, lbz = 0.0f;
+    len = 0.5, ht = 0.5;
+    VerticalWall(VAO, ourShader, x_shift, y_shift, z_shift, len, ht, lbx, lby, lbz, texture4);
+
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 0.5, lby = 0.0f, lbz = 0.0f;
+    len = 0.5, ht = 0.5;
+    VerticalWall(VAO, ourShader, x_shift, y_shift, z_shift, len, ht, lbx, lby, lbz, texture4);
+
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 0.0f, lby = 0.0f, lbz = 0.0f;
+    len = 0.5, ht = 0.5;
+    HorizontalWall(VAO, ourShader, x_shift, y_shift, z_shift, len, ht, lbx, lby, lbz, texture4);
+
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 0.0f, lby = 0.0f, lbz = 0.0f;
+    len = 0.5;
+    width = 0.5;
+    GenFloor2(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, texture4);
+
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 0.0f, lby = 0.4f, lbz = 0.0f;
+    len = 0.5;
+    width = 0.5;
+    GenFloor2(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, texture4);
+
+    lbx = 0.0f, lby = 0.1, lbz = 0.47f;
+    for (int i = 0; i < 4; i++)
+    {
+        //Floor
+        uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+        x_sft = lbx, y_sft = lby, z_sft = lbz;
+        glBindTexture(GL_TEXTURE_2D, texture7);//bindtexture
+        translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft+0.09*i, -1.0f * z_sft));
+        scaleMatrix = glm::scale(identityMatrix, glm::vec3(.7, 0.02f, -1.0 * 0.02f));
+        model = uni_translate * translateMatrix * scaleMatrix;
+        ourShader.setMat4("model", model);
+        ourShader.setVec4("material.ambient", glm::vec4(1.0, 1.0, 1.0, 1.0f));
+        ourShader.setVec4("material.diffuse", glm::vec4(1.0, 1.0, 1.0, 1.0f));
+        ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+        ourShader.setFloat("material.shininess", 32.0f);
+        glBindVertexArray(VAO);
+        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+        //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+    }
+
+   
+
+}
+
+
+void AC(unsigned int VAO, BezierCurve AC_Blade_Piller_round, Shader ourShader, float x_shift, float y_shift, float z_shift)
+{
+
+    if (isAC)
+    {
+        if(pos)
+        {
+            rotateAxis_X_AC += ACspeed1;
+            if (rotateAxis_X_AC == 0)
+            {
+                pos = false;
+            }
+        }
+        else
+        {
+            rotateAxis_X_AC -= ACspeed1;
+            if ( rotateAxis_X_AC == -60)
+            {
+                pos = true;
+            }
+        }
+    }
+    else
+    {
+        pos = false;
+        rotateAxis_X_AC = 0;
+    }
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 translateMatrix, RS_translateMatrix, GG_translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    //declaration
+    float lbx = 0.0, lby = 0.0, lbz = 0.0;
+    float len = 0.0, ht = 0.0f;
+    float width = 0.0;
+    float x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    float rsx = 0.0, rsy = 0.0, rsz = 0.0;
+
+    //Sobar same tai
+    lbx = 1.8, lby = 0.2, lbz = 0.0;
+
+    //round chakti
+    //piller border+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    len = 0.27, ht = 1.6f;
+    width = 0.02;
+    //---------FN
+    x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    rsx = 0.0, rsy = 0.0, rsz = 0.0;
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, width));
+    rotateZMatrix = glm::rotate(identityMatrix, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));//MAIN Rotation
+    GG_translateMatrix = glm::translate(identityMatrix, glm::vec3(-x_sft, -y_sft, -1.0f * z_sft));
+    rotateXMatrix = glm::rotate(identityMatrix, glm::radians(rotateAxis_X_AC), glm::vec3(1.0f, 0.0f, 0.0f));//MAIN Rotation
+    model = uni_translate * translateMatrix*rotateXMatrix* GG_translateMatrix* translateMatrix * rotateZMatrix * RS_translateMatrix * scaleMatrix;
+    AC_Blade_Piller_round.drawBezierCurve(ourShader, model);
+
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 0.0f, lby = 0.0f, lbz = 0.0f;
+    len = 0.5, ht = 0.5;
+    VerticalWall(VAO, ourShader, x_shift, y_shift, z_shift, len, ht, lbx, lby, lbz, texture4);
+
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+     lbx = 1.8f, lby = 0.0f, lbz = 0.0f;
+     len = 0.5, ht = 0.5;
+    VerticalWall(VAO, ourShader, x_shift, y_shift, z_shift, len, ht, lbx, lby, lbz, texture4);
+
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 0.0f, lby = 0.0f, lbz = 0.3f;
+    len = 1.8, ht = 0.5;
+    HorizontalWall(VAO, ourShader, x_shift, y_shift, z_shift, len, ht, lbx, lby, lbz, texture4);
+
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 0.0f, lby = 0.0f, lbz = 0.0f;
+    len = 1.8;
+    width = 0.5;
+    GenFloor2(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, texture4);
+
+    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    lbx = 0.0f, lby = 0.3f, lbz = 0.0f;
+    len = 1.8;
+    width = 0.5;
+    GenFloor(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, texture4);
+
+
+
+
+}
+
+void tape1(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shader ourShader, float x_shift, float y_shift, float z_shift)
+{
+    //if (isAC)
+    //{
+    //    rotateAxis_Y_AC += ACex;
+    //    rotateAxis_Y_AC = fmod(rotateAxis_Y_AC, 360);
+    //}
+    //else
+    //{
+    //    rotateAxis_Y_AC = 0;
+    //}
+    
+    //declaration
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 RS_translateMatrix, translateMatrix, rotateXXMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    float lbx = 0.0, lby = 0.0, lbz = 0.0;
+    float len = 0.0, ht = 0.0f;
+    float width = 0.0;
+    float x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    float rsx = 0.0, rsy = 0.0, rsz = 0.0;
+
+    //FAN BATI+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //------CURVE---START
+    lbx = 0.0 , lby = 0.0, lbz = 0.0;
+    len = 0.045, ht = 0.05f;
+    width = 0.045;
+    //---------FN
+    x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    rsx = 0.12, rsy = -0.03, rsz = 0.0;
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, width));
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
+    rotateXXMatrix = glm::rotate(identityMatrix, glm::radians(00.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    model = uni_translate * translateMatrix * rotateXXMatrix * rotateYMatrix * RS_translateMatrix * scaleMatrix;
+    Piller_round1.drawBezierCurve(ourShader, model);
+    //CURVE---------END-------------------------------Curve
+
+     //spike+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //------CURVE---START
+    lbx = 0.0, lby = 0.0, lbz = 0.0;
+    len = 0.022, ht = 0.022f;
+    width = 0.022;
+    //---------FN
+    x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    rsx = 0.12, rsy = -0.03, rsz = 0.0;
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, width));
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
+    rotateXXMatrix = glm::rotate(identityMatrix, glm::radians(00.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    model = uni_translate * translateMatrix * rotateXXMatrix * rotateYMatrix * RS_translateMatrix * scaleMatrix;
+    spike2.drawBezierCurve(ourShader, model);
+    //CURVE---------END-------------------------------Curve
+
+       // Modelling Transformation
+    len = 0.15, ht = 0.02f;
+    width = 0.05;
+     x_sft = 0.0f, y_sft = 0.0f, z_sft = -0.025;
+    //Floor
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = -0.025;
+    glBindTexture(GL_TEXTURE_2D, metal_tape);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -1.0 * width));
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
+    model = uni_translate * rotateYMatrix*translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(1.0, 1.0, 1.0, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(1.0, 1.0, 1.0, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+           // Modelling Transformation
+    len = 0.05, ht = 0.05f;
+    width = 0.05;
+    x_sft = 0.00f, y_sft = 0.0f, z_sft = -0.025;
+    //Floor
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx+.02, y_sft = lby, z_sft = -0.025;
+    glBindTexture(GL_TEXTURE_2D, metal_tape);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -1.0 * width));
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
+    model = uni_translate * rotateYMatrix*translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(1.0, 1.0, 1.0, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(1.0, 1.0, 1.0, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+    
+}
+
+void tape2(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shader ourShader, float x_shift, float y_shift, float z_shift)
+{
+    //if (isAC)
+    //{
+    //    rotateAxis_Y_AC += ACex;
+    //    rotateAxis_Y_AC = fmod(rotateAxis_Y_AC, 360);
+    //}
+    //else
+    //{
+    //    rotateAxis_Y_AC = 0;
+    //}
+
+    //declaration
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 RS_translateMatrix, translateMatrix, rotateXXMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    float lbx = 0.0, lby = 0.0, lbz = 0.0;
+    float len = 0.0, ht = 0.0f;
+    float width = 0.0;
+    float x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    float rsx = 0.0, rsy = 0.0, rsz = 0.0;
+
+    //FAN BATI+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //------CURVE---START
+    lbx = 0.0, lby = 0.0, lbz = 0.0;
+    len = 0.045, ht = 0.05f;
+    width = 0.045;
+    //---------FN
+    x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    rsx = 0.12, rsy = -0.03, rsz = 0.0;
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, width));
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
+    rotateXXMatrix = glm::rotate(identityMatrix, glm::radians(00.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    model = uni_translate * translateMatrix * rotateXXMatrix * rotateYMatrix * RS_translateMatrix * scaleMatrix;
+    Piller_round1.drawBezierCurve(ourShader, model);
+    //CURVE---------END-------------------------------Curve
+
+     //spike+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //------CURVE---START
+    lbx = 0.0, lby = 0.0, lbz = 0.0;
+    len = 0.022, ht = 0.022f;
+    width = 0.022;
+    //---------FN
+    x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    rsx = 0.12, rsy = -0.03, rsz = 0.0;
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, width));
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
+    rotateXXMatrix = glm::rotate(identityMatrix, glm::radians(00.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    model = uni_translate * translateMatrix * rotateXXMatrix * rotateYMatrix * RS_translateMatrix * scaleMatrix;
+    spike2.drawBezierCurve(ourShader, model);
+    //CURVE---------END-------------------------------Curve
+
+       // Modelling Transformation
+    len = 0.15, ht = 0.02f;
+    width = 0.05;
+    x_sft = 0.0f, y_sft = 0.0f, z_sft = -0.025;
+    //Floor
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = -0.025;
+    glBindTexture(GL_TEXTURE_2D, metal_tape);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -1.0 * width));
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
+    model = uni_translate * rotateYMatrix * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(1.0, 1.0, 1.0, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(1.0, 1.0, 1.0, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+           // Modelling Transformation
+    len = 0.05, ht = 0.05f;
+    width = 0.05;
+    x_sft = 0.00f, y_sft = 0.0f, z_sft = -0.025;
+    //Floor
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + .02, y_sft = lby, z_sft = -0.025;
+    glBindTexture(GL_TEXTURE_2D, metal_tape);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -1.0 * width));
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
+    model = uni_translate * rotateYMatrix * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(1.0, 1.0, 1.0, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(1.0, 1.0, 1.0, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+}
+
+
+void tape3(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shader ourShader, float x_shift, float y_shift, float z_shift)
+{
+    //if (isAC)
+    //{
+    //    rotateAxis_Y_AC += ACex;
+    //    rotateAxis_Y_AC = fmod(rotateAxis_Y_AC, 360);
+    //}
+    //else
+    //{
+    //    rotateAxis_Y_AC = 0;
+    //}
+
+    //declaration
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 RS_translateMatrix, translateMatrix, rotateXXMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    float lbx = 0.0, lby = 0.0, lbz = 0.0;
+    float len = 0.0, ht = 0.0f;
+    float width = 0.0;
+    float x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    float rsx = 0.0, rsy = 0.0, rsz = 0.0;
+
+    //FAN BATI+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //------CURVE---START
+    lbx = 0.0, lby = 0.0, lbz = 0.0;
+    len = 0.045, ht = 0.05f;
+    width = 0.045;
+    //---------FN
+    x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    rsx = 0.12, rsy = -0.03, rsz = 0.0;
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, width));
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
+    rotateXXMatrix = glm::rotate(identityMatrix, glm::radians(00.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    model = uni_translate * translateMatrix * rotateXXMatrix * rotateYMatrix * RS_translateMatrix * scaleMatrix;
+    Piller_round1.drawBezierCurve(ourShader, model);
+    //CURVE---------END-------------------------------Curve
+
+     //spike+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //------CURVE---START
+    lbx = 0.0, lby = 0.0, lbz = 0.0;
+    len = 0.022, ht = 0.022f;
+    width = 0.022;
+    //---------FN
+    x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    rsx = 0.12, rsy = -0.03, rsz = 0.0;
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, width));
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
+    rotateXXMatrix = glm::rotate(identityMatrix, glm::radians(00.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    model = uni_translate * translateMatrix * rotateXXMatrix * rotateYMatrix * RS_translateMatrix * scaleMatrix;
+    spike2.drawBezierCurve(ourShader, model);
+    //CURVE---------END-------------------------------Curve
+
+       // Modelling Transformation
+    len = 0.15, ht = 0.02f;
+    width = 0.05;
+    x_sft = 0.0f, y_sft = 0.0f, z_sft = -0.025;
+    //Floor
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx, y_sft = lby, z_sft = -0.025;
+    glBindTexture(GL_TEXTURE_2D, metal_tape);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -1.0 * width));
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
+    model = uni_translate * rotateYMatrix * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(1.0, 1.0, 1.0, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(1.0, 1.0, 1.0, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+           // Modelling Transformation
+    len = 0.05, ht = 0.05f;
+    width = 0.05;
+    x_sft = 0.00f, y_sft = 0.0f, z_sft = -0.025;
+    //Floor
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    x_sft = lbx + .02, y_sft = lby, z_sft = -0.025;
+    glBindTexture(GL_TEXTURE_2D, metal_tape);//bindtexture
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -1.0 * width));
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
+    model = uni_translate * rotateYMatrix * translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", glm::vec4(1.0, 1.0, 1.0, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(1.0, 1.0, 1.0, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    //box++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++END
+
+}
 //-------------------===========
 
 void small_tomb(unsigned int VAO, BezierCurve circle, BezierCurve spike, Shader ourShader, float x_shift, float y_shift, float z_shift)
@@ -5192,32 +5931,48 @@ void Big_tomb(unsigned int VAO, BezierCurve circle2, BezierCurve spike, Shader o
 
 
 //Doors
-void LeftFrontDoors(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void DoubleDoors(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture1 = texture0, unsigned int texture2 = texture0)
 {
+    if (isDoubleDoor)
+    {
+        if (rotateAxis_Y_Door < 75.0)
+        {
+            rotateAxis_Y_Door += doorspeed;
+            
+        }
+        else
+        {
+            DDoor_ready = true;
+        }
+    }
+    else
+    {
+        if (rotateAxis_Y_Door > 0.0)
+        {
+            rotateAxis_Y_Door -= doorspeed;
+
+        }
+        else
+        {
+            DDoor_ready = true;
+        }
+    }
+
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
     glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
 
+    //LEFT DOOR
     //universal translate
-    uni_translate = glm::translate(identityMatrix, glm::vec3(0.5 * x_shift, 0.5 * y_shift, -0.5 * z_shift));
-
+    uni_translate = glm::translate(identityMatrix, glm::vec3( x_shift , y_shift, -1.0 * z_shift));
     //grass layer----------------------------------------------------------------
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, texture1);//bindtexture
 
     translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.0f, 0.0f));
-    scaleMatrix = glm::scale(identityMatrix, glm::vec3(4.0f, 5.0f, -0.4f));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(3.0f, 2.6f, -0.15f));
 
 
-    if (isRotate1)
-    {
-        rotateAngle_Y = 75;
-    }
-    else
-    {
-        rotateAngle_Y = 0;
-    }
-
-    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f + rotateAngle_Y), glm::vec3(0.0f, 1.0f, 0.0f));
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f + rotateAxis_Y_Door), glm::vec3(0.0f, 1.0f, 0.0f));
     model = translateMatrix * rotateYMatrix *  scaleMatrix;
     model = uni_translate * model;
     ourShader.setMat4("model", model);
@@ -5228,32 +5983,18 @@ void LeftFrontDoors(unsigned int VAO, Shader ourShader, float x_shift, float y_s
     ourShader.setFloat("material.shininess", 32.0f);
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-}
 
-void RightFrontDoors(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
-{
-    // Modelling Transformation
-    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-    glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
 
+    ///RIGHT DOOR
     //universal translate
-    uni_translate = glm::translate(identityMatrix, glm::vec3(0.5 * x_shift, 0.5 * y_shift, -0.5 * z_shift));
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift + 6.0, y_shift, -1.0 * z_shift));
 
     //grass layer----------------------------------------------------------------
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, texture2);//bindtexture
 
     translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.0f, 0.0f));
-    scaleMatrix = glm::scale(identityMatrix, glm::vec3(-4.0f, 5.0f, -0.4f));
-
-    if (isRotate1)
-    {
-        rotateAngle_Y = -75;
-    }
-    else
-    {
-        rotateAngle_Y = 0;
-    }
-    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f + rotateAngle_Y), glm::vec3(0.0f, 1.0f, 0.0f));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(-3.0f, 2.6f, -0.15f));
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f - rotateAxis_Y_Door), glm::vec3(0.0f, 1.0f, 0.0f));
     model = translateMatrix * rotateYMatrix * scaleMatrix;
     model = uni_translate * model;
     ourShader.setMat4("model", model);
@@ -5264,6 +6005,63 @@ void RightFrontDoors(unsigned int VAO, Shader ourShader, float x_shift, float y_
     ourShader.setFloat("material.shininess", 32.0f);
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+}
+
+void TDoor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+{
+    if (isTDoor)
+    {
+        if (rotateAxis_Y_TDoor < 75.0)
+        {
+            rotateAxis_Y_TDoor += Tspeed;
+
+        }
+        else
+        {
+            TDoor_ready = true;
+        }
+    }
+    else
+    {
+        if (rotateAxis_Y_TDoor > 0.0)
+        {
+            rotateAxis_Y_TDoor -= Tspeed;
+
+        }
+        else
+        {
+            TDoor_ready = true;
+        }
+    }
+
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+
+    //LEFT DOOR
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0 * z_shift));
+    //grass layer----------------------------------------------------------------
+    glBindTexture(GL_TEXTURE_2D, t_door);//bindtexture
+
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.42f, 0.05f));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.6f, 1.36f, -0.05f));
+
+
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f + rotateAxis_Y_TDoor), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = translateMatrix * rotateYMatrix * scaleMatrix;
+    model = uni_translate * model;
+    ourShader.setMat4("model", model);
+    //ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+
 }
 
 
@@ -5404,15 +6202,27 @@ void processInput(GLFWwindow* window)
     }
     if (glfwGetKey(window, GLFW_KEY_6) == GLFW_PRESS)                   //Specular Off
     {
-
+            isAC ^= true;
+            cout << isAC << endl;
+        
     }
     if (glfwGetKey(window, GLFW_KEY_7) == GLFW_PRESS)                   //Specular Off
     {
-
+        if (DDoor_ready)
+        {
+            DDoor_ready = false;
+            isDoubleDoor ^= true;
+            cout << isDoubleDoor << endl;
+        }
     }
     if (glfwGetKey(window, GLFW_KEY_8) == GLFW_PRESS)                   //Specular Off
     {
-
+        if (TDoor_ready)
+        {
+            TDoor_ready = false;
+            isTDoor ^= true;
+            cout << isTDoor << endl;
+        }
     }
     if (glfwGetKey(window, GLFW_KEY_9) == GLFW_PRESS)                   //Specular Off
     {
@@ -5436,6 +6246,38 @@ void processInput(GLFWwindow* window)
             pointLight2.turnAmbientOn();
             pointLight3.turnAmbientOn();
             pointLight4.turnAmbientOn();
+           /* pointLight5.turnAmbientOn();
+            pointLight6.turnAmbientOn();
+            pointLight7.turnAmbientOn();
+            pointLight8.turnAmbientOn();
+            pointLight9.turnAmbientOn();
+            pointLight10.turnAmbientOn();
+            pointLight11.turnAmbientOn();
+            pointLight12.turnAmbientOn();
+            pointLight13.turnAmbientOn();
+            pointLight14.turnAmbientOn();
+            pointLight15.turnAmbientOn();
+            pointLight16.turnAmbientOn();
+            pointLight17.turnAmbientOn();
+            pointLight18.turnAmbientOn();
+            pointLight19.turnAmbientOn();
+            pointLight20.turnAmbientOn();
+            pointLight21.turnAmbientOn();
+            pointLight22.turnAmbientOn();
+            pointLight23.turnAmbientOn();
+            pointLight24.turnAmbientOn();
+            pointLight25.turnAmbientOn();
+            pointLight26.turnAmbientOn();
+            pointLight27.turnAmbientOn();
+            pointLight28.turnAmbientOn();
+            pointLight29.turnAmbientOn();
+            pointLight30.turnAmbientOn();
+            pointLight31.turnAmbientOn();
+            pointLight32.turnAmbientOn();
+            pointLight33.turnAmbientOn();
+            pointLight34.turnAmbientOn();
+            pointLight35.turnAmbientOn();
+            pointLight36.turnAmbientOn();*/
             spotLight.turnAmbientOn();
             directionalLight.turnAmbientOn();
         }
@@ -5446,6 +6288,38 @@ void processInput(GLFWwindow* window)
             pointLight2.turnAmbientOff();
             pointLight3.turnAmbientOff();
             pointLight4.turnAmbientOff();
+           /* pointLight5.turnAmbientOff();
+            pointLight6.turnAmbientOff();
+            pointLight7.turnAmbientOff();
+            pointLight8.turnAmbientOff();
+            pointLight9.turnAmbientOff();
+            pointLight10.turnAmbientOff();
+            pointLight11.turnAmbientOff();
+            pointLight12.turnAmbientOff();
+            pointLight13.turnAmbientOff();
+            pointLight14.turnAmbientOff();
+            pointLight15.turnAmbientOff();
+            pointLight16.turnAmbientOff();
+            pointLight17.turnAmbientOff();
+            pointLight18.turnAmbientOff();
+            pointLight19.turnAmbientOff();
+            pointLight20.turnAmbientOff();
+            pointLight21.turnAmbientOff();
+            pointLight22.turnAmbientOff();
+            pointLight23.turnAmbientOff();
+            pointLight24.turnAmbientOff();
+            pointLight25.turnAmbientOff();
+            pointLight26.turnAmbientOff();
+            pointLight27.turnAmbientOff();
+            pointLight28.turnAmbientOff();
+            pointLight29.turnAmbientOff();
+            pointLight30.turnAmbientOff();
+            pointLight31.turnAmbientOff();
+            pointLight32.turnAmbientOff();
+            pointLight33.turnAmbientOff();
+            pointLight34.turnAmbientOff();
+            pointLight35.turnAmbientOff();
+            pointLight36.turnAmbientOff();*/
             spotLight.turnAmbientOff();
             directionalLight.turnAmbientOff();
         }
@@ -5503,31 +6377,97 @@ void processInput(GLFWwindow* window)
     {
         if (pointLightOn[0] == 0.0)
         {
-            pointLightOn[0] = 1.0;
+            
+            for (int i = 0; i < noOfPointLights; i++)
+            {
+                pointLightOn[i] = 1.0;
+            }
             pointLight1.turnOn();
-
-            pointLightOn[1] = 1.0;
             pointLight2.turnOn();
-
-            pointLightOn[2] = 1.0;
             pointLight3.turnOn();
-
-            pointLightOn[3] = 1.0;
             pointLight4.turnOn();
+            pointLight5.turnOn();
+            pointLight6.turnOn();
+            pointLight7.turnOn();
+            pointLight8.turnOn();
+            pointLight9.turnOn();
+            pointLight10.turnOn();
+            pointLight11.turnOn();
+            pointLight12.turnOn();
+            pointLight13.turnOn();
+            pointLight14.turnOn();
+            pointLight15.turnOn();
+            pointLight16.turnOn();
+            pointLight17.turnOn();
+            pointLight18.turnOn();
+            pointLight19.turnOn();
+            pointLight20.turnOn();
+            pointLight21.turnOn();
+            pointLight22.turnOn();
+            pointLight23.turnOn();
+            pointLight24.turnOn();
+            pointLight25.turnOn();
+            pointLight26.turnOn();
+            pointLight27.turnOn();
+            pointLight28.turnOn();
+            pointLight29.turnOn();
+            pointLight30.turnOn();
+            pointLight31.turnOn();
+            pointLight32.turnOn();
+            pointLight33.turnOn();
+            pointLight34.turnOn();
+            pointLight35.turnOn();
+            pointLight36.turnOn();
         }
         else
         {
-            pointLightOn[0] = 0.0;
+            for (int i = 0; i < noOfPointLights; i++)
+            {
+                pointLightOn[i] = 0.0;
+            }
             pointLight1.turnOff();
 
-            pointLightOn[1] = 0.0;
+
             pointLight2.turnOff();
 
-            pointLightOn[2] = 0.0;
+
             pointLight3.turnOff();
 
-            pointLightOn[3] = 0.0;
+
             pointLight4.turnOff();
+
+            pointLight5.turnOff();
+            pointLight6.turnOff();
+            pointLight7.turnOff();
+            pointLight8.turnOff();
+            pointLight9.turnOff();
+            pointLight10.turnOff();
+            pointLight11.turnOff();
+            pointLight12.turnOff();
+            pointLight13.turnOff();
+            pointLight14.turnOff();
+            pointLight15.turnOff();
+            pointLight16.turnOff();
+            pointLight17.turnOff();
+            pointLight18.turnOff();
+            pointLight19.turnOff();
+            pointLight20.turnOff();
+            pointLight21.turnOff();
+            pointLight22.turnOff();
+            pointLight23.turnOff();
+            pointLight24.turnOff();
+            pointLight25.turnOff();
+            pointLight26.turnOff();
+            pointLight27.turnOff();
+            pointLight28.turnOff();
+            pointLight29.turnOff();
+            pointLight30.turnOff();
+            pointLight31.turnOff();
+            pointLight32.turnOff();
+            pointLight33.turnOff();
+            pointLight34.turnOff();
+            pointLight35.turnOff();
+            pointLight36.turnOff();
         }
 
     }
@@ -5564,27 +6504,98 @@ void processInput(GLFWwindow* window)
         dark ^= true;
         if (dark)
         {
-            pointLightOn[0] = 1.0;
+            for (int i = 0; i < noOfPointLights; i++)
+            {
+                pointLightOn[i] = 1.0;
+            }
             pointLight1.turnOn();
-            pointLightOn[1] = 1.0;
             pointLight2.turnOn();
-            pointLightOn[2] = 1.0;
             pointLight3.turnOn();
-            pointLightOn[3] = 1.0;
             pointLight4.turnOn();
+            pointLight5.turnOn();
+            pointLight6.turnOn();
+            pointLight7.turnOn();
+            pointLight8.turnOn();
+            pointLight9.turnOn();
+            pointLight10.turnOn();
+            pointLight11.turnOn();
+            pointLight12.turnOn();
+            pointLight13.turnOn();
+            pointLight14.turnOn();
+            pointLight15.turnOn();
+            pointLight16.turnOn();
+            pointLight17.turnOn();
+            pointLight18.turnOn();
+            pointLight19.turnOn();
+            pointLight20.turnOn();
+            pointLight21.turnOn();
+            pointLight22.turnOn();
+            pointLight23.turnOn();
+            pointLight24.turnOn();
+            pointLight25.turnOn();
+            pointLight26.turnOn();
+            pointLight27.turnOn();
+            pointLight28.turnOn();
+            pointLight29.turnOn();
+            pointLight30.turnOn();
+            pointLight31.turnOn();
+            pointLight32.turnOn();
+            pointLight33.turnOn();
+            pointLight34.turnOn();
+            pointLight35.turnOn();
+            pointLight36.turnOn();
             directionalLightOn = 0.0;
             directionalLight.turnOff();
         }
         else
         {
-            pointLightOn[0] = 0.0;
+            for (int i = 0; i < noOfPointLights; i++)
+            {
+                pointLightOn[i] = 0.0;
+            }
             pointLight1.turnOff();
-            pointLightOn[1] = 0.0;
+
+
             pointLight2.turnOff();
-            pointLightOn[2] = 0.0;
+
+
             pointLight3.turnOff();
-            pointLightOn[3] = 0.0;
+
+
             pointLight4.turnOff();
+
+            pointLight5.turnOff();
+            pointLight6.turnOff();
+            pointLight7.turnOff();
+            pointLight8.turnOff();
+            pointLight9.turnOff();
+            pointLight10.turnOff();
+            pointLight11.turnOff();
+            pointLight12.turnOff();
+            pointLight13.turnOff();
+            pointLight14.turnOff();
+            pointLight15.turnOff();
+            pointLight16.turnOff();
+            pointLight17.turnOff();
+            pointLight18.turnOff();
+            pointLight19.turnOff();
+            pointLight20.turnOff();
+            pointLight21.turnOff();
+            pointLight22.turnOff();
+            pointLight23.turnOff();
+            pointLight24.turnOff();
+            pointLight25.turnOff();
+            pointLight26.turnOff();
+            pointLight27.turnOff();
+            pointLight28.turnOff();
+            pointLight29.turnOff();
+            pointLight30.turnOff();
+            pointLight31.turnOff();
+            pointLight32.turnOff();
+            pointLight33.turnOff();
+            pointLight34.turnOff();
+            pointLight35.turnOff();
+            pointLight36.turnOff();
             directionalLightOn = 1.0;
             directionalLight.turnOn();
         }

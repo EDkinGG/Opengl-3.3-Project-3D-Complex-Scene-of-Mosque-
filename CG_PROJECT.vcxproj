@@ -176,6 +176,7 @@
     <Image Include="concrete1.PNG" />
     <Image Include="concrete2.PNG" />
     <Image Include="concrete3.PNG" />
+    <Image Include="flush.jpg" />
     <Image Include="golden.jpg" />
     <Image Include="grass.jpg" />
     <Image Include="grass_2.png" />
@@ -189,16 +190,21 @@
     <Image Include="MehrabGG.jpg" />
     <Image Include="MehrabGGSide.jpg" />
     <Image Include="Mehrab_squared.jpg" />
+    <Image Include="metal.jpg" />
     <Image Include="metal_0065_color_1k.jpg" />
+    <Image Include="Metal_2.jpg" />
     <Image Include="pillardesign_squared.jpg" />
     <Image Include="Piller_concrete_1.jpg" />
     <Image Include="Right_door.jpg" />
     <Image Include="road.jpg" />
+    <Image Include="Side_Door.jpg" />
     <Image Include="side_wall.jpg" />
     <Image Include="SijdahPlace_squared.jpg" />
     <Image Include="square_wall.jpg" />
     <Image Include="Stripe.JPG" />
     <Image Include="Stripe_1.jpg" />
+    <Image Include="Tdoor.jpg" />
+    <Image Include="Toilet_floor.jpg" />
     <Image Include="transparent.png" />
     <Image Include="transparent_2.png" />
     <Image Include="wall12.jpg" />
@@ -214,6 +220,7 @@
     <Image Include="water7.jpg" />
     <Image Include="water8.jpg" />
     <Image Include="water9.jpg" />
+    <Image Include="wood.jpg" />
     <Image Include="WWin.PNG" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -45,7 +45,7 @@ struct SpotLight {                    //Spot Light
     float Kq;
 };
 
-const int noOfPointLights = 4;
+const int noOfPointLights = 36;
 
 uniform PointLight pointLights[noOfPointLights];
 uniform DirectionalLight directionalLight;
