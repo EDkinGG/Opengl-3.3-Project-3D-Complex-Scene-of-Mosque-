@@ -78,9 +78,13 @@ void AC(unsigned int VAO, BezierCurve AC_Blade_Piller_round, Shader ourShader, f
 void AC_FAN(unsigned int VAO, BezierCurve Fan_Bati, BezierCurve Fan_Blade, Shader ourShader, float x_shift, float y_shift, float z_shift);
 void DoubleDoors(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture1, unsigned int texture2);
 void TDoor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void SideDoor1(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void SideDoor2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
 void tape1(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shader ourShader, float x_shift, float y_shift, float z_shift);
 void tape2(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shader ourShader, float x_shift, float y_shift, float z_shift);
 void tape3(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void imam_Place(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void bookshef(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
 // settings
 const unsigned int SCR_WIDTH = 1500;
 const unsigned int SCR_HEIGHT = 800;
@@ -142,16 +146,35 @@ float Tspeed = 1.0f;
 float rotateAxis_Y_TDoor = 0.0;
 bool TDoor_ready = true;
 
+//TAP1
+bool isTape1 = false;
+float Tape_speed1 = 0.05;
+float translate_Y_Tape1 = 0.0;
+//TAP2
+bool isTape2 = false;
+float Tape_speed2 = 0.05;
+float translate_Y_Tape2 = 0.0;
+//TAP2
+bool isTape3 = false;
+float Tape_speed3 = 0.05;
+float translate_Y_Tape3 = 0.0;
+
+//sideDoor1
+float side_trans_Z_1 = 0.0;
+
+//sideDoor2
+float side_trans_Z_2 = 0.0;
+
 //water counter
 int wcnt = 0;
 
 // camera
 //Camera camera(glm::vec3(18.0f, 2.5f, -10.0f));//camera position
 //Camera camera(glm::vec3(0.0f, 1.0f, 1.0f));//camera position
-Camera camera(glm::vec3(64.5f, 1.0f, -13.0f));//camera position
+//Camera camera(glm::vec3(11.5f, 1.0f, -53.0f));//camera position
 //Camera camera(glm::vec3(37.5f, 10.0f, 10.0f));//camera position
 //Camera camera(glm::vec3(18.0f, 2.5f, -40.0f));//camera position
-//Camera camera(glm::vec3(61.0f, 2.5f, -19.5f));//camera position
+Camera camera(glm::vec3(61.0f, 2.5f, -19.5f));//camera position
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -173,20 +196,20 @@ glm::vec3 lightPositions[] = {
         glm::vec3(-0.95f, 1.4f, -2.7f),         //Directional Light
         glm::vec3(22.5f, 3.5f, -14.00f),
         glm::vec3(52.5f, 3.5f, -14.00f),
-        glm::vec3(10.2f, 1.35f, 1.48f),
-        glm::vec3(6.2f, 1.35f, 7.98f),
-        glm::vec3(60.0f, 1.35f, 8.18f), //spot light
+        glm::vec3(10.2f, -331.35f, 1.48f),
+        glm::vec3(6.2f, -144.35f, 7.98f),
+        glm::vec3(12.0f, 7.5f, -61.00f), //spot light
         glm::vec3(12.0f, 3.5f, -14.00f),
         glm::vec3(63.0f, 3.5f, -14.00f),
         glm::vec3(12.0f, 3.5f, -26.5f),
-        glm::vec3(12.0f, 4.5f, -61.00f),//siri
+        glm::vec3(12.0f, 7.5f, -61.00f),//siri
         glm::vec3(63.0f, 3.5f, -26.50f),
         glm::vec3(63.0, 3.5f, -56.00f),//lift
         glm::vec3(23.0f, 3.5f, -39.50f),
         glm::vec3(37.5f, 3.5f, -39.50f),//mid gate
         glm::vec3(54.5f, 3.5f, -39.50f),
-        glm::vec3(34.0f, 2.5f, -26.25f),//pond
-        glm::vec3(41.0f, 2.5f, -26.25f),//pond
+        glm::vec3(34.0f, -332.5f, -26.25f),//pond
+        glm::vec3(41.0f, -332.5f, -26.25f),//pond
         glm::vec3(37.5f, 4.0f, -14.00f),//main gate
         glm::vec3(15.7f, 3.5f, -67.80f),//room back left corner
         glm::vec3(59.3f, 3.5f, -67.80f),//room back right corner
@@ -206,8 +229,8 @@ glm::vec3 lightPositions[] = {
         glm::vec3(37.5f - 1.8, 3.5f, -58.00f),
         glm::vec3(37.5f, 3.5f, -58.00f + 0.9),
         glm::vec3(37.5f, 3.5f, -58.00f + 1.8),
-        glm::vec3(0.0f, 2.5f, 0.0f),
-        glm::vec3(60.5f, 3.5f, -4.00f)
+        glm::vec3(0.0f, -222.5f, 0.0f),
+        glm::vec3(60.5f, -223.5f, -4.00f)
 };
 
 glm::vec3 lightDirections[] = {
@@ -345,7 +368,7 @@ float spotLightOn = 0.0;
 
 //Texture variables
 unsigned int texture0, texture1, texture2, texture3, texture4, texture5, texture6, texture7, texture8, texture9, texture10, texture11, texture12, texture13, frontwall1,frontwall2,sidewall1,sidewall2,blankwall;
-unsigned int mehrab, mehrabside, t_door, t_floor, wodden, side_door, metal_tomb, metal_tape,flu;
+unsigned int mehrab, mehrabside, t_door, t_floor, wodden, side_door, metal_tomb, metal_tape,flu, leftDoor, rightDoor;
 unsigned int water[10];
 
 
@@ -412,7 +435,7 @@ int main()
     glfwSetScrollCallback(window, scroll_callback);
 
     // tell GLFW to capture our mouse
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     // glad: load all OpenGL function pointers
     // ---------------------------------------
@@ -1609,6 +1632,9 @@ int main()
     load_texture(metal_tape, "Metal_2.jpg", GL_RGB);
     load_texture(flu, "flush.jpg", GL_RGB);
 
+    load_texture(leftDoor, "leftdoor.jpg", GL_RGB);
+    load_texture(rightDoor, "Right_door.jpg", GL_RGB);
+
 
     //Curves
     //Fan_bati
@@ -1948,6 +1974,40 @@ int main()
         //z_shift = 12.4;
         TDoor(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture1);
 
+        //side door1
+        x_shift = 15.4;
+        y_shift = 0.0;
+        z_shift = 58;
+        SideDoor1(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture1);
+
+        //side door2
+        x_shift = 59.3;
+        y_shift = 0.0;
+        z_shift = 58.0;
+        SideDoor2(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture1);
+
+
+
+
+        //Imam
+        x_shift = 37.0;
+        y_shift = 0.4;
+        z_shift = 68.5;
+        imam_Place(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture1);
+
+        //book shef
+        x_shift = 24.0;
+        y_shift = 0.4;
+        z_shift = 67.8;
+        bookshef(cubeVAO, ourShader, x_shift, y_shift, z_shift, wodden);
+        //book shef
+        x_shift = 51.0;
+        y_shift = 0.4;
+        z_shift = 67.8;
+        bookshef(cubeVAO, ourShader, x_shift, y_shift, z_shift, wodden);
+
+
+
         //Front Arch
         x_shift = 0;
         y_shift = 0;
@@ -2102,13 +2162,13 @@ int main()
         x_shift = 0.0;
         y_shift = 0.2;
         z_shift = 0.0;
-        //StairTower1(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0 );
+        StairTower1(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0 );
 
         //Right tower
         x_shift = 59.5 - 8.5;
         y_shift = 0.2;
         z_shift = 58 - 58;
-        //StairTower2(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
+        StairTower2(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
 
         //tombs
         //front
@@ -3544,41 +3604,41 @@ void StairTower1(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
     float lbx = 8.5f, lby = 0.2f, lbz = 58.0f;
     float len = 1.5, ht = 8.2;
     float width = len;
-    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, blankwall);
 
     //back left box-------------------------------------------------------
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     lbx = 8.5f, lby = 0.2f, lbz = 63.5f;
     len = 1.5, ht = 8.2;
     width = len;
-    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, blankwall);
 
     //front right box-------------------------------------------------------
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     lbx = 14.0, lby = 0.2f, lbz = 58.0f;
     len = 1.5, ht = 8.2;
     width = len;
-    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, blankwall);
 
     //back right box-------------------------------------------------------
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     lbx = 14.0, lby = 0.2f, lbz = 63.5f;
     len = 1.5, ht = 8.2;
     width = len;
-    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, blankwall);
 
     //main box tower-------------------------------------------------------
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     lbx = 8.5, lby = 6.8f + 0.2f, lbz = 58.0f;
     len = 7.0, ht = 1.0f;
     width = 7.0;
-    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
 
     //2ND FLOOR STAIR FLOOR
     lbx = 13.0, lby = 4.6-0.2, lbz = 59.5;
     len = 2.5;
     width = 4.0;
-    GenFloor(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, texture);
+    GenFloor(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, texture4);
 
     //bottom stairs
     lbx = 12.7, lby = 0.2, lbz = 61.7;
@@ -3586,14 +3646,14 @@ void StairTower1(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
     width = 1.8;
     for (int i = 0; i < 10; i++)
     {
-        GenFloor(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx - i*0.3, lby+i*0.2, lbz, texture);
+        GenFloor(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx - i*0.3, lby+i*0.2, lbz, texture4);
     }
     //half talar floor
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     lbx = 8.5, lby = 2.2, lbz = 59.5;
     len = 1.5;
     width = 4.0;
-    GenFloor(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, texture);
+    GenFloor(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, texture4);
 
     //top stairs
     lbx = 10.0, lby = 2.4, lbz = 59.5;
@@ -3601,26 +3661,26 @@ void StairTower1(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
     width = 1.8;
     for (int i = 0; i < 10; i++)
     {
-        GenFloor(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx + i * 0.3, lby + i * 0.2, lbz, texture);
+        GenFloor(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx + i * 0.3, lby + i * 0.2, lbz, texture4);
     }
 
     //front mid box
     lbx = 10.0, lby = 2.2, lbz = 58.0f;
     len = 4.0, ht = 1.7f;
     width = 1.5;
-    FlatBox(VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture);
+    FlatBox(VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
 
     //left mid box
     lbx = 8.5, lby = 0.2, lbz = 59.5f;
     len = 1.5, ht = 2.0f;
     width = 4.0;
-    FlatBox(VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture);
+    FlatBox(VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
 
     //back mid box
     lbx = 10.0, lby = 0.2, lbz = 63.5f;
     len = 4.0, ht = 3.7f;
     width = 1.5;
-    FlatBox(VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture);
+    FlatBox(VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
 }
 
 void StairTower2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
@@ -3636,66 +3696,66 @@ void StairTower2(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
     float lbx = 8.5f, lby = 0.2f, lbz = 58.0f;
     float len = 1.5, ht = 8.2;
     float width = len;
-    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, blankwall);
 
     //back left box-------------------------------------------------------
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     lbx = 8.5f, lby = 0.2f, lbz = 63.5f;
     len = 1.5, ht = 8.2;
     width = len;
-    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, blankwall);
 
     //front right box-------------------------------------------------------
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     lbx = 14.0, lby = 0.2f, lbz = 58.0f;
     len = 1.5, ht = 8.2;
     width = len;
-    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, blankwall);
 
     //back right box-------------------------------------------------------
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     lbx = 14.0, lby = 0.2f, lbz = 63.5f;
     len = 1.5, ht = 8.2;
     width = len;
-    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, blankwall);
 
     //main box tower-------------------------------------------------------
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     lbx = 8.5, lby = 6.8f + 0.2f, lbz = 58.0f;
     len = 7.0, ht = 1.0f;
     width = 7.0;
-    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO, VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
 
     //2ND FLOOR STAIR FLOOR
     lbx = 8.5, lby = 4.6 - 0.2, lbz = 59.5;
     len = 1.5;
     width = 4.0;
-    GenFloor(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, texture);
+    GenFloor(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, texture4);
 
 
     //front mid box
     lbx = 10.0, lby = 2.2, lbz = 58.0f;
     len = 4.0, ht = 1.7f;
     width = 1.5;
-    FlatBox(VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture);
+    FlatBox(VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
 
     //right mid box
     lbx = 14, lby = 0.2, lbz = 59.5f;
     len = 1.5, ht = 2.0f;
     width = 4.0;
-    FlatBox(VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture);
+    FlatBox(VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
 
     //left mid box
     lbx = 8.5, lby = 0.2, lbz = 59.5f;
     len = 1.5, ht = 4.2f;
     width = 4.0;
-    FlatBox(VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture);
+    FlatBox(VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
 
     //back mid box
     lbx = 10.0, lby = 0.2, lbz = 63.5f;
     len = 4.0, ht = 3.7f;
     width = 1.5;
-    FlatBox(VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture);
+    FlatBox(VAO, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
 
     //LIFT ---------------------------------------
     //4.4 e 2nd floor
@@ -3754,65 +3814,65 @@ void StairTower2(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
     lbx = 10.05, lby = 0.2, lbz = 59.55f;
     len = 3.9;
     width = 3.9;
-    GenFloor(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, width, lbx, lby, lbz, texture);
+    GenFloor(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, width, lbx, lby, lbz, metal_tape);
     //Lift roof box
     lbx = 10.05, lby = 2.2, lbz = 59.55f;
     len = 3.9, ht = 1.0f;
     width = 3.9;
-    FlatBox(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, width, ht, lbx, lby, lbz, texture);
+    FlatBox(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, width, ht, lbx, lby, lbz, metal_tape);
 
     //lift inside front left wall
     lbx = 10.05, lby = 0.2f, lbz = 59.55f;
     len = 0.5, ht = 2.9f;
-    HorizontalWall(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, ht, lbx, lby, lbz, texture);
+    HorizontalWall(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, ht, lbx, lby, lbz, metal_tape);
 
     //lift inside front right wall
     lbx = 13.45, lby = 0.2f, lbz = 59.55f;
     len = 0.5, ht = 2.9f;
-    HorizontalWall(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, ht, lbx, lby, lbz, texture);
+    HorizontalWall(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, ht, lbx, lby, lbz, metal_tape);
 
     //lift inside back left wall
     lbx = 10.05, lby = 0.2f, lbz = 63.25f;
     len = 0.5, ht = 2.9f;
-    HorizontalWall(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, ht, lbx, lby, lbz, texture);
+    HorizontalWall(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, ht, lbx, lby, lbz, metal_tape);
 
     //lift inside back right wall
     lbx = 13.45, lby = 0.2f, lbz = 63.25f;
     len = 0.5, ht = 2.9f;
-    HorizontalWall(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, ht, lbx, lby, lbz, texture);
+    HorizontalWall(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, ht, lbx, lby, lbz, metal_tape);
     
     //====================================
     
     //lift inside left side front wall
     lbx = 10.05, lby = 0.2f, lbz = 59.55f;
     len = 0.5, ht = 2.9f;
-    VerticalWall(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, ht, lbx, lby, lbz, texture);
+    VerticalWall(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, ht, lbx, lby, lbz, metal_tape);
 
     //lift inside right side front wall
     lbx = 13.75, lby = 0.2f, lbz = 59.55f;
     len = 0.5, ht = 2.9f;
-    VerticalWall(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, ht, lbx, lby, lbz, texture);
+    VerticalWall(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, ht, lbx, lby, lbz, metal_tape);
 
     //lift inside left side back wall
     lbx = 10.05, lby = 0.2f, lbz = 62.95f;
     len = 0.5, ht = 2.9f;
-    VerticalWall(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, ht, lbx, lby, lbz, texture);
+    VerticalWall(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, ht, lbx, lby, lbz, metal_tape);
 
     //lift inside right side back wall
     lbx = 13.75, lby = 0.2f, lbz = 62.95f;
     len = 0.5, ht = 2.9f;
-    VerticalWall(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, ht, lbx, lby, lbz, texture);
+    VerticalWall(VAO, ourShader, x_shift, y_shift + translate_Y_Lift, z_shift, len, ht, lbx, lby, lbz, metal_tape);
 
     //Nicher door and 2 wall=============================================================
     //left wall
     lbx = 10.0, lby = 0.2f, lbz = 59.3f;
     len = 1.0, ht = 2.9f;
-    HorizontalWall(VAO, ourShader, x_shift, y_shift, z_shift, len, ht, lbx, lby, lbz, texture);
+    HorizontalWall(VAO, ourShader, x_shift, y_shift, z_shift, len, ht, lbx, lby, lbz, blankwall);
 
     //right wall
     lbx = 13.0, lby = 0.2f, lbz = 59.3f;
     len = 1.0, ht = 2.9f;
-    HorizontalWall(VAO, ourShader, x_shift, y_shift, z_shift, len, ht, lbx, lby, lbz, texture);
+    HorizontalWall(VAO, ourShader, x_shift, y_shift, z_shift, len, ht, lbx, lby, lbz, blankwall);
 
     //doors
     //left door
@@ -3820,7 +3880,7 @@ void StairTower2(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
     len = 1.0, ht = 2.9f;
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = lbx + translate_X_Lift, y_sft = lby, z_sft = lbz;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, texture7);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.1f));
     model = uni_translate * translateMatrix * scaleMatrix;
@@ -3836,7 +3896,7 @@ void StairTower2(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
     len = 1.0, ht = 2.9f;
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = lbx - translate_X_Lift, y_sft = lby, z_sft = lbz;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, texture7);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, -0.1f));
     model = uni_translate * translateMatrix * scaleMatrix;
@@ -3853,12 +3913,12 @@ void StairTower2(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
     //side front wall
     lbx = 9.8, lby = 4.4+0.2f, lbz = 59.5f;
     len = 1.0, ht = 2.9f;
-    VerticalWall(VAO, ourShader, x_shift, y_shift, z_shift , len, ht, lbx, lby, lbz, texture);
+    VerticalWall(VAO, ourShader, x_shift, y_shift, z_shift , len, ht, lbx, lby, lbz, blankwall);
 
     //side back wall
     lbx = 9.8, lby = 4.4+0.2f, lbz = 62.5f;
     len = 1.0, ht = 2.9f;
-    VerticalWall(VAO, ourShader, x_shift, y_shift, z_shift, len, ht, lbx, lby, lbz, texture);
+    VerticalWall(VAO, ourShader, x_shift, y_shift, z_shift, len, ht, lbx, lby, lbz, blankwall);
 
     //doors
     //front door
@@ -3866,7 +3926,7 @@ void StairTower2(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
     len = 1.0, ht = 2.9f;
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = lbx, y_sft = lby, z_sft = lbz - translate_Z_Lift;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, texture7);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.1, ht, -1.0*len));
     model = uni_translate * translateMatrix * scaleMatrix;
@@ -3882,7 +3942,7 @@ void StairTower2(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
     len = 1.0, ht = 2.9f;
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = lbx, y_sft = lby, z_sft = lbz + translate_Z_Lift;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, texture7);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.1, ht, -1.0 * len));
     model = uni_translate * translateMatrix * scaleMatrix;
@@ -3938,6 +3998,17 @@ void FrontArchGen(unsigned int VAO, BezierCurveArch Main_Arch, BezierCurveArch S
     //Right_Single_Arch_Hori(VAO, Main_Arch, Sub_Arch, Round_Piller, Piller_Border, ourShader, x_shift, y_shift, z_shift);
     //Right_Single_Arch_Hori(VAO, Main_Arch, Sub_Arch, Round_Piller, Piller_Border, ourShader, x_shift, y_shift, z_shift + zz);
 
+
+    lbx = 0.0, lby = 0.0, lbz = 0.0;
+    //top notch
+   Common_Arch_Horizontal(VAO, Main_Arch, Sub_Arch, Round_Piller, Piller_Border, ourShader, x_shift +6.65, y_shift+4.2, z_shift+33);
+    
+   Common_Arch_Horizontal(VAO, Main_Arch, Sub_Arch, Round_Piller, Piller_Border, ourShader, x_shift + 0.15+30.5, y_shift + 4.2, z_shift + 33);
+
+   Common_Arch_Horizontal(VAO, Main_Arch, Sub_Arch, Round_Piller, Piller_Border, ourShader, x_shift + 6.65, y_shift + 4.2, z_shift + 33+22);
+
+   Common_Arch_Horizontal(VAO, Main_Arch, Sub_Arch, Round_Piller, Piller_Border, ourShader, x_shift + 0.15 + 30.5, y_shift + 4.2, z_shift + 33+22);
+    
 
 }
 
@@ -4275,13 +4346,13 @@ void FlatBox(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, f
     //top box
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = lbx + 0.1f, y_sft = (ht + lby) - 0.2f, z_sft = lbz + 0.1f;
-    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, texture7);//bindtexture
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(len - 0.2, 0.2f, -1.0f * (width - 0.2f)));
     model = uni_translate * translateMatrix * scaleMatrix;
     ourShader.setMat4("model", model);
-    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
-    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.0, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.9, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.9, 0.8, 1.0f));
     ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
     ourShader.setFloat("material.shininess", 32.0f);
     glBindVertexArray(VAO);
@@ -5460,15 +5531,15 @@ void AC(unsigned int VAO, BezierCurve AC_Blade_Piller_round, Shader ourShader, f
 
 void tape1(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
-    //if (isAC)
-    //{
-    //    rotateAxis_Y_AC += ACex;
-    //    rotateAxis_Y_AC = fmod(rotateAxis_Y_AC, 360);
-    //}
-    //else
-    //{
-    //    rotateAxis_Y_AC = 0;
-    //}
+    if (isTape1)
+    {
+        translate_Y_Tape1 += Tape_speed1;
+        translate_Y_Tape1 = fmod(translate_Y_Tape1, 1.5);
+    }
+    else
+    {
+        translate_Y_Tape1 = 0;
+    }
     
     //declaration
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -5493,7 +5564,7 @@ void tape1(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shad
     x_sft = lbx, y_sft = lby, z_sft = lbz;
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, width));
-    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f ), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
     rotateXXMatrix = glm::rotate(identityMatrix, glm::radians(00.0f), glm::vec3(1.0f, 0.0f, 0.0f));
     model = uni_translate * translateMatrix * rotateXXMatrix * rotateYMatrix * RS_translateMatrix * scaleMatrix;
     Piller_round1.drawBezierCurve(ourShader, model);
@@ -5508,12 +5579,12 @@ void tape1(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shad
     x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
     rsx = 0.12, rsy = -0.03, rsz = 0.0;
     //universal translate
-    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift - translate_Y_Tape1, -1.0f * z_shift));
     RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
     x_sft = lbx, y_sft = lby, z_sft = lbz;
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, width));
-    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f ), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
     rotateXXMatrix = glm::rotate(identityMatrix, glm::radians(00.0f), glm::vec3(1.0f, 0.0f, 0.0f));
     model = uni_translate * translateMatrix * rotateXXMatrix * rotateYMatrix * RS_translateMatrix * scaleMatrix;
     spike2.drawBezierCurve(ourShader, model);
@@ -5565,15 +5636,16 @@ void tape1(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shad
 
 void tape2(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
-    //if (isAC)
-    //{
-    //    rotateAxis_Y_AC += ACex;
-    //    rotateAxis_Y_AC = fmod(rotateAxis_Y_AC, 360);
-    //}
-    //else
-    //{
-    //    rotateAxis_Y_AC = 0;
-    //}
+    if (isTape2)
+    {
+        translate_Y_Tape2 += Tape_speed2;
+        translate_Y_Tape2 = fmod(translate_Y_Tape2, 1.5);
+    }
+    else
+    {
+        translate_Y_Tape2 = 0;
+    }
+
 
     //declaration
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -5613,7 +5685,7 @@ void tape2(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shad
     x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
     rsx = 0.12, rsy = -0.03, rsz = 0.0;
     //universal translate
-    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift - translate_Y_Tape2, -1.0f * z_shift));
     RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
     x_sft = lbx, y_sft = lby, z_sft = lbz;
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
@@ -5671,15 +5743,15 @@ void tape2(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shad
 
 void tape3(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
-    //if (isAC)
-    //{
-    //    rotateAxis_Y_AC += ACex;
-    //    rotateAxis_Y_AC = fmod(rotateAxis_Y_AC, 360);
-    //}
-    //else
-    //{
-    //    rotateAxis_Y_AC = 0;
-    //}
+    if (isTape3)
+    {
+        translate_Y_Tape3 += Tape_speed3;
+        translate_Y_Tape3 = fmod(translate_Y_Tape3, 1.5);
+    }
+    else
+    {
+        translate_Y_Tape3 = 0;
+    }
 
     //declaration
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -5719,7 +5791,7 @@ void tape3(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shad
     x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
     rsx = 0.12, rsy = -0.03, rsz = 0.0;
     //universal translate
-    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift- translate_Y_Tape3, -1.0f * z_shift));
     RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
     x_sft = lbx, y_sft = lby, z_sft = lbz;
     translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
@@ -5966,7 +6038,7 @@ void DoubleDoors(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
     //universal translate
     uni_translate = glm::translate(identityMatrix, glm::vec3( x_shift , y_shift, -1.0 * z_shift));
     //grass layer----------------------------------------------------------------
-    glBindTexture(GL_TEXTURE_2D, texture1);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, rightDoor);//bindtexture
 
     translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.0f, 0.0f));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(3.0f, 2.6f, -0.15f));
@@ -5990,7 +6062,7 @@ void DoubleDoors(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift + 6.0, y_shift, -1.0 * z_shift));
 
     //grass layer----------------------------------------------------------------
-    glBindTexture(GL_TEXTURE_2D, texture2);//bindtexture
+    glBindTexture(GL_TEXTURE_2D, rightDoor);//bindtexture
 
     translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.0f, 0.0f));
     scaleMatrix = glm::scale(identityMatrix, glm::vec3(-3.0f, 2.6f, -0.15f));
@@ -6064,6 +6136,352 @@ void TDoor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, flo
 
 }
 
+
+void SideDoor1(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+{
+    if (camera.Position.x > x_shift-5 && camera.Position.x < x_shift + 5)
+    {
+        side_trans_Z_1 += 0.1;
+        side_trans_Z_1 = min(side_trans_Z_1, 4.0);
+    }
+    else
+    {
+        side_trans_Z_1 -= 0.1;
+        side_trans_Z_1 = max(side_trans_Z_1, 0.0);
+    }
+
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+
+    //LEFT DOOR
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0 * z_shift));
+    //grass layer----------------------------------------------------------------
+    glBindTexture(GL_TEXTURE_2D, t_door);//bindtexture
+
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.42f, 0.05f- side_trans_Z_1));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.05f, 2.6f, 4.0f));
+
+
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f ), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = translateMatrix * rotateYMatrix * scaleMatrix;
+    model = uni_translate * model;
+    ourShader.setMat4("model", model);
+    //ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+
+}
+
+void SideDoor2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+{
+    if (camera.Position.x > x_shift - 5 && camera.Position.x < x_shift + 5)
+    {
+        side_trans_Z_2 += 0.1;
+        side_trans_Z_2 = min(side_trans_Z_2, 4.0);
+    }
+    else
+    {
+        side_trans_Z_2 -= 0.1;
+        side_trans_Z_2 = max(side_trans_Z_2, 0.0);
+    }
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+
+    //LEFT DOOR
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0 * z_shift));
+    //grass layer----------------------------------------------------------------
+    glBindTexture(GL_TEXTURE_2D, t_door);//bindtexture
+
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.42f, 0.05f - side_trans_Z_2));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.05f, 2.6f, 4.0f));
+
+
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = translateMatrix * rotateYMatrix * scaleMatrix;
+    model = uni_translate * model;
+    ourShader.setMat4("model", model);
+    //ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+
+}
+
+void imam_Place(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+{
+    
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+
+    //LEFT DOOR
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0 * z_shift));
+    //grass layer----------------------------------------------------------------
+    glBindTexture(GL_TEXTURE_2D, texture6);//bindtexture
+
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.0f, 0.00f));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.5*0.7f, 1.5 * 0.125f, 1.5 * 0.8f));
+
+
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = translateMatrix * rotateYMatrix * scaleMatrix;
+    model = uni_translate * model;
+    ourShader.setMat4("model", model);
+    //ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+
+    //LEFT DOOR
+   //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0 * z_shift));
+    //grass layer----------------------------------------------------------------
+    glBindTexture(GL_TEXTURE_2D, wodden);//bindtexture
+
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.0f+.125, 0.00f));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.5 * 0.7f, 1.5 * 0.125f, 1.5 * 0.6f));
+
+
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = translateMatrix * rotateYMatrix * scaleMatrix;
+    model = uni_translate * model;
+    ourShader.setMat4("model", model);
+    //ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //LEFT DOOR
+//universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0 * z_shift));
+    //grass layer----------------------------------------------------------------
+    glBindTexture(GL_TEXTURE_2D, wodden);//bindtexture
+
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.0f + .25, 0.00f));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.5 * 0.7f, 1.5 * 0.5f, 1.5 * 0.2f));
+
+
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = translateMatrix * rotateYMatrix * scaleMatrix;
+    model = uni_translate * model;
+    ourShader.setMat4("model", model);
+    //ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //LEFT DOOR
+//universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0 * z_shift));
+    //grass layer----------------------------------------------------------------
+    glBindTexture(GL_TEXTURE_2D, texture6);//bindtexture
+
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.0f + .25, 0.00f));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(1.5 * 0.7f, 1.5 * 0.7f, 1.5 * 0.2f));
+
+
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = translateMatrix * rotateYMatrix * scaleMatrix;
+    model = uni_translate * model;
+    ourShader.setMat4("model", model);
+    //ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+
+}
+
+void bookshef(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+{
+
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+
+    //tol
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0 * z_shift));
+    //grass layer----------------------------------------------------------------
+    glBindTexture(GL_TEXTURE_2D, wodden);//bindtexture
+
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.0f, 0.00f ));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.0f, 0.01f, 0.7f));
+
+
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = translateMatrix * rotateYMatrix * scaleMatrix;
+    model = uni_translate * model;
+    ourShader.setMat4("model", model);
+    //ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //tol
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0 * z_shift));
+    //grass layer----------------------------------------------------------------
+    glBindTexture(GL_TEXTURE_2D, wodden);//bindtexture
+
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.3f, 0.00f));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.0f, 0.01f, 0.7f));
+
+
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = translateMatrix * rotateYMatrix * scaleMatrix;
+    model = uni_translate * model;
+    ourShader.setMat4("model", model);
+    //ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //tol
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0 * z_shift));
+    //grass layer----------------------------------------------------------------
+    glBindTexture(GL_TEXTURE_2D, wodden);//bindtexture
+
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.6f, 0.00f));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.0f, 0.01f, 0.7f));
+
+
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = translateMatrix * rotateYMatrix * scaleMatrix;
+    model = uni_translate * model;
+    ourShader.setMat4("model", model);
+    //ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //back
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0 * z_shift));
+    //grass layer----------------------------------------------------------------
+    glBindTexture(GL_TEXTURE_2D, wodden);//bindtexture
+
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.0f, 0.00f));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(2.0f, 0.6f,0.1f ));
+
+
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = translateMatrix * rotateYMatrix * scaleMatrix;
+    model = uni_translate * model;
+    ourShader.setMat4("model", model);
+    //ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //side
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0 * z_shift));
+    //grass layer----------------------------------------------------------------
+    glBindTexture(GL_TEXTURE_2D, wodden);//bindtexture
+
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(0.0f, 0.0f, 0.00f));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.01f, 0.6f, 0.7f));
+
+
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = translateMatrix * rotateYMatrix * scaleMatrix;
+    model = uni_translate * model;
+    ourShader.setMat4("model", model);
+    //ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //mid
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0 * z_shift));
+    //grass layer----------------------------------------------------------------
+    glBindTexture(GL_TEXTURE_2D, wodden);//bindtexture
+
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(1.0f, 0.0f, 0.00f));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.01f, 0.3f, 0.7f));
+
+
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = translateMatrix * rotateYMatrix * scaleMatrix;
+    model = uni_translate * model;
+    ourShader.setMat4("model", model);
+    //ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+    //right side
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0 * z_shift));
+    //grass layer----------------------------------------------------------------
+    glBindTexture(GL_TEXTURE_2D, wodden);//bindtexture
+
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(2.0f, 0.0f, 0.00f));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.01f, 0.6f, 0.7f));
+
+
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = translateMatrix * rotateYMatrix * scaleMatrix;
+    model = uni_translate * model;
+    ourShader.setMat4("model", model);
+    //ourShader.setVec4("color", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.ambient", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.diffuse", glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f));
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+
+}
 
 
 
@@ -6171,15 +6589,18 @@ void processInput(GLFWwindow* window)
     }
     if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)                   //Spot Light Off
     {
-
+        isTape1 ^= true;
+        cout << isTape1 << endl;
     }
     if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)                   //Directional Light Off
     {
-
+        isTape2 ^= true;
+        cout << isTape1 << endl;
     }
     if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)                   //Spot Light Off
     {
-
+        isTape3 ^= true;
+        cout << isTape1 << endl;
     }
     if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)                   //Fan1 rotate
     {
