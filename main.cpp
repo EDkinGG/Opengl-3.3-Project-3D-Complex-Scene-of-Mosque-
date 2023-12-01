@@ -50,29 +50,16 @@ void MainGate(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_sh
 void Frontwing(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
 void Sidewing(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
 void MidGate(unsigned int VAO1, unsigned int VAO1020, unsigned int VAO16, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
-void StairTower1(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void StairTower1(unsigned int VAO, BezierCurve Round_Piller, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
 void StairTower2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
-
-//-----------------------------
-void HorizontalWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift,  float len, float ht, float lbx, float lby, float lbz, unsigned int texture);
-void VerticalWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float ht, float lbx, float lby, float lbz, unsigned int texture);
-void GenFloor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float width, float lbx, float lby, float lbz, unsigned int texture);
-void GenFloor2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float width, float lbx, float lby, float lbz, unsigned int texture);
-void Box(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float width, float ht, float lbx, float lby, float lbz, unsigned int texture);
-void FlatBox(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float width, float ht, float lbx, float lby, float lbz, unsigned int texture);
-void HoloBox(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float width, float ht, float lbx, float lby, float lbz, unsigned int texture);
-void FrontArchGen(unsigned int VAO, BezierCurveArch Main_Arch, BezierCurveArch Sub_Arch, BezierCurve Round_Piller, BezierCurve Piller_Border, Shader ourShader, float x_shift, float y_shift, float z_shift);
-void MidArchGen(unsigned int VAO, BezierCurveArch Main_Arch, BezierCurveArch Sub_Arch, BezierCurve Round_Piller, BezierCurve Piller_Border, Shader ourShader, float x_shift, float y_shift, float z_shift);
-void SideArchGen(unsigned int VAO, BezierCurveArch Main_Arch, BezierCurveArch Sub_Arch, BezierCurve Round_Piller, BezierCurve Piller_Border, Shader ourShader, float x_shift, float y_shift, float z_shift);
-void MinarGen(unsigned int VAO, BezierCurve Round_piller, BezierCurve circle, BezierCurve spike, BezierCurve border, Hexa Piller_Stand, Shader ourShader, float x_shift, float y_shift, float z_shift);
 //Component
 void Fan_and_switch(unsigned int VAO, BezierCurve Fan_Bati, BezierCurve Fan_Blade, BezierCurve Fan_Tube, Shader ourShader, float x_shift, float y_shift, float z_shift);
 void Main_Arch_Horizontal(unsigned int VAO, BezierCurveArch Main_Arch, BezierCurveArch Sub_Arch, BezierCurve Round_Piller, BezierCurve Piller_Border, Shader ourShader, float x_shift, float y_shift, float z_shift);
 void Common_Arch_Horizontal(unsigned int VAO, BezierCurveArch Main_Arch, BezierCurveArch Sub_Arch, BezierCurve Round_Piller, BezierCurve Piller_Border, Shader ourShader, float x_shift, float y_shift, float z_shift);
 void Common_Arch_Vertical(unsigned int VAO, BezierCurveArch Main_Arch, BezierCurveArch Sub_Arch, BezierCurve Round_Piller, BezierCurve Piller_Border, Shader ourShader, float x_shift, float y_shift, float z_shift);
-void small_tomb(unsigned int VAO,BezierCurve circle, BezierCurve spike, Shader ourShader, float x_shift, float y_shift, float z_shift);
-void mid_tomb(unsigned int VAO, BezierCurve circle1, BezierCurve spike, Shader ourShader, float x_shift, float y_shift, float z_shift);
-void Big_tomb(unsigned int VAO,  BezierCurve circle2, BezierCurve spike, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void small_dome(unsigned int VAO, BezierCurve circle, BezierCurve spike, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void mid_dome(unsigned int VAO, BezierCurve circle1, BezierCurve spike, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Big_dome(unsigned int VAO, BezierCurve circle2, BezierCurve spike, Shader ourShader, float x_shift, float y_shift, float z_shift);
 void jharbati(unsigned int VAO, BezierCurve Round_Piller, Shader ourShader, float x_shift, float y_shift, float z_shift);
 void AC(unsigned int VAO, BezierCurve AC_Blade_Piller_round, Shader ourShader, float x_shift, float y_shift, float z_shift);
 void AC_FAN(unsigned int VAO, BezierCurve Fan_Bati, BezierCurve Fan_Blade, Shader ourShader, float x_shift, float y_shift, float z_shift);
@@ -85,9 +72,62 @@ void tape2(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shad
 void tape3(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shader ourShader, float x_shift, float y_shift, float z_shift);
 void imam_Place(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
 void bookshef(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture);
+void Glass_Door_1_1(unsigned int TransparentVAO,Shader transparentShader, float x_shift, float y_shift, float z_shift);
+void Glass_Door_Frame_1_1(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Glass_Door_1_2(unsigned int TransparentVAO, Shader transparentShader, float x_shift, float y_shift, float z_shift);
+void Glass_Door_Frame_1_2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Almari_1_1(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Almari_1_2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Almari_2_1(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Almari_2_2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+
+void Glass_win_Frame_2_1(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Glass_win_Frame_2_2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Glass_win_Frame_2_3(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Glass_win_Frame_2_4(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void Glass_win_2_1(unsigned int TransparentVAO, Shader transparentShader, float x_shift, float y_shift, float z_shift);
+void Glass_win_2_2(unsigned int TransparentVAO, Shader transparentShader, float x_shift, float y_shift, float z_shift);
+void Glass_win_2_3(unsigned int TransparentVAO, Shader transparentShader, float x_shift, float y_shift, float z_shift);
+void Glass_win_2_4(unsigned int TransparentVAO, Shader transparentShader, float x_shift, float y_shift, float z_shift);
+void Stairs_Lift_Glass(unsigned int TransparentVAO, Shader transparentShader, float x_shift, float y_shift, float z_shift);
+//Genral Core-----------------------------
+void HorizontalWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift,  float len, float ht, float lbx, float lby, float lbz, unsigned int texture);
+void VerticalWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float ht, float lbx, float lby, float lbz, unsigned int texture);
+void GenFloor(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float width, float lbx, float lby, float lbz, unsigned int texture);
+void GenFloor2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float width, float lbx, float lby, float lbz, unsigned int texture);
+void Box(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float width, float ht, float lbx, float lby, float lbz, unsigned int texture);
+void FlatBox(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float width, float ht, float lbx, float lby, float lbz, unsigned int texture);
+void HoloBox(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float width, float ht, float lbx, float lby, float lbz, unsigned int texture);
+void FrontArchGen(unsigned int VAO, BezierCurveArch Main_Arch, BezierCurveArch Sub_Arch, BezierCurve Round_Piller, BezierCurve Piller_Border, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void MidArchGen(unsigned int VAO, BezierCurveArch Main_Arch, BezierCurveArch Sub_Arch, BezierCurve Round_Piller, BezierCurve Piller_Border, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void SideArchGen(unsigned int VAO, BezierCurveArch Main_Arch, BezierCurveArch Sub_Arch, BezierCurve Round_Piller, BezierCurve Piller_Border, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void MinarGen(unsigned int VAO, BezierCurve Round_piller, BezierCurve circle, BezierCurve spike, BezierCurve border, Hexa Piller_Stand, Shader ourShader, float x_shift, float y_shift, float z_shift);
+void RaillingUnit(unsigned int VAO, BezierCurve Round_piller, Shader ourShader, float x_shift, float y_shift, float z_shift);
+//GenSheet--
+//rot_x, rot_y, rot_z origin e thaka obosthay kaj kore
+void GenSheet_Transparent(unsigned int VAO, Shader ourShader, float len, float width, float height, float local_x, float local_y, float local_z, float rot_x,float rot_y, float rot_z, float trans_x, float trans_y, float trans_z, float x_shift, float y_shift, float z_shift, glm::vec4 color, unsigned int texture);
+void GenSheet(unsigned int VAO, Shader ourShader, float len, float width, float height, float local_x, float local_y, float local_z, float rot_x, float rot_y, float rot_z, float trans_x, float trans_y, float trans_z, float x_shift, float y_shift, float z_shift, glm::vec4 color, unsigned int texture);
+
+
+
+//Collors
+glm::vec4 red = glm::vec4(1.0, 0.0, 0.0, 1.0f);
+glm::vec4 green = glm::vec4(0.0, 1.0, 0.0, 1.0f);
+glm::vec4 blue = glm::vec4(0.0, 0.0, 1.0, 1.0f);
+glm::vec4 black = glm::vec4(0.0, 0.0, 0.0, 1.0f);
+glm::vec4 white = glm::vec4(1.0, 1.0, 1.0, 1.0f);
+glm::vec4 off_white = glm::vec4(0.9098039215686274, 0.8549019607843137, 0.8, 1.0f);
+glm::vec4 sky_blue = glm::vec4(0.4549019607843137, 0.8196078431372549, 0.9450980392156862, 1.0f);
+glm::vec4 light_sky_blue = glm::vec4(0.4549019607843137, 0.8196078431372549, 0.9450980392156862, 0.3f);//opacity 0.3
+glm::vec4 gloden = glm::vec4(0.9098039215686274, 0.792156862745098, 0.2980392156862745, 1.0f);
+
+
+
+
+
 // settings
-const unsigned int SCR_WIDTH = 1500;
-const unsigned int SCR_HEIGHT = 800;
+const unsigned int SCR_WIDTH = 1920;
+const unsigned int SCR_HEIGHT = 1080;
 
 // modelling transform
 float rotateAngle_X = 0.0;
@@ -168,12 +208,34 @@ float side_trans_Z_2 = 0.0;
 //water counter
 int wcnt = 0;
 
+//almari_1_1
+float rotateAxis_Y_Almari_1_1 = 0.0;
+//almari_1_2
+float rotateAxis_Y_Almari_1_2 = 0.0;
+//almari_2_1
+float rotateAxis_Y_Almari_2_1 = 0.0;
+//almari_2_2
+float rotateAxis_Y_Almari_2_2 = 0.0;
+
+//Door_1_1
+float rotateAxis_Y_Door_1_1 = 0.0;
+//Door_1_2
+float rotateAxis_Y_Door_1_2 = 0.0;
+
+//win_1_1
+float rotateAxis_Y_win_2_1 = 0.0;
+//win_2_2
+float rotateAxis_Y_win_2_2 = 0.0;
+//win_2_3
+float rotateAxis_Y_win_2_3 = 0.0;
+//win_2_4
+float rotateAxis_Y_win_2_4 = 0.0;
+
+//ligth
+bool jhar_light = false;
+
 // camera
-//Camera camera(glm::vec3(18.0f, 2.5f, -10.0f));//camera position
-//Camera camera(glm::vec3(0.0f, 1.0f, 1.0f));//camera position
-//Camera camera(glm::vec3(11.5f, 1.0f, -53.0f));//camera position
-//Camera camera(glm::vec3(37.5f, 10.0f, 10.0f));//camera position
-//Camera camera(glm::vec3(18.0f, 2.5f, -40.0f));//camera position
+  
 Camera camera(glm::vec3(61.0f, 2.5f, -19.5f));//camera position
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
@@ -194,41 +256,41 @@ const int noOfPointLights = 36;
 
 glm::vec3 lightPositions[] = {
         glm::vec3(-0.95f, 1.4f, -2.7f),         //Directional Light
-        glm::vec3(22.5f, 3.5f, -14.00f),
-        glm::vec3(52.5f, 3.5f, -14.00f),
+        glm::vec3(22.5f, 3.7f, -14.00f),
+        glm::vec3(52.5f, 3.7f, -14.00f),
         glm::vec3(10.2f, -331.35f, 1.48f),
         glm::vec3(6.2f, -144.35f, 7.98f),
-        glm::vec3(12.0f, 7.5f, -61.00f), //spot light
-        glm::vec3(12.0f, 3.5f, -14.00f),
-        glm::vec3(63.0f, 3.5f, -14.00f),
-        glm::vec3(12.0f, 3.5f, -26.5f),
-        glm::vec3(12.0f, 7.5f, -61.00f),//siri
-        glm::vec3(63.0f, 3.5f, -26.50f),
-        glm::vec3(63.0, 3.5f, -56.00f),//lift
-        glm::vec3(23.0f, 3.5f, -39.50f),
-        glm::vec3(37.5f, 3.5f, -39.50f),//mid gate
-        glm::vec3(54.5f, 3.5f, -39.50f),
+        glm::vec3(12.0f, 7.75f, -61.00f), //spot light
+        glm::vec3(12.0f, 3.9f, -14.00f),//oju//6
+        glm::vec3(63.0f, 3.9f, -14.00f),//toilet//7
+        glm::vec3(12.0f, 3.7f, -26.5f),
+        glm::vec3(12.0f, 7.75f, -61.00f),//siri //9
+        glm::vec3(63.0f, 3.7f, -26.50f),
+        glm::vec3(63.0, 3.7f, -56.00f),//lift //11
+        glm::vec3(23.0f, 3.7f, -39.50f),
+        glm::vec3(37.5f, 4.6f, -39.50f),//mid gate //13
+        glm::vec3(54.5f, 3.7f, -39.50f),
         glm::vec3(34.0f, -332.5f, -26.25f),//pond
         glm::vec3(41.0f, -332.5f, -26.25f),//pond
-        glm::vec3(37.5f, 4.0f, -14.00f),//main gate
+        glm::vec3(37.5f, 4.5f, -14.00f),//main gate
         glm::vec3(15.7f, 3.5f, -67.80f),//room back left corner
         glm::vec3(59.3f, 3.5f, -67.80f),//room back right corner
-        glm::vec3(15.7f, 7.5f, -66.80f),//room back 2nd left corner
+        glm::vec3(15.7f, 7.5f, -66.80f),//room back 2nd left corner //20
         glm::vec3(59.3f, 7.5f, -66.80f),//room back 2nd right corner
         glm::vec3(15.7f, 3.5f, -43.20f),//room back left corner
         glm::vec3(59.3f, 3.5f, -43.20f),//room back right corner
         glm::vec3(15.7f, 7.5f, -45.20f),//room back 2nd left corner
         glm::vec3(59.3f, 7.5f, -45.20f),//room back 2nd right corner
-        glm::vec3(29.0, 8.88f, -56.00f),//top
+        glm::vec3(29.0, 8.88f, -56.00f),//top//26
         glm::vec3(46.0f, 8.88f, -56.00f),//top
-        glm::vec3(37.5f+0.9f, 3.5f, -58.00f),
-        glm::vec3(37.5f+1.8, 3.5f, -58.00f),
-        glm::vec3(37.5f, 3.5f, -58.00f-0.9),
-        glm::vec3(37.5f, 3.5f, -58.00f-1.8),
-        glm::vec3(37.5f - 0.9f, 3.5f, -58.00f),
-        glm::vec3(37.5f - 1.8, 3.5f, -58.00f),
-        glm::vec3(37.5f, 3.5f, -58.00f + 0.9),
-        glm::vec3(37.5f, 3.5f, -58.00f + 1.8),
+        glm::vec3(37.5f+0.9f, 3.3f, -56.00f),//28
+        glm::vec3(37.5f+1.8, 3.3f, -56.00f),
+        glm::vec3(37.5f, 3.3f, -56.00f-0.9),
+        glm::vec3(37.5f, 3.3f, -56.00f-1.8),
+        glm::vec3(37.5f - 0.9f, 3.3f, -56.00f),
+        glm::vec3(37.5f - 1.8, 3.3f, -56.00f),
+        glm::vec3(37.5f, 3.3f, -56.00f + 0.9),
+        glm::vec3(37.5f, 3.3f, -56.00f + 1.8),
         glm::vec3(0.0f, -222.5f, 0.0f),
         glm::vec3(60.5f, -223.5f, -4.00f)
 };
@@ -240,38 +302,38 @@ glm::vec3 lightDirections[] = {
 DirectionalLight directionalLight(-lightPositions[0], glm::vec4(0.4f, 0.4f, 0.4f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(0.2f, 0.2f, 0.2f, 0.2f), 1);
 SpotLight spotLight(lightPositions[5], lightDirections[0], 4.5f, 7.5f, glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.5f, 0.5f, 0.5f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.0014f, 0.000007f, 1);
 PointLight pointLight1(lightPositions[1], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 1);
-PointLight pointLight2(lightPositions[2], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 2);
+PointLight pointLight2(lightPositions[2], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 2);
 PointLight pointLight3(lightPositions[3], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 3);
 PointLight pointLight4(lightPositions[4], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 4);
-PointLight pointLight5(lightPositions[6], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 5);
+PointLight pointLight5(lightPositions[6], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 5);
 PointLight pointLight6(lightPositions[7], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 6);
-PointLight pointLight7(lightPositions[8], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 7);
-PointLight pointLight8(lightPositions[9], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 8);
-PointLight pointLight9(lightPositions[10], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 9);
-PointLight pointLight10(lightPositions[11], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 10);
-PointLight pointLight11(lightPositions[12], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 11);
+PointLight pointLight7(lightPositions[8], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(1, 0.9333333333333333, 0.4588235294117647, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 7);
+PointLight pointLight8(lightPositions[9], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(1, 0.9333333333333333, 0.4588235294117647, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 8);
+PointLight pointLight9(lightPositions[10], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(1, 0.9333333333333333, 0.4588235294117647, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 9);
+PointLight pointLight10(lightPositions[11], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(1, 0.9333333333333333, 0.4588235294117647, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 10);
+PointLight pointLight11(lightPositions[12], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(1, 0.9333333333333333, 0.4588235294117647, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 11);
 PointLight pointLight12(lightPositions[13], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 12);
-PointLight pointLight13(lightPositions[14], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 13);
+PointLight pointLight13(lightPositions[14], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(1, 0.9333333333333333, 0.4588235294117647, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 13);
 PointLight pointLight14(lightPositions[15], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 14);
 PointLight pointLight15(lightPositions[16], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 15);
 PointLight pointLight16(lightPositions[17], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 16);
 PointLight pointLight17(lightPositions[18], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 17);
-PointLight pointLight18(lightPositions[19], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 18);
-PointLight pointLight19(lightPositions[20], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 19);
-PointLight pointLight20(lightPositions[21], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 20);
+PointLight pointLight18(lightPositions[19], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 18);
+PointLight pointLight19(lightPositions[20], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 19);
+PointLight pointLight20(lightPositions[21], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 20);
 PointLight pointLight21(lightPositions[22], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 21);
-PointLight pointLight22(lightPositions[23], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 22);
-PointLight pointLight23(lightPositions[24], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 23);
-PointLight pointLight24(lightPositions[25], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 24);
-PointLight pointLight25(lightPositions[26], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 25);
-PointLight pointLight26(lightPositions[27], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 26);
-PointLight pointLight27(lightPositions[28], glm::vec4(0.2f, 0.0f, 0.0f, 1.0f), glm::vec4(0.2, 0, 0.0, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 27);
+PointLight pointLight22(lightPositions[23], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 22);
+PointLight pointLight23(lightPositions[24], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 23);
+PointLight pointLight24(lightPositions[25], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 24);
+PointLight pointLight25(lightPositions[26], glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 25);
+PointLight pointLight26(lightPositions[27], glm::vec4(0.984313725490196, 1, 0.08627450980392157, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 26);
+PointLight pointLight27(lightPositions[28], glm::vec4(0.4f, 0.0f, 0.0f, 1.0f), glm::vec4(0.2, 0, 0.0, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 27);
 PointLight pointLight28(lightPositions[29], glm::vec4(0.0f, 0.0f, 0.2f, 1.0f), glm::vec4(0.0, 0, 0.2, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 28);
-PointLight pointLight29(lightPositions[30], glm::vec4(0.2f, 0.0f, 0.0f, 1.0f), glm::vec4(0.2, 0, 0.0, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 29);
+PointLight pointLight29(lightPositions[30], glm::vec4(0.4f, 0.0f, 0.0f, 1.0f), glm::vec4(0.2, 0, 0.0, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 29);
 PointLight pointLight30(lightPositions[31], glm::vec4(0.0f, 0.0f, 0.2f, 1.0f), glm::vec4(0.0, 0, 0.2, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 30);
-PointLight pointLight31(lightPositions[32], glm::vec4(0.2f, 0.0f, 0.0f, 1.0f), glm::vec4(0.2, 0, 0.0, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 31);
+PointLight pointLight31(lightPositions[32], glm::vec4(0.4f, 0.0f, 0.0f, 1.0f), glm::vec4(0.2, 0, 0.0, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 31);
 PointLight pointLight32(lightPositions[33], glm::vec4(0.0f, 0.0f, 0.2f, 1.0f), glm::vec4(0.0, 0, 0.2, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 32);
-PointLight pointLight33(lightPositions[34], glm::vec4(0.2f, 0.0f, 0.0f, 1.0f), glm::vec4(0.2, 0, 0.0, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 33);
+PointLight pointLight33(lightPositions[34], glm::vec4(0.4f, 0.0f, 0.0f, 1.0f), glm::vec4(0.2, 0, 0.0, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 33);
 PointLight pointLight34(lightPositions[35], glm::vec4(0.0f, 0.0f, 0.2f, 1.0f), glm::vec4(0.0, 0, 0.2, 0.5f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 34);
 PointLight pointLight35(lightPositions[36], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 35);
 PointLight pointLight36(lightPositions[37], glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), glm::vec4(0.9f, 0.9f, 0.9f, 1.0f), glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 1.0f, 0.09f, 0.032f, 36);
@@ -368,8 +430,11 @@ float spotLightOn = 0.0;
 
 //Texture variables
 unsigned int texture0, texture1, texture2, texture3, texture4, texture5, texture6, texture7, texture8, texture9, texture10, texture11, texture12, texture13, frontwall1,frontwall2,sidewall1,sidewall2,blankwall;
-unsigned int mehrab, mehrabside, t_door, t_floor, wodden, side_door, metal_tomb, metal_tape,flu, leftDoor, rightDoor;
-unsigned int water[10];
+unsigned int mehrab, mehrabside, t_door, t_floor, wodden, side_door, metal_dome, metal_tape, flu, leftDoor, rightDoor, glass, win_frame, win_right, win_left, main_glass,ac,acflap;
+unsigned int al,al_books,al_door1,al_door2,low_com,water[10];
+
+
+
 
 
 // Skybox
@@ -448,14 +513,43 @@ int main()
     // configure global opengl state
     // -----------------------------
     glEnable(GL_DEPTH_TEST);
+    //glEnable(GL_BLEND);
+    //glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
 
     // build and compile our shader zprogram
     // ------------------------------------
     Shader ourShader("vertexShader.vs", "fragmentShader.fs");//for other objects
     Shader lightCubeShader("lightVertexShader.vs", "lightFragmentShader.fs");//only for light cubes
+    Shader TransparentShader("vertexShaderForBlending.vs", "fragmentShaderForBlending.fs");//for transparent object
     //Shader skyboxShader("skybox.vert", "skybox.frag");
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
+
+
+    // Transparent VAO
+    float transparentVertices[] = {
+        // positions         // texture Coords (swapped y coordinates because texture is flipped upside down)
+         0.0f,  1.0f,  0.0f,  0.0f,  0.0f,
+        0.0f,  0.0f,  0.0f,  0.0f,  1.0f,
+        1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
+
+        0.0f,  1.0f,  0.0f,  0.0f,  0.0f,
+        1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
+        1.0f,  1.0f,  0.0f,  1.0f,  0.0f
+    };
+
+    // transparent VAO
+    unsigned int transparentVAO, transparentVBO;
+    glGenVertexArrays(1, &transparentVAO);
+    glGenBuffers(1, &transparentVBO);
+    glBindVertexArray(transparentVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, transparentVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(transparentVertices), transparentVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glBindVertexArray(0);
 
 
     //cube 1X1---------------------------------------------------------------------------------------------
@@ -1598,7 +1692,7 @@ int main()
     load_texture(water[9], "water10.jpg", GL_RGB);//used
 
 
-
+    load_texture(glass, "glass1.png", GL_RGBA);//used
     load_texture(texture1, "ground_1k.jpg", GL_RGB);//used
     load_texture(texture2, "Piller_concrete_1.jpg", GL_RGB);//used
     load_texture(texture3, "golden.jpg", GL_RGB);//used
@@ -1628,12 +1722,25 @@ int main()
     load_texture(wodden, "wood.jpg", GL_RGB);
     load_texture(side_door, "Side_Door.jpg", GL_RGB);
 
-    //load_texture(metal_tomb, "metal.jpg", GL_RGB);
+    //load_texture(metal_dome, "metal.jpg", GL_RGB);
     load_texture(metal_tape, "Metal_2.jpg", GL_RGB);
     load_texture(flu, "flush.jpg", GL_RGB);
 
     load_texture(leftDoor, "leftdoor.jpg", GL_RGB);
     load_texture(rightDoor, "Right_door.jpg", GL_RGB);
+    load_texture(ac, "ac.jpg", GL_RGB);
+    load_texture(acflap, "ac_flap.jpg", GL_RGB);
+
+    load_texture(win_frame, "win_frame_rev.png", GL_RGBA);
+    load_texture(win_left, "win_win.png", GL_RGBA);
+    load_texture(win_right, "win_win.png", GL_RGBA);
+    load_texture(main_glass, "Main_Glass.png", GL_RGBA);
+
+    load_texture(al, "al.jpg", GL_RGB);
+    load_texture(al_books, "al_books.png", GL_RGBA);
+    load_texture(al_door1, "al_door_2.jpg", GL_RGB);
+    load_texture(al_door2, "al_door_1.jpg", GL_RGB);
+    load_texture(low_com, "low_com.jpg", GL_RGB);
 
 
     //Curves
@@ -1703,6 +1810,7 @@ int main()
         //round piller 22
         BezierCurve Round_Piller2 = BezierCurve(cp_Round_Piller, 2 * 3, metal_tape);
         //piller_nicher_border
+        BezierCurve AC_Round_Piller = BezierCurve(cp_Round_Piller, 2 * 3, texture8);
         GLfloat cp_Piller_Border[] = {
     -0.03, 0.43, 0,
     -0.31, 0.44, 0,
@@ -1753,7 +1861,7 @@ int main()
 -1.2701, 0.25, 0,
 -0.8951, 0, 0,
         };
-        BezierCurve circle1 = BezierCurve(cp_circle1, 7 * 3, texture0);
+        BezierCurve circle1 = BezierCurve(cp_circle1, 7 * 3, texture0);//tex8
 
         //HEXA
         //round piller
@@ -1767,6 +1875,11 @@ int main()
     // -----------
 
         Sphere sphere = Sphere();
+
+        //config transfer shader
+         // For window shader config
+        TransparentShader.use();
+        TransparentShader.setInt("texture1", 0);
 
     while (!glfwWindowShouldClose(window))
     {
@@ -1786,16 +1899,15 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
-        // activate shader
+        // ********************************************************activate Our Main shader*****************************************************************
         ourShader.use();
-
         // pass projection matrix to shader (note that in this case it could change every frame)
-        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
         //glm::mat4 projection = glm::ortho(-2.0f, +2.0f, -1.5f, +1.5f, 0.1f, 100.0f);
-        ourShader.setMat4("projection", projection);
-
+        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
         glm::mat4 view = camera.GetViewMatrix();
-        ourShader.setMat4("view", view);
+
+        ourShader.setMat4("projection", projection);//vertex shader e
+        ourShader.setMat4("view", view);//vertex shader e
 
 
         //**************lighting**************
@@ -1861,12 +1973,10 @@ int main()
             spotLight.turnSpecularOff();
 
         //Camera and Others
-        ourShader.setVec3("viewPos", camera.Position);
-        ourShader.setBool("lightingOn", lightingOn);
+        ourShader.setVec3("viewPos", camera.Position);//fragment  shader e
+        ourShader.setBool("lightingOn", lightingOn);//fragment shader e
 
         //cout << camera.Position[0] << " " << camera.Position[1] << " " << camera.Position[2] << endl;
-
-
         //glBindVertexArray(cubeVAO);//by default cubeVAO
 
 
@@ -1886,6 +1996,97 @@ int main()
         model = uni_translate * translateMatrix * scaleMatrix;
         //circle1.drawBezierCurve(ourShader, model);
         //testing end--------------------------------------------------------------eurve
+
+
+        //post projrct show
+        //2nd floor Railling****************************************************
+        //railling olta L
+        x_shift = 32.9;
+        y_shift = 4.8;
+        z_shift = 60.6;
+        for (int i = 0; i < 11; i++)
+        {
+            RaillingUnit(cubeVAO, Round_Piller, ourShader, x_shift, y_shift, z_shift-i*0.92);
+        }
+        for (int i = 1; i < 11; i++)
+        {
+            RaillingUnit(cubeVAO, Round_Piller, ourShader, x_shift + i * 0.92, y_shift, z_shift);
+        }
+        //Railing L
+        x_shift = 42.1;
+        y_shift = 4.8;
+        z_shift = 51.4;
+        for (int i = 0; i < 11; i++)
+        {
+            RaillingUnit(cubeVAO, Round_Piller, ourShader, x_shift, y_shift, z_shift + i * 0.92);
+        }
+        for (int i = 1; i < 11; i++)
+        {
+            RaillingUnit(cubeVAO, Round_Piller, ourShader, x_shift - i * 0.92, y_shift, z_shift);
+        }
+        float local_x = 0.0f, local_y = 0.0f, local_z = 0.f;//local jevabe shape howar kotha
+        float len = 0.0f, width = 0.0f, height = 0.0f;
+        //front dondo++++++++++++++++++++
+        x_shift = 32.86;
+        y_shift = 4.8 + 0.42;
+        z_shift = 51.4;
+        len = 9.28f, width = 0.1f, height = 0.05f;
+        local_x = 0.0, local_y = 0.0f, local_z = -0.05f;
+        GenSheet(cubeVAO, ourShader, len, width, height, local_x, local_y, local_z, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, x_shift, y_shift, z_shift, off_white, wodden);
+        //back dondo++++++++++++++++++++
+        x_shift = 32.86;
+        y_shift = 4.8 + 0.42;
+        z_shift = 60.6;
+        len = 9.28f, width = 0.1f, height = 0.05f;
+        local_x = 0.0, local_y = 0.0f, local_z = -0.05f;
+        GenSheet(cubeVAO, ourShader, len, width, height, local_x, local_y, local_z, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, x_shift, y_shift, z_shift, off_white, wodden);
+        //left dondo++++++++++++++++++++
+        x_shift = 42.1;
+        y_shift = 4.8 + 0.42;
+        z_shift = 51.36;
+        len = 0.1f, width = 9.28f, height = 0.05f;
+        local_x = -0.05, local_y = 0.0f, local_z = 0.0f;
+        GenSheet(cubeVAO, ourShader, len, width, height, local_x, local_y, local_z, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, x_shift, y_shift, z_shift, off_white, wodden);
+        //right dondo++++++++++++++++++++
+        x_shift = 32.9;
+        y_shift = 4.8 + 0.42;
+        z_shift = 51.36;
+        len = 0.1f, width = 9.28f, height = 0.05f;
+        local_x = -0.05, local_y = 0.0f, local_z = 0.0f;
+        GenSheet(cubeVAO, ourShader, len, width, height, local_x, local_y, local_z, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, x_shift, y_shift, z_shift, off_white, wodden);
+        //2nd floor Railling END****************************************************
+        
+        //almari
+        x_shift = 20.0;
+        y_shift = 0.4;
+        z_shift = 67.3;
+        Almari_1_1(cubeVAO, ourShader, x_shift, y_shift, z_shift);
+        x_shift = 55.0;
+        y_shift = 0.4;
+        z_shift = 67.3;
+        Almari_2_1(cubeVAO, ourShader, x_shift, y_shift, z_shift);
+        x_shift = 20.0;
+        y_shift = 4.8;
+        z_shift = 66.3;
+        Almari_2_2(cubeVAO, ourShader, x_shift, y_shift, z_shift);
+        x_shift = 55.0;
+        y_shift = 4.8;
+        z_shift = 66.3;
+        Almari_1_2(cubeVAO, ourShader, x_shift, y_shift, z_shift);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        ///
 
         //Curve
         // tape
@@ -1936,29 +2137,31 @@ int main()
         //jharbati
         x_shift = 37.5;
         y_shift = 3.5;
-        z_shift = 58;
-        //x_shift = 0.0;
-        //y_shift = 0.0;
-        //z_shift = 0.0;
+        z_shift = 56;
         jharbati(cubeVAO, Round_Piller, ourShader, x_shift, y_shift, z_shift);
 
         //AC
 
+        //x_shift = 0.0;
+        //y_shift = 0.5;
+        //z_shift = 0.0;
+        //AC(cubeVAO, AC_Round_Piller, ourShader, x_shift, y_shift, z_shift);
         x_shift = 26.6;
         y_shift = 3.5;
         z_shift = 67.8-0.5;
        
         for (int i = 0; i < 2; i++)
         {
-            AC(cubeVAO, Round_Piller, ourShader, x_shift+i*22.2, y_shift, z_shift);
+            AC(cubeVAO, AC_Round_Piller, ourShader, x_shift+i*22.2, y_shift, z_shift);
+            AC(cubeVAO, AC_Round_Piller, ourShader, x_shift + i * 22.2, y_shift+3.8, z_shift-0.9);
         }
-        x_shift = 27.;
+        x_shift = 28.0;
         y_shift = 4.8;
         z_shift = 67.8 - 0.3;
 
         for (int i = 0; i < 2; i++)
         {
-            AC_FAN(cubeVAO, Fan_Bati, Fan_Blade, ourShader, x_shift + i * 21.8, y_shift, z_shift);
+            AC_FAN(cubeVAO, Fan_Bati, Fan_Blade, ourShader, x_shift + i * 18.5, y_shift, z_shift);
         }
 
         //MAIN DOOR
@@ -1997,12 +2200,12 @@ int main()
 
         //book shef
         x_shift = 24.0;
-        y_shift = 0.4;
+        y_shift = 0.6;
         z_shift = 67.8;
         bookshef(cubeVAO, ourShader, x_shift, y_shift, z_shift, wodden);
         //book shef
         x_shift = 51.0;
-        y_shift = 0.4;
+        y_shift = 0.6;
         z_shift = 67.8;
         bookshef(cubeVAO, ourShader, x_shift, y_shift, z_shift, wodden);
 
@@ -2162,7 +2365,40 @@ int main()
         x_shift = 0.0;
         y_shift = 0.2;
         z_shift = 0.0;
-        StairTower1(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0 );
+        StairTower1(cubeVAO, Round_Piller, ourShader, x_shift, y_shift, z_shift, texture0 );
+        //siri railing down
+        x_shift = 13.0;
+        y_shift = 0.2 + 0.7;
+        z_shift = 61.8;
+        len = -3.5f, width = 0.1f, height = 0.08f;
+        local_x = 0.00, local_y = -0.04f, local_z = -0.05f;
+        GenSheet(cubeVAO, ourShader, len, width, height, local_x, local_y, local_z, 0.0f, 0.0f, -33.69f, 0.0f, 0.0f, 0.0f, x_shift, y_shift, z_shift, off_white, wodden);
+        //siri railing up
+        x_shift = 10.0;
+        y_shift = 2.4 + 0.7;
+        z_shift = 61.2;
+        len = 3.5f, width = 0.1f, height = 0.08f;
+        local_x = 0.00, local_y = -0.04f, local_z = -0.05f;
+        GenSheet(cubeVAO, ourShader, len, width, height, local_x, local_y, local_z, 0.0f, 0.0f, 33.69f, 0.0f, 0.0f, 0.0f, x_shift, y_shift, z_shift, off_white, wodden);
+        //siri 2nd floor railing
+        x_shift = 13.0+0.15;
+        y_shift = 4.7+0.5;
+        z_shift = 59.5+2.1;
+        len = 0.1f, width = 1.7f, height = 0.08f;
+        local_x = -0.05, local_y = 0.0f, local_z = -0.05f;
+        GenSheet(cubeVAO, ourShader, len, width, height, local_x, local_y, local_z, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, x_shift, y_shift, z_shift, off_white, wodden);
+
+
+
+
+
+
+
+
+
+
+
+
 
         //Right tower
         x_shift = 59.5 - 8.5;
@@ -2170,15 +2406,15 @@ int main()
         z_shift = 58 - 58;
         StairTower2(cubeVAO, ourShader, x_shift, y_shift, z_shift, texture0);
 
-        //tombs
+        //domes
         //front
         x_shift = 20.3;
         y_shift = 3.0;
-        z_shift = 13;
+        z_shift = 14;
         for (int i = 0; i < 2; i++)
         {
-            small_tomb(cubeVAO, circle, spike, ourShader, x_shift + 4.83*i, y_shift, z_shift);
-            small_tomb(cubeVAO, circle, spike, ourShader, x_shift + 30.5+ 4.83*i , y_shift, z_shift);
+            small_dome(cubeVAO, circle, spike, ourShader, x_shift + 4.83*i, y_shift, z_shift);
+            small_dome(cubeVAO, circle, spike, ourShader, x_shift + 30.5+ 4.83*i , y_shift, z_shift);
         }
         //mid
         x_shift = 22.0;
@@ -2186,8 +2422,8 @@ int main()
         z_shift = 39.5;
         for (int i = 0; i < 2; i++)
         {
-            small_tomb(cubeVAO, circle, spike, ourShader, x_shift + 6.0 * i, y_shift, z_shift);
-            small_tomb(cubeVAO, circle, spike, ourShader, x_shift + 29.5 + 6.0 * i, y_shift, z_shift);
+            small_dome(cubeVAO, circle, spike, ourShader, x_shift + 6.0 * i, y_shift, z_shift);
+            small_dome(cubeVAO, circle, spike, ourShader, x_shift + 29.5 + 6.0 * i, y_shift, z_shift);
         }
 
         //side
@@ -2196,45 +2432,88 @@ int main()
         z_shift = 28.625;
         for (int i = 0; i < 3; i++)
         {
-            small_tomb(cubeVAO, circle, spike, ourShader, x_shift , y_shift, z_shift + 11.125 * i);
-            small_tomb(cubeVAO, circle, spike, ourShader, x_shift + 51  , y_shift, z_shift + 11.125 * i);
+            small_dome(cubeVAO, circle, spike, ourShader, x_shift , y_shift, z_shift + 11.125 * i);
+            small_dome(cubeVAO, circle, spike, ourShader, x_shift + 51  , y_shift, z_shift + 11.125 * i);
         }
        
        x_shift = 37.5;
-       y_shift = 3.5;
+       y_shift = 4.2;
        z_shift = 14.0;
-       //mid_tomb(cubeVAO, circle1,  spike,  ourShader,  x_shift, y_shift,  z_shift);
+       //mid_dome(cubeVAO, circle1,  spike,  ourShader,  x_shift, y_shift,  z_shift);
        for (int i = 0; i < 2; i++)
        {
-           mid_tomb(cubeVAO, circle1, spike, ourShader, x_shift, y_shift, z_shift + 25.5 * i);
-           mid_tomb(cubeVAO, circle1, spike, ourShader, 24.2 + 26.8*i, 8.0, 56);
+           mid_dome(cubeVAO, circle1, spike, ourShader, x_shift, y_shift, z_shift + 25.5 * i);
+           mid_dome(cubeVAO, circle1, spike, ourShader, 24.2 + 26.8*i, 8.2, 56);
        }
        x_shift = 37.5;
-       y_shift = 8.0;
+       y_shift = 8.2;
        z_shift = 56.0;
-       Big_tomb(cubeVAO, circle1, spike, ourShader, x_shift, y_shift,  z_shift);
+       Big_dome(cubeVAO, circle1, spike, ourShader, x_shift, y_shift,  z_shift);
+
+       //door frame
+       x_shift = 24.0;
+       y_shift = 0.4;
+       z_shift = 43.0;
+       Glass_Door_Frame_1_1(cubeVAO, ourShader, x_shift, y_shift, z_shift);
+       //door frame
+       x_shift = 48.0;
+       y_shift = 0.4;
+       z_shift = 43.0;
+       Glass_Door_Frame_1_2(cubeVAO, ourShader, x_shift, y_shift, z_shift);
 
 
+       //win frame 2_1
+       x_shift = 24.0;
+       y_shift = 5.2;
+       z_shift = 45.0;
+       Glass_win_Frame_2_1(cubeVAO, ourShader, x_shift, y_shift, z_shift);
+       //win frame 2_2
+       x_shift = 48.0;
+       y_shift = 5.2;
+       z_shift = 45.0;
+       Glass_win_Frame_2_2(cubeVAO, ourShader, x_shift, y_shift, z_shift);
+       //win frame 2_3
+       x_shift = 24.0;
+       y_shift = 5.2;
+       z_shift = 67.0;
+       Glass_win_Frame_2_3(cubeVAO, ourShader, x_shift, y_shift, z_shift);
+       //win frame 2_4
+       x_shift = 48.0;
+       y_shift = 5.2;
+       z_shift = 67.0;
+       Glass_win_Frame_2_4(cubeVAO, ourShader, x_shift, y_shift, z_shift);
 
+       //Lighter dori
+       for (int i = 28; i < 28 + 8; i++)
+       {
+           glm::vec3 gg = lightPositions[i];
+           x_shift = gg[0];
+           y_shift = gg[1];
+           z_shift = -1.0*gg[2];
+           len = 0.05f, width = 0.05f, height = 0.2f;
+           local_x = -0.025, local_y = 0.0f, local_z = -0.025f;
+           GenSheet(cubeVAO, ourShader, len, width, height, local_x, local_y, local_z, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, x_shift, y_shift, z_shift, off_white, wodden);
+       }
+      
+
+       
 
        //********* END of Object Making **********
+       // ********************************************************End of Our Main shader*****************************************************************
 
-          //Lights
+       //*********************************************************Activate LightsShader******************************************************************
        lightCubeShader.use();
-       scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.13f, 0.1f, 0.13f));
+       glm::mat4 projection1 = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+       glm::mat4 view1 = camera.GetViewMatrix();
+       lightCubeShader.setMat4("projection", projection1);
+       lightCubeShader.setMat4("view", view1);
 
+
+
+       scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.13f, 0.1f, 0.13f));
        for (int i = 1; i <= noOfPointLights+1; i++)
        {
-
-           /*glm::vec3 lightColor;
-           lightColor.x = sin(glfwGetTime() * 1.0f);
-           lightColor.y = sin(glfwGetTime() * 0.35f);
-           lightColor.z = sin(glfwGetTime() * 0.7f);
-           glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f);
-           lightCubeShader.setVec4("bodyColor", glm::vec4(diffuseColor, 1.0f));*/
-
            glm::vec4 bodyColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-
            //emissive
            glm::vec3 val = glm::vec3(0.5f);
            if (i < noOfPointLights and pointLightOn[i-1] == 0.0)
@@ -2242,18 +2521,67 @@ int main()
            if (i == noOfPointLights+1 and spotLightOn == 0.0)
                bodyColor = glm::vec4(val, 1.0f);
 
-
            lightCubeShader.setVec4("bodyColor", bodyColor);
-           glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-           lightCubeShader.setMat4("projection", projection);
-           glm::mat4 view = camera.GetViewMatrix();
-           lightCubeShader.setMat4("view", view);
            glm::mat4 tempModel = glm::mat4(1.0f);
            tempModel = glm::translate(tempModel, lightPositions[i]);
            lightCubeShader.setMat4("model", tempModel * scaleMatrix);
            sphere.drawSphere(lightCubeShader);
-
        }
+
+       //**************************************************************END Of LightShader*********************************************************************
+       
+       //*************************************************************Transparent Shader**********************************************************************
+       TransparentShader.use();
+       glm::mat4 projection2 = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+       glm::mat4 view2 = camera.GetViewMatrix();
+       TransparentShader.setMat4("projection", projection2);
+       TransparentShader.setMat4("view", view2);
+
+       glEnable(GL_BLEND);
+       glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+       //doors
+       x_shift = 24.0;
+       y_shift = 0.4;
+       z_shift = 43.0;
+       Glass_Door_1_1(transparentVAO, TransparentShader, x_shift, y_shift, z_shift);
+       x_shift = 48.0;
+       y_shift = 0.4;
+       z_shift = 43.0;
+       Glass_Door_1_2(transparentVAO, TransparentShader, x_shift, y_shift, z_shift);
+
+       //win
+       //2-1
+       x_shift = 24.0;
+       y_shift = 5.0;
+       z_shift = 45.0;
+       Glass_win_2_1(transparentVAO, TransparentShader, x_shift, y_shift, z_shift);
+       //2-2
+       x_shift = 48.0;
+       y_shift = 5.0;
+       z_shift = 45.0;
+       Glass_win_2_2(transparentVAO, TransparentShader, x_shift, y_shift, z_shift);
+       //2-3
+       x_shift = 24.0;
+       y_shift = 5.0;
+       z_shift = 67.0;
+       Glass_win_2_3(transparentVAO, TransparentShader, x_shift, y_shift, z_shift);
+       //2-4
+       x_shift = 48.0;
+       y_shift = 5.0;
+       z_shift = 67.0;
+       Glass_win_2_4(transparentVAO, TransparentShader, x_shift, y_shift, z_shift);
+
+       //Lift and stairs
+       x_shift = 0.0;
+       y_shift = 0.0;
+       z_shift = 0.0;
+       Stairs_Lift_Glass(transparentVAO, TransparentShader, x_shift, y_shift, z_shift);
+
+       glDisable(GL_BLEND);
+
+       //*************************************************************End of Transparent Shader**********************************************************************
+
 
        ////Texture drawing
        //glDepthFunc(GL_LEQUAL);
@@ -2291,6 +2619,9 @@ int main()
     // optional: de-allocate all resources once they've outlived their purpose:
     // ------------------------------------------------------------------------
     glDeleteVertexArrays(1, &lightCubeVAO);
+
+    glDeleteVertexArrays(1, &transparentVAO);
+    glDeleteBuffers(1, &transparentVBO);
 
     glDeleteVertexArrays(1, &cubeVAO);
     glDeleteBuffers(1, &cubeVBO);
@@ -3286,22 +3617,7 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
     }
 
-    //Doors------------------------------------------------------------------------------------------------------
-    //1st door
-    //uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
-    //x_sft = 9.8f, y_sft = 0.42f, z_sft = 12.4f;
-    //glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
-    //translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft + 0 * 1.8f, y_sft, -1.0f * z_sft));
-    //scaleMatrix = glm::scale(identityMatrix, glm::vec3(0.6f, 1.36f, -0.05f));
-    //model = uni_translate * translateMatrix * scaleMatrix;
-    //ourShader.setMat4("model", model);
-    //ourShader.setVec4("material.ambient", glm::vec4(0.6, 0.8549019607843137, 0.8, 1.0f));
-    //ourShader.setVec4("material.diffuse", glm::vec4(0.6, 0.8549019607843137, 0.8, 1.0f));
-    //ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
-    //ourShader.setFloat("material.shininess", 32.0f);
-    //glBindVertexArray(VAO);
-    //glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-    //2nd door
+    
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     x_sft = 9.8f, y_sft = 0.42f, z_sft = 12.4f;
     glBindTexture(GL_TEXTURE_2D, t_door);//bindtexture
@@ -3349,6 +3665,13 @@ void Toilet(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, fl
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
     }
 
+
+    //commode
+    len = 0.5f, width = 0.6f;
+    float height = 0.04f;
+    float local_x = 9.9, local_y = 0.4f, local_z = 11.3f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, x_shift, y_shift, z_shift, off_white, low_com);
+
 }
 
 void MainGate(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
@@ -3394,28 +3717,28 @@ void MainGate(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_sh
     lbx = 34.0, lby = 3.0f + 0.2f, lbz = 10.5f;
     len = 7.0, ht = 1.5;
     width = len;
-    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
     
     //Mid Main gate front left box-------------------------------------------------------
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     lbx = 34.0, lby = 0.2f, lbz = 10.5f;
     len = 1.75, ht = 3.0;
     width = len;
-    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
 
     //Mid Main gate back left box-------------------------------------------------------
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     lbx = 34.0, lby = 0.2f, lbz = 15.75f;
     len = 1.75, ht = 3.0;
     width = len;
-    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
 
     //Mid Main gate front right box-------------------------------------------------------
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     lbx = 39.25, lby = 0.2f, lbz = 10.5f;
     len = 1.75, ht = 3.0;
     width = len;
-    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
 
 
     //Mid Main gate back right box-------------------------------------------------------
@@ -3423,21 +3746,21 @@ void MainGate(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_sh
     lbx = 39.25, lby = 0.2f, lbz = 15.75;
     len = 1.75, ht = 3.0;
     width = len;
-    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
 
     //left mid wing box-------------------------------------------------------
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     lbx = 30, lby = 2.7f + 0.2f, lbz = 11.5f;
     len = 4.0f, ht = 1.0f;
     width = 5.0;
-    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
 
     //right mid wing box-------------------------------------------------------
         //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     lbx = 41, lby = 2.7f + 0.2f, lbz = 11.5f;
     len = 4.0f, ht = 1.0f;
     width = 5.0;
-    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
 
     //MID FLOOR_+_+_+_+_+
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -3458,7 +3781,7 @@ void Frontwing(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_s
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     float lbx = 15.5, lby = 2.7f + 0.2f, lbz = 12.0f;
     float len = 14.5, width = 4.0, ht = 1.0f;
-    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
 }
 
 void Sidewing(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
@@ -3473,7 +3796,7 @@ void Sidewing(unsigned int VAO1, unsigned int VAO2, Shader ourShader, float x_sh
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     float lbx = 10.0, lby = 2.7f + 0.2f, lbz = 17.5f;
     float len = 4.0, width = 40.5, ht = 1.0f;
-    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO1, VAO2, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
     
 }
 
@@ -3502,7 +3825,7 @@ void MidGate(unsigned int VAO1, unsigned int VAO1020, unsigned int VAO16, Shader
     lbx = 32.0, lby = 2.7f + 0.2f, lbz = 36.0f;
     len = 11.0, ht = 1.9f;
     width = 7.0;
-    Box(VAO1, VAO1, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture4);
+    Box(VAO1, VAO1, ourShader, x_shift, y_shift, z_shift, len, width, ht, lbx, lby, lbz, texture6);
      
 
     //Left wing_+_+_+_+_+
@@ -3591,7 +3914,7 @@ void MidGate(unsigned int VAO1, unsigned int VAO1020, unsigned int VAO16, Shader
 
 }
 
-void StairTower1(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
+void StairTower1(unsigned int VAO, BezierCurve Round_Piller, Shader ourShader, float x_shift, float y_shift, float z_shift, unsigned int texture = texture0)
 {
     // Modelling Transformation
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -3639,6 +3962,10 @@ void StairTower1(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
     len = 2.5;
     width = 4.0;
     GenFloor(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, texture4);
+    for (int i = 0; i < 5; i++)
+    {
+        RaillingUnit(VAO, Round_Piller, ourShader, lbx + x_shift + .15 , lby + y_shift + 0.2, lbz + z_shift + 2.1 + i* 0.4 );
+    }
 
     //bottom stairs
     lbx = 12.7, lby = 0.2, lbz = 61.7;
@@ -3647,6 +3974,7 @@ void StairTower1(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
     for (int i = 0; i < 10; i++)
     {
         GenFloor(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx - i*0.3, lby+i*0.2, lbz, texture4);
+        RaillingUnit(VAO, Round_Piller, ourShader, lbx+x_shift +0.15 - i * 0.3, lby+y_shift+0.2 + i * 0.2, lbz+z_shift+0.1);
     }
     //half talar floor
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -3662,6 +3990,7 @@ void StairTower1(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
     for (int i = 0; i < 10; i++)
     {
         GenFloor(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx + i * 0.3, lby + i * 0.2, lbz, texture4);
+        RaillingUnit(VAO, Round_Piller, ourShader, lbx + x_shift + 0.15 + i * 0.3, lby + y_shift + 0.2 + i * 0.2, lbz + z_shift + 1.8 - 0.1);
     }
 
     //front mid box
@@ -3771,6 +4100,11 @@ void StairTower2(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
             if (translate_Y_Lift < 4.2 - 0.1)
             {
                 translate_Y_Lift += lift_speed;
+                
+                if ( abs(camera.Position.x) > abs(63.0 - 2.0) && abs(camera.Position.x) < abs(63.0 + 2.0) && abs(camera.Position.z) > abs(62.0 - 2.0) && abs(camera.Position.z) < abs(62.0 + 2.0))
+                {
+                    camera.Position.y += lift_speed;
+                }
             }
             else
             {
@@ -3796,12 +4130,18 @@ void StairTower2(unsigned int VAO, Shader ourShader, float x_shift, float y_shif
             if (translate_Y_Lift > 0.0 )
             {
                 translate_Y_Lift -= lift_speed;
+                if (abs(camera.Position.x) > abs(63.0 - 2.0) && abs(camera.Position.x) < abs(63.0 + 2.0) && abs(camera.Position.z) > abs(62.0 - 2.0) && abs(camera.Position.z) < abs(62.0 + 2.0))
+                {
+                    camera.Position.y -= lift_speed;
+                }
+
             }
             else
             {
                 if (translate_X_Lift > 0.0)
                 {
                     translate_X_Lift -= lift_speed;
+                    
                 }
                 else
                 {
@@ -4001,13 +4341,13 @@ void FrontArchGen(unsigned int VAO, BezierCurveArch Main_Arch, BezierCurveArch S
 
     lbx = 0.0, lby = 0.0, lbz = 0.0;
     //top notch
-   Common_Arch_Horizontal(VAO, Main_Arch, Sub_Arch, Round_Piller, Piller_Border, ourShader, x_shift +6.65, y_shift+4.2, z_shift+33);
+  /* Common_Arch_Horizontal(VAO, Main_Arch, Sub_Arch, Round_Piller, Piller_Border, ourShader, x_shift +6.65, y_shift+4.2, z_shift+33);
     
    Common_Arch_Horizontal(VAO, Main_Arch, Sub_Arch, Round_Piller, Piller_Border, ourShader, x_shift + 0.15+30.5, y_shift + 4.2, z_shift + 33);
 
    Common_Arch_Horizontal(VAO, Main_Arch, Sub_Arch, Round_Piller, Piller_Border, ourShader, x_shift + 6.65, y_shift + 4.2, z_shift + 33+22);
 
-   Common_Arch_Horizontal(VAO, Main_Arch, Sub_Arch, Round_Piller, Piller_Border, ourShader, x_shift + 0.15 + 30.5, y_shift + 4.2, z_shift + 33+22);
+   Common_Arch_Horizontal(VAO, Main_Arch, Sub_Arch, Round_Piller, Piller_Border, ourShader, x_shift + 0.15 + 30.5, y_shift + 4.2, z_shift + 33+22);*/
     
 
 }
@@ -4097,10 +4437,10 @@ void SideArchGen(unsigned int VAO, BezierCurveArch Main_Arch, BezierCurveArch Su
     float right_displace = 51.0;
     for (int i = 0; i < 7; i++)
     {
-        Common_Arch_Vertical(VAO, Main_Arch, Sub_Arch, Round_Piller, Piller_Border, ourShader, x_shift+ right_displace, y_shift, z_shift + i * 5.0);
+        Common_Arch_Vertical(VAO, Main_Arch, Sub_Arch, Round_Piller, Piller_Border, ourShader, x_shift+ right_displace + xx, y_shift, z_shift + i * 5.0);
         if (i < 3)
         {
-            Common_Arch_Vertical(VAO, Main_Arch, Sub_Arch, Round_Piller, Piller_Border, ourShader, x_shift + right_displace + xx, y_shift, z_shift + i * 5.0);
+            Common_Arch_Vertical(VAO, Main_Arch, Sub_Arch, Round_Piller, Piller_Border, ourShader, x_shift + right_displace, y_shift, z_shift + i * 5.0);
         }
     }
     //right box single arch
@@ -4111,8 +4451,1014 @@ void SideArchGen(unsigned int VAO, BezierCurveArch Main_Arch, BezierCurveArch Su
 
 }
 
+void Almari_1_1(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+{
+    if (abs(camera.Position.z) > abs(z_shift - 5) && abs(camera.Position.z) < abs(z_shift + 5)) {
+        rotateAxis_Y_Almari_1_1 += 0.5;
+        rotateAxis_Y_Almari_1_1 = min(rotateAxis_Y_Almari_1_1, 100.0);
+    }
+    else
+    {
+        rotateAxis_Y_Almari_1_1 -= 0.5;
+        rotateAxis_Y_Almari_1_1 = max(rotateAxis_Y_Almari_1_1, 0.0);
+    }
+    cout <<" almari "<< rotateAxis_Y_Almari_1_1 << endl;
+    //variable declaration
+    float local_x = 0.0f, local_y = 0.0f, local_z = 0.f;//local jevabe shape howar kotha
+    float len = 0.0f, width = 0.0f, height = 0.0f;
+    float  rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    float trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//dynamic sliding e kaj korbe OR object k origin e anar kaj korbe
+
+
+    //******************left Door*************************************************************
+    //**********************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f - rotateAxis_Y_Almari_1_1, rot_z = 0.0f;//era common for all sub component
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//era common for all sub component
+    //left frame++++++++++++++++++++
+    len = 1.0f, width = 0.05f, height = 2.0f;
+    local_x = 0.0, local_y = 0.2f, local_z = 0.0f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, al_door1);
+    //*************************************END of left Door***************************
+
+
+    //**************************************Right Door*********************************
+    //***************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f + rotateAxis_Y_Almari_1_1, rot_z = 0.0f;
+    trans_x = -2.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left frame+++++++++++
+    len = 1.0f, width = 0.05f, height = 2.0f;
+    local_x = 1.0, local_y = 0.2f, local_z = 0.0f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, al_door2);
+    //**************************************End of Right Door*********************************
+
+     //**************************************Mid BOX*********************************
+    //***************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f , rot_z = 0.0f;
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left frame+++++++++++
+    len = 2.2f, width = 0.4f, height = 2.3f;
+    local_x = -0.1, local_y = 0.0f, local_z = 0.04f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, al);
+    //**************************************End of Right Door*********************************
+
+    //**************************************Mid inside BOX*********************************
+    //***************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left frame+++++++++++
+    len = 2.0f, width = 0.4f, height = 2.0f;
+    local_x = 0.0, local_y = 0.2f, local_z = 0.035f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, al_books);
+    //**************************************End of Right Door*********************************
+
+
+
+}
+
+void Almari_1_2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+{
+    if (abs(camera.Position.z) > abs(z_shift - 5) && abs(camera.Position.z) < abs(z_shift + 5)) {
+        rotateAxis_Y_Almari_1_2 += 0.5;
+        rotateAxis_Y_Almari_1_2 = min(rotateAxis_Y_Almari_1_2, 100.0);
+    }
+    else
+    {
+        rotateAxis_Y_Almari_1_2 -= 0.5;
+        rotateAxis_Y_Almari_1_2 = max(rotateAxis_Y_Almari_1_2, 0.0);
+    }
+    cout << " almari " << rotateAxis_Y_Almari_1_2 << endl;
+    //variable declaration
+    float local_x = 0.0f, local_y = 0.0f, local_z = 0.f;//local jevabe shape howar kotha
+    float len = 0.0f, width = 0.0f, height = 0.0f;
+    float  rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    float trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//dynamic sliding e kaj korbe OR object k origin e anar kaj korbe
+
+
+    //******************left Door*************************************************************
+    //**********************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f - rotateAxis_Y_Almari_1_2, rot_z = 0.0f;//era common for all sub component
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//era common for all sub component
+    //left frame++++++++++++++++++++
+    len = 1.0f, width = 0.05f, height = 2.0f;
+    local_x = 0.0, local_y = 0.2f, local_z = 0.0f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, al_door1);
+    //*************************************END of left Door***************************
+
+
+    //**************************************Right Door*********************************
+    //***************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f + rotateAxis_Y_Almari_1_2, rot_z = 0.0f;
+    trans_x = -2.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left frame+++++++++++
+    len = 1.0f, width = 0.05f, height = 2.0f;
+    local_x = 1.0, local_y = 0.2f, local_z = 0.0f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, al_door2);
+    //**************************************End of Right Door*********************************
+
+     //**************************************Mid BOX*********************************
+    //***************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left frame+++++++++++
+    len = 2.2f, width = 0.4f, height = 2.3f;
+    local_x = -0.1, local_y = 0.0f, local_z = 0.04f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, al);
+    //**************************************End of Right Door*********************************
+
+    //**************************************Mid inside BOX*********************************
+    //***************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left frame+++++++++++
+    len = 2.0f, width = 0.4f, height = 2.0f;
+    local_x = 0.0, local_y = 0.2f, local_z = 0.035f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, al_books);
+    //**************************************End of Right Door*********************************
+
+
+
+}
+
+
+void Almari_2_1(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+{
+    if (abs(camera.Position.z) > abs(z_shift - 5) && abs(camera.Position.z) < abs(z_shift + 5)) {
+        rotateAxis_Y_Almari_2_1 += 0.5;
+        rotateAxis_Y_Almari_2_1 = min(rotateAxis_Y_Almari_2_1, 100.0);
+    }
+    else
+    {
+        rotateAxis_Y_Almari_2_1 -= 0.5;
+        rotateAxis_Y_Almari_2_1 = max(rotateAxis_Y_Almari_2_1, 0.0);
+    }
+    cout << " almari " << rotateAxis_Y_Almari_2_1 << endl;
+    //variable declaration
+    float local_x = 0.0f, local_y = 0.0f, local_z = 0.f;//local jevabe shape howar kotha
+    float len = 0.0f, width = 0.0f, height = 0.0f;
+    float  rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    float trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//dynamic sliding e kaj korbe OR object k origin e anar kaj korbe
+
+
+    //******************left Door*************************************************************
+    //**********************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f - rotateAxis_Y_Almari_2_1, rot_z = 0.0f;//era common for all sub component
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//era common for all sub component
+    //left frame++++++++++++++++++++
+    len = 1.0f, width = 0.05f, height = 2.0f;
+    local_x = 0.0, local_y = 0.2f, local_z = 0.0f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, al_door1);
+    //*************************************END of left Door***************************
+
+
+    //**************************************Right Door*********************************
+    //***************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f + rotateAxis_Y_Almari_2_1, rot_z = 0.0f;
+    trans_x = -2.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left frame+++++++++++
+    len = 1.0f, width = 0.05f, height = 2.0f;
+    local_x = 1.0, local_y = 0.2f, local_z = 0.0f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, al_door2);
+    //**************************************End of Right Door*********************************
+
+     //**************************************Mid BOX*********************************
+    //***************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left frame+++++++++++
+    len = 2.2f, width = 0.4f, height = 2.3f;
+    local_x = -0.1, local_y = 0.0f, local_z = 0.04f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, al);
+    //**************************************End of Right Door*********************************
+
+    //**************************************Mid inside BOX*********************************
+    //***************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left frame+++++++++++
+    len = 2.0f, width = 0.4f, height = 2.0f;
+    local_x = 0.0, local_y = 0.2f, local_z = 0.035f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, al_books);
+    //**************************************End of Right Door*********************************
+
+
+
+}
+
+void Almari_2_2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+{
+    if (abs(camera.Position.z) > abs(z_shift - 5) && abs(camera.Position.z) < abs(z_shift + 5)) {
+        rotateAxis_Y_Almari_2_2 += 0.5;
+        rotateAxis_Y_Almari_2_2 = min(rotateAxis_Y_Almari_2_2, 100.0);
+    }
+    else
+    {
+        rotateAxis_Y_Almari_2_2 -= 0.5;
+        rotateAxis_Y_Almari_2_2 = max(rotateAxis_Y_Almari_2_2, 0.0);
+    }
+    cout << " almari " << rotateAxis_Y_Almari_2_2 << endl;
+    //variable declaration
+    float local_x = 0.0f, local_y = 0.0f, local_z = 0.f;//local jevabe shape howar kotha
+    float len = 0.0f, width = 0.0f, height = 0.0f;
+    float  rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    float trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//dynamic sliding e kaj korbe OR object k origin e anar kaj korbe
+
+
+    //******************left Door*************************************************************
+    //**********************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f - rotateAxis_Y_Almari_2_2, rot_z = 0.0f;//era common for all sub component
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//era common for all sub component
+    //left frame++++++++++++++++++++
+    len = 1.0f, width = 0.05f, height = 2.0f;
+    local_x = 0.0, local_y = 0.2f, local_z = 0.0f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, al_door1);
+    //*************************************END of left Door***************************
+
+
+    //**************************************Right Door*********************************
+    //***************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f + rotateAxis_Y_Almari_2_2, rot_z = 0.0f;
+    trans_x = -2.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left frame+++++++++++
+    len = 1.0f, width = 0.05f, height = 2.0f;
+    local_x = 1.0, local_y = 0.2f, local_z = 0.0f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, al_door2);
+    //**************************************End of Right Door*********************************
+
+     //**************************************Mid BOX*********************************
+    //***************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left frame+++++++++++
+    len = 2.2f, width = 0.4f, height = 2.3f;
+    local_x = -0.1, local_y = 0.0f, local_z = 0.04f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, al);
+    //**************************************End of Right Door*********************************
+
+    //**************************************Mid inside BOX*********************************
+    //***************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left frame+++++++++++
+    len = 2.0f, width = 0.4f, height = 2.0f;
+    local_x = 0.0, local_y = 0.2f, local_z = 0.035f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, al_books);
+    //**************************************End of Right Door*********************************
+
+
+
+}
+
+void Glass_Door_Frame_1_1(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+{
+    if (abs(camera.Position.z) > abs(z_shift - 5) && abs(camera.Position.z) < abs(z_shift + 5)) {
+        rotateAxis_Y_Door_1_1 += 0.5;
+        rotateAxis_Y_Door_1_1 = min(rotateAxis_Y_Door_1_1, 75.0);
+    }
+    else
+    {
+        rotateAxis_Y_Door_1_1 -= 0.5;
+        rotateAxis_Y_Door_1_1 = max(rotateAxis_Y_Door_1_1, 0.0);
+    }
+    cout << rotateAxis_Y_Door_1_1 << endl;
+    //variable declaration
+    float local_x = 0.0f, local_y = 0.0f, local_z = 0.f;//local jevabe shape howar kotha
+    float len = 0.0f, width = 0.0f, height = 0.0f;
+    float  rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    float trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//dynamic sliding e kaj korbe OR object k origin e anar kaj korbe
+
+
+    //******************left Door Frame*************************************************************
+    //**********************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f + rotateAxis_Y_Door_1_1, rot_z = 0.0f;//era common for all sub component
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//era common for all sub component
+    //left frame++++++++++++++++++++
+    len = 0.05f, width = 0.05f, height = 2.7f;
+    local_x = 0.0, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //right frame+++++++++++++++++++++
+    len = 0.05f, width = 0.05f, height = 2.7f;
+    local_x = 1.5 - 0.05f, local_y = 0.0, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //bottom frame+++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 0.0, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //top frame+++++++++++++++++++++++++
+    len = 1.5f, width = 0.1f, height = 0.1f;
+    local_x = 0.0, local_y = 2.7f - 0.1f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //*************************************END of left Door Frame***************************
+
+
+    //**************************************Right Door frame*********************************
+    //***************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f - rotateAxis_Y_Door_1_1, rot_z = 0.0f;
+    trans_x = -3.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left frame+++++++++++
+    len = 0.05f, width = 0.05f, height = 2.7f;
+    local_x = 1.5, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //right frame++++++++++++
+    len = 0.05f, width = 0.05f, height = 2.7f;
+    local_x = 1.5 + 1.5 - 0.05f, local_y = 0.0, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //bottom frame++++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 1.5, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //top frame+++++++++++++++++++++++++++
+    len = 1.5f, width = 0.1f, height = 0.1f;
+    local_x = 1.5, local_y = 2.7f - 0.1f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //*************************************END of Right Door Frame***************************
+    
+}
+
+void Glass_Door_1_1(unsigned int TransparentVAO, Shader transparentShader, float x_shift, float y_shift, float z_shift)
+{
+    //variable declaration
+    float local_x = 0.0f, local_y = 0.0f, local_z = 0.f;
+    float len = 0.0f, width = 0.0f, height = 0.0f;
+    float  rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    float trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+
+    //*********************************************************left glass***********************************************************
+    //*****************************************************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f + rotateAxis_Y_Door_1_1, rot_z = 0.0f;
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left glasS--------------------------------------------
+    len = 1.5f, width = 0.05f, height = 2.7f;
+    local_x = 0.0f, local_y = 0.0f, local_z = 0.f;
+    GenSheet_Transparent(TransparentVAO, transparentShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, glass);
+    //*********************************************************END of Left Glass*****************************************************
+    
+     //*********************************************************Right glass***********************************************************
+    //*****************************************************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f- rotateAxis_Y_Door_1_1, rot_z = 0.0f;
+    trans_x = -3.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //right glass--------------------------------------------------------------------------------
+    len = 1.5f, width = 0.05f, height = 2.7f;
+    local_x = 1.5f, local_y = 0.0f, local_z = 0.f;
+    
+    GenSheet_Transparent(TransparentVAO, transparentShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift- trans_x, y_shift- trans_y, z_shift- trans_z, off_white, glass);
+}
+
+void Glass_Door_Frame_1_2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+{
+
+    if (abs(camera.Position.z) > abs(z_shift - 5) && abs(camera.Position.z) < abs(z_shift + 5)) {
+        rotateAxis_Y_Door_1_2 += 0.5;
+        rotateAxis_Y_Door_1_2 = min(rotateAxis_Y_Door_1_2, 75.0);
+    }
+    else
+    {
+        rotateAxis_Y_Door_1_2 -= 0.5;
+        rotateAxis_Y_Door_1_2 = max(rotateAxis_Y_Door_1_2, 0.0);
+    }
+    cout << rotateAxis_Y_Door_1_2 << endl;
+    //variable declaration
+    float local_x = 0.0f, local_y = 0.0f, local_z = 0.f;//local jevabe shape howar kotha
+    float len = 0.0f, width = 0.0f, height = 0.0f;
+    float  rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    float trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//dynamic sliding e kaj korbe OR object k origin e anar kaj korbe
+
+
+    //******************left Door Frame*************************************************************
+    //**********************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f + rotateAxis_Y_Door_1_2, rot_z = 0.0f;//era common for all sub component
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//era common for all sub component
+    //left frame++++++++++++++++++++
+    len = 0.05f, width = 0.05f, height = 2.7f;
+    local_x = 0.0, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //right frame+++++++++++++++++++++
+    len = 0.05f, width = 0.05f, height = 2.7f;
+    local_x = 1.5 - 0.05f, local_y = 0.0, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //bottom frame+++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 0.0, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //top frame+++++++++++++++++++++++++
+    len = 1.5f, width = 0.1f, height = 0.1f;
+    local_x = 0.0, local_y = 2.7f - 0.1f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //*************************************END of left Door Frame***************************
+
+
+    //**************************************Right Door frame*********************************
+    //***************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f - rotateAxis_Y_Door_1_2, rot_z = 0.0f;
+    trans_x = -3.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left frame+++++++++++
+    len = 0.05f, width = 0.05f, height = 2.7f;
+    local_x = 1.5, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //right frame++++++++++++
+    len = 0.05f, width = 0.05f, height = 2.7f;
+    local_x = 1.5 + 1.5 - 0.05f, local_y = 0.0, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //bottom frame++++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 1.5, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //top frame+++++++++++++++++++++++++++
+    len = 1.5f, width = 0.1f, height = 0.1f;
+    local_x = 1.5, local_y = 2.7f - 0.1f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //*************************************END of Right Door Frame***************************
+}
+
+void Glass_Door_1_2(unsigned int TransparentVAO, Shader transparentShader, float x_shift, float y_shift, float z_shift)
+{
+    //variable declaration
+    float local_x = 0.0f, local_y = 0.0f, local_z = 0.f;
+    float len = 0.0f, width = 0.0f, height = 0.0f;
+    float  rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    float trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+
+    //*********************************************************left glass***********************************************************
+    //*****************************************************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f + rotateAxis_Y_Door_1_2, rot_z = 0.0f;
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left glasS--------------------------------------------
+    len = 1.5f, width = 0.05f, height = 2.7f;
+    local_x = 0.0f, local_y = 0.0f, local_z = 0.f;
+    GenSheet_Transparent(TransparentVAO, transparentShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, glass);
+    //*********************************************************END of Left Glass*****************************************************
+
+     //*********************************************************Right glass***********************************************************
+    //*****************************************************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f - rotateAxis_Y_Door_1_2, rot_z = 0.0f;
+    trans_x = -3.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //right glass--------------------------------------------------------------------------------
+    len = 1.5f, width = 0.05f, height = 2.7f;
+    local_x = 1.5f, local_y = 0.0f, local_z = 0.f;
+
+    GenSheet_Transparent(TransparentVAO, transparentShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, glass);
+}
+
+void Glass_win_Frame_2_1(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+{
+    if (abs(camera.Position.z) > abs(z_shift - 5) && abs(camera.Position.z) < abs(z_shift + 5)) {
+        rotateAxis_Y_win_2_1 += 0.5;
+        rotateAxis_Y_win_2_1 = min(rotateAxis_Y_win_2_1, 75.0);
+    }
+    else
+    {
+        rotateAxis_Y_win_2_1 -= 0.5;
+        rotateAxis_Y_win_2_1 = max(rotateAxis_Y_win_2_1, 0.0);
+    }
+    //variable declaration
+    float local_x = 0.0f, local_y = 0.0f, local_z = 0.f;//local jevabe shape howar kotha
+    float len = 0.0f, width = 0.0f, height = 0.0f;
+    float  rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    float trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//dynamic sliding e kaj korbe OR object k origin e anar kaj korbe
+
+
+    //******************left win Frame*************************************************************
+    //**********************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f - rotateAxis_Y_win_2_1, rot_z = 0.0f;//era common for all sub component
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//era common for all sub component
+    //left frame++++++++++++++++++++
+    len = 0.05f, width = 0.05f, height = 2.0f;
+    local_x = 0.0, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //right frame+++++++++++++++++++++
+    len = 0.05f, width = 0.05f, height = 2.0f;
+    local_x = 1.5 - 0.05f, local_y = 0.0, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //bottom frame+++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 0.0, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //top frame+++++++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 0.0, local_y = 2.0f - 0.1f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //*************************************END of left win Frame***************************
+
+    //**************************************win bottom wall*********************************
+    //**************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;//era common for all sub component
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//era common for all sub component
+    //---------------------------------------
+    len = 3.0f, width = 0.05f, height = 0.5f;
+    local_x = 0.0, local_y = -0.5, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+
+    //**************************************Right win frame*********************************
+    //***************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f + rotateAxis_Y_win_2_1, rot_z = 0.0f;
+    trans_x = -3.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left frame+++++++++++
+    len = 0.05f, width = 0.05f, height = 2.0f;
+    local_x = 1.5, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //right frame++++++++++++
+    len = 0.05f, width = 0.05f, height = 2.0f;
+    local_x = 1.5 + 1.5 - 0.05f, local_y = 0.0, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //bottom frame++++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 1.5, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //top frame+++++++++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 1.5, local_y = 2.0f - 0.1f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //*************************************END of Right win Frame***************************
+
+}
+void Glass_win_Frame_2_2(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+{
+    if (abs(camera.Position.z) > abs(z_shift - 5) && abs(camera.Position.z) < abs(z_shift + 5)) {
+        rotateAxis_Y_win_2_2 += 0.5;
+        rotateAxis_Y_win_2_2 = min(rotateAxis_Y_win_2_2, 75.0);
+    }
+    else
+    {
+        rotateAxis_Y_win_2_2 -= 0.5;
+        rotateAxis_Y_win_2_2 = max(rotateAxis_Y_win_2_2, 0.0);
+    }
+    //variable declaration
+    float local_x = 0.0f, local_y = 0.0f, local_z = 0.f;//local jevabe shape howar kotha
+    float len = 0.0f, width = 0.0f, height = 0.0f;
+    float  rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    float trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//dynamic sliding e kaj korbe OR object k origin e anar kaj korbe
+
+
+    //******************left win Frame*************************************************************
+    //**********************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f - rotateAxis_Y_win_2_2, rot_z = 0.0f;//era common for all sub component
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//era common for all sub component
+    //left frame++++++++++++++++++++
+    len = 0.05f, width = 0.05f, height = 2.0f;
+    local_x = 0.0, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //right frame+++++++++++++++++++++
+    len = 0.05f, width = 0.05f, height = 2.0f;
+    local_x = 1.5 - 0.05f, local_y = 0.0, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //bottom frame+++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 0.0, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //top frame+++++++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 0.0, local_y = 2.0f - 0.1f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //*************************************END of left win Frame***************************
+
+    //**************************************win bottom wall*********************************
+    //**************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;//era common for all sub component
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//era common for all sub component
+    //---------------------------------------
+    len = 3.0f, width = 0.05f, height = 0.5f;
+    local_x = 0.0, local_y = -0.5, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+
+    //**************************************Right win frame*********************************
+    //***************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f + rotateAxis_Y_win_2_2, rot_z = 0.0f;
+    trans_x = -3.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left frame+++++++++++
+    len = 0.05f, width = 0.05f, height = 2.0f;
+    local_x = 1.5, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //right frame++++++++++++
+    len = 0.05f, width = 0.05f, height = 2.0f;
+    local_x = 1.5 + 1.5 - 0.05f, local_y = 0.0, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //bottom frame++++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 1.5, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //top frame+++++++++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 1.5, local_y = 2.0f - 0.1f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //*************************************END of Right win Frame***************************
+}
+void Glass_win_Frame_2_3(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+{
+    if (abs(camera.Position.z) > abs(z_shift - 5) && abs(camera.Position.z) < abs(z_shift + 5)) {
+        rotateAxis_Y_win_2_3 += 0.5;
+        rotateAxis_Y_win_2_3 = min(rotateAxis_Y_win_2_3, 75.0);
+    }
+    else
+    {
+        rotateAxis_Y_win_2_3 -= 0.5;
+        rotateAxis_Y_win_2_3 = max(rotateAxis_Y_win_2_3, 0.0);
+    }
+    //variable declaration
+    float local_x = 0.0f, local_y = 0.0f, local_z = 0.f;//local jevabe shape howar kotha
+    float len = 0.0f, width = 0.0f, height = 0.0f;
+    float  rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    float trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//dynamic sliding e kaj korbe OR object k origin e anar kaj korbe
+
+
+    //******************left win Frame*************************************************************
+    //**********************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f + rotateAxis_Y_win_2_3, rot_z = 0.0f;//era common for all sub component
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//era common for all sub component
+    //left frame++++++++++++++++++++
+    len = 0.05f, width = 0.05f, height = 2.0f;
+    local_x = 0.0, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //right frame+++++++++++++++++++++
+    len = 0.05f, width = 0.05f, height = 2.0f;
+    local_x = 1.5 - 0.05f, local_y = 0.0, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //bottom frame+++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 0.0, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //top frame+++++++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 0.0, local_y = 2.0f - 0.1f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //*************************************END of left win Frame***************************
+
+    //**************************************win bottom wall*********************************
+    //**************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;//era common for all sub component
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//era common for all sub component
+    //---------------------------------------
+    len = 3.0f, width = 0.05f, height = 0.5f;
+    local_x = 0.0, local_y = -0.5, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+
+    //**************************************Right win frame*********************************
+    //***************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f - rotateAxis_Y_win_2_3, rot_z = 0.0f;
+    trans_x = -3.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left frame+++++++++++
+    len = 0.05f, width = 0.05f, height = 2.0f;
+    local_x = 1.5, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //right frame++++++++++++
+    len = 0.05f, width = 0.05f, height = 2.0f;
+    local_x = 1.5 + 1.5 - 0.05f, local_y = 0.0, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //bottom frame++++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 1.5, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //top frame+++++++++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 1.5, local_y = 2.0f - 0.1f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //*************************************END of Right win Frame***************************
+}
+void Glass_win_Frame_2_4(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift)
+{
+    if (abs(camera.Position.z) > abs(z_shift - 5) && abs(camera.Position.z) < abs(z_shift + 5)) {
+        rotateAxis_Y_win_2_4 += 0.5;
+        rotateAxis_Y_win_2_4 = min(rotateAxis_Y_win_2_4, 75.0);
+    }
+    else
+    {
+        rotateAxis_Y_win_2_4 -= 0.5;
+        rotateAxis_Y_win_2_4 = max(rotateAxis_Y_win_2_4, 0.0);
+    }
+    //variable declaration
+    float local_x = 0.0f, local_y = 0.0f, local_z = 0.f;//local jevabe shape howar kotha
+    float len = 0.0f, width = 0.0f, height = 0.0f;
+    float  rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    float trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//dynamic sliding e kaj korbe OR object k origin e anar kaj korbe
+
+
+    //******************left win Frame*************************************************************
+    //**********************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f + rotateAxis_Y_win_2_4, rot_z = 0.0f;//era common for all sub component
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//era common for all sub component
+    //left frame++++++++++++++++++++
+    len = 0.05f, width = 0.05f, height = 2.0f;
+    local_x = 0.0, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //right frame+++++++++++++++++++++
+    len = 0.05f, width = 0.05f, height = 2.0f;
+    local_x = 1.5 - 0.05f, local_y = 0.0, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //bottom frame+++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 0.0, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //top frame+++++++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 0.0, local_y = 2.0f - 0.1f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+    //*************************************END of left win Frame***************************
+
+    //**************************************win bottom wall*********************************
+    //**************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;//era common for all sub component
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//era common for all sub component
+    //---------------------------------------
+    len = 3.0f, width = 0.05f, height = 0.5f;
+    local_x = 0.0, local_y = -0.5, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture0);
+
+    //**************************************Right win frame*********************************
+    //***************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f - rotateAxis_Y_win_2_4, rot_z = 0.0f;
+    trans_x = -3.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left frame+++++++++++
+    len = 0.05f, width = 0.05f, height = 2.0f;
+    local_x = 1.5, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //right frame++++++++++++
+    len = 0.05f, width = 0.05f, height = 2.0f;
+    local_x = 1.5 + 1.5 - 0.05f, local_y = 0.0, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //bottom frame++++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 1.5, local_y = 0.0f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //top frame+++++++++++++++++++++++++++
+    len = 1.5f, width = 0.05f, height = 0.1f;
+    local_x = 1.5, local_y = 2.0f - 0.1f, local_z = -0.025f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, texture0);
+    //*************************************END of Right win Frame***************************
+}
+void Glass_win_2_1(unsigned int TransparentVAO, Shader transparentShader, float x_shift, float y_shift, float z_shift)
+{
+    //variable declaration
+    float local_x = 0.0f, local_y = 0.0f, local_z = 0.f;
+    float len = 0.0f, width = 0.0f, height = 0.0f;
+    float  rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    float trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+
+    //*********************************************************left glass***********************************************************
+    //*****************************************************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f - rotateAxis_Y_win_2_1, rot_z = 0.0f;
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left glasS--------------------------------------------
+    len = 1.5f, width = 0.05f, height = 2.0f;
+    local_x = 0.0f, local_y = 0.2f, local_z = 0.0f;
+    GenSheet_Transparent(TransparentVAO, transparentShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, glass);
+    //*********************************************************END of Left Glass*****************************************************
+
+     //*********************************************************Right glass***********************************************************
+    //*****************************************************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f + rotateAxis_Y_win_2_1, rot_z = 0.0f;
+    trans_x = -3.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //right glass--------------------------------------------------------------------------------
+    len = 1.5f, width = 0.05f, height = 2.0f;
+    local_x = 1.5f, local_y = 0.2f, local_z = 0.0f;
+    GenSheet_Transparent(TransparentVAO, transparentShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, glass);
+
+}
+void Glass_win_2_2(unsigned int TransparentVAO, Shader transparentShader, float x_shift, float y_shift, float z_shift)
+{
+    //variable declaration
+    float local_x = 0.0f, local_y = 0.0f, local_z = 0.f;
+    float len = 0.0f, width = 0.0f, height = 0.0f;
+    float  rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    float trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+
+    //*********************************************************left glass***********************************************************
+    //*****************************************************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f - rotateAxis_Y_win_2_2, rot_z = 0.0f;
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left glasS--------------------------------------------
+    len = 1.5f, width = 0.05f, height = 2.0f;
+    local_x = 0.0f, local_y = 0.2f, local_z = 0.0f;
+    GenSheet_Transparent(TransparentVAO, transparentShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, glass);
+    //*********************************************************END of Left Glass*****************************************************
+
+     //*********************************************************Right glass***********************************************************
+    //*****************************************************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f + rotateAxis_Y_win_2_2, rot_z = 0.0f;
+    trans_x = -3.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //right glass--------------------------------------------------------------------------------
+    len = 1.5f, width = 0.05f, height = 2.0f;
+    local_x = 1.5f, local_y = 0.2f, local_z = 0.0f;
+    GenSheet_Transparent(TransparentVAO, transparentShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, glass);
+}
+void Glass_win_2_3(unsigned int TransparentVAO, Shader transparentShader, float x_shift, float y_shift, float z_shift)
+{
+    //variable declaration
+    float local_x = 0.0f, local_y = 0.0f, local_z = 0.f;
+    float len = 0.0f, width = 0.0f, height = 0.0f;
+    float  rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    float trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+
+    //*********************************************************left glass***********************************************************
+    //*****************************************************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f + rotateAxis_Y_win_2_3, rot_z = 0.0f;
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left glasS--------------------------------------------
+    len = 1.5f, width = 0.05f, height = 2.0f;
+    local_x = 0.0f, local_y = 0.2f, local_z = 0.0f;
+    GenSheet_Transparent(TransparentVAO, transparentShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, glass);
+    //*********************************************************END of Left Glass*****************************************************
+
+     //*********************************************************Right glass***********************************************************
+    //*****************************************************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f - rotateAxis_Y_win_2_3, rot_z = 0.0f;
+    trans_x = -3.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //right glass--------------------------------------------------------------------------------
+    len = 1.5f, width = 0.05f, height = 2.0f;
+    local_x = 1.5f, local_y = 0.2f, local_z = 0.0f;
+    GenSheet_Transparent(TransparentVAO, transparentShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, glass);
+}
+void Glass_win_2_4(unsigned int TransparentVAO, Shader transparentShader, float x_shift, float y_shift, float z_shift)
+{
+    //variable declaration
+    float local_x = 0.0f, local_y = 0.0f, local_z = 0.f;
+    float len = 0.0f, width = 0.0f, height = 0.0f;
+    float  rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    float trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+
+    //*********************************************************left glass***********************************************************
+    //*****************************************************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f + rotateAxis_Y_win_2_4, rot_z = 0.0f;
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //left glasS--------------------------------------------
+    len = 1.5f, width = 0.05f, height = 2.0f;
+    local_x = 0.0f, local_y = 0.2f, local_z = 0.0f;
+    GenSheet_Transparent(TransparentVAO, transparentShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, glass);
+    //*********************************************************END of Left Glass*****************************************************
+
+     //*********************************************************Right glass***********************************************************
+    //*****************************************************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f - rotateAxis_Y_win_2_4, rot_z = 0.0f;
+    trans_x = -3.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //right glass--------------------------------------------------------------------------------
+    len = 1.5f, width = 0.05f, height = 2.0f;
+    local_x = 1.5f, local_y = 0.2f, local_z = 0.0f;
+    GenSheet_Transparent(TransparentVAO, transparentShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift - trans_x, y_shift - trans_y, z_shift - trans_z, off_white, glass);
+}
+
+void Stairs_Lift_Glass(unsigned int TransparentVAO, Shader transparentShader, float x_shift, float y_shift, float z_shift)
+{
+    //variable declaration
+    float local_x = 0.0f, local_y = 0.0f, local_z = 0.f;
+    float len = 0.0f, width = 0.0f, height = 0.0f;
+    float  rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    float trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+
+    //Stairs
+    //*********************************************************left glass***********************************************************
+    //*****************************************************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //Front glasS--------------------------------------------
+    len = 4.0f, width = 0.05f, height = 3.3f;
+    local_x = 10.0f, local_y = 4.0f, local_z = 58.0f;
+    GenSheet_Transparent(TransparentVAO, transparentShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, main_glass);
+    //right glasS--------------------------------------------
+    len = 4.0f, width = 0.05f, height = 4.7f;
+    local_x = 59.5f, local_y = 2.6f, local_z = -8.5;
+    GenSheet_Transparent(TransparentVAO, transparentShader, len, width, height, local_x, local_y, local_z, rot_x,  90.0f , rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, main_glass);
+    //back glasS-------------------------------------------
+    len = 4.0f, width = 0.05f, height = 3.3f;
+    local_x = 10.0f, local_y = 4.0f, local_z = 65.0f;
+    GenSheet_Transparent(TransparentVAO, transparentShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, main_glass);
+
+    //*********************************************************END of Left Glass*****************************************************
+
+
+     //Stairs
+    //*********************************************************right glass***********************************************************
+    //*****************************************************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;
+    //Front glasS--------------------------------------------
+    len = 4.0f, width = 0.05f, height = 3.3f;
+    local_x = 61.0f, local_y = 4.0f, local_z = 58.0f;
+    GenSheet_Transparent(TransparentVAO, transparentShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, main_glass);
+    //right glasS--------------------------------------------
+    len = 4.0f, width = 0.05f, height = 4.8f;
+    local_x = 59.5f, local_y = 2.4f, local_z = -66.5f;
+    GenSheet_Transparent(TransparentVAO, transparentShader, len, width, height, local_x, local_y, local_z, rot_x, 90.0f, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, main_glass);
+    //back glasS--------------------------------------------
+    len = 4.0f, width = 0.05f, height = 3.3f;
+    local_x = 61.0f, local_y = 4.0f, local_z = 65.0f;
+    GenSheet_Transparent(TransparentVAO, transparentShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, main_glass);
+
+    //*********************************************************END of Left Glass*****************************************************
+}
 
 //General
+
+void RaillingUnit(unsigned int VAO, BezierCurve Round_piller, Shader ourShader, float x_shift, float y_shift, float z_shift)
+{
+
+    //variable declaration
+    float local_x = 0.0f, local_y = 0.0f, local_z = 0.f;//local jevabe shape howar kotha
+    float len = 0.0f, width = 0.0f, height = 0.0f;
+    float  rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;
+    float trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//dynamic sliding e kaj korbe OR object k origin e anar kaj korbe
+
+
+    //******************bottom cube*************************************************************
+    //**********************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f , rot_z = 0.0f;//era common for all sub component
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//era common for all sub component
+    //left frame++++++++++++++++++++
+    len = 0.08f, width = 0.08f, height = 0.02f;
+    local_x = -0.04, local_y = 0.0f, local_z = -0.04f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture7);
+
+
+    //declaration
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 RS_translateMatrix, translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    float lbx = 0.0, lby = 0.0, lbz = 0.0;
+    len = 0.0;
+    float ht = 0.0f;
+    width = 0.0;
+    float x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    float rsx = 0.0, rsy = 0.0, rsz = 0.0;
+
+    //Sobar same tai
+    lbx = 0.0, lby = 0.0, lbz = 0.0;
+
+
+
+
+    //piller round+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    len = 0.05, ht = 0.4f;
+    width = 0.05;
+    //---------FN
+    x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
+    rsx = 0.0, rsy = 0.0, rsz = 0.0;
+    //universal translate
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
+    x_sft = lbx, y_sft = lby, z_sft = lbz;
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, ht, width));
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));//MAIN Rotation
+    model = uni_translate * translateMatrix * rotateYMatrix * RS_translateMatrix * scaleMatrix;
+    Round_piller.drawBezierCurve(ourShader, model);
+
+
+    //******************top cube*************************************************************
+  //**********************************************************************************************
+    rot_x = 0.0f, rot_y = 0.0f, rot_z = 0.0f;//era common for all sub component
+    trans_x = 0.0f, trans_y = 0.0f, trans_z = 0.0f;//era common for all sub component
+    //left frame++++++++++++++++++++
+    len = 0.08f, width = 0.08f, height = 0.02f;
+    local_x = -0.04, local_y = 0.4f, local_z = -0.04f;
+    GenSheet(VAO, ourShader, len, width, height, local_x, local_y, local_z, rot_x, rot_y, rot_z, trans_x, trans_y, trans_z, x_shift, y_shift, z_shift, off_white, texture7);
+
+
+
+   
+
+}
+
+void GenSheet_Transparent(unsigned int VAO, Shader ourShader, float len, float width, float height, float local_x, float local_y, float local_z, float rot_x, float rot_y, float rot_z, float trans_x, float trans_y, float trans_z, float x_shift, float y_shift, float z_shift, glm::vec4 color, unsigned int texture)
+{
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 local_translateMatrix, translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f *(z_shift)));
+    float x_sft = local_x, y_sft = local_y, z_sft = local_z;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    local_translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(trans_x, trans_y, -1.0f * trans_z));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, height, -1.0 * width));
+    rotateXMatrix = glm::rotate(identityMatrix, glm::radians(0.0f + rot_x), glm::vec3(1.0f, 0.0f, 0.0f));
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f + rot_y), glm::vec3(0.0f, 1.0f, 0.0f));
+    rotateZMatrix = glm::rotate(identityMatrix, glm::radians(0.0f + rot_z), glm::vec3(0.0f, 0.0f, 1.0f));
+    model = uni_translate * rotateZMatrix * rotateYMatrix * rotateXMatrix * translateMatrix * local_translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+  
+    glBindVertexArray(VAO);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+}
+
+void GenSheet(unsigned int VAO, Shader ourShader, float len, float width, float height, float local_x, float local_y, float local_z, float rot_x, float rot_y, float rot_z, float trans_x, float trans_y, float trans_z, float x_shift, float y_shift, float z_shift, glm::vec4 color, unsigned int texture)
+{
+    // Modelling Transformation
+    glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 local_translateMatrix,translateMatrix, rotateXMatrix, rotateYMatrix, rotateZMatrix, scaleMatrix, model, uni_translate;
+    uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
+    float x_sft = local_x, y_sft = local_y, z_sft = local_z;
+    glBindTexture(GL_TEXTURE_2D, texture);//bindtexture
+    local_translateMatrix = glm::translate(identityMatrix, glm::vec3(x_sft, y_sft, -1.0f * z_sft));
+    translateMatrix = glm::translate(identityMatrix, glm::vec3(trans_x, trans_y, -1.0f * trans_z));
+    scaleMatrix = glm::scale(identityMatrix, glm::vec3(len, height, -1.0*width));
+    rotateXMatrix = glm::rotate(identityMatrix, glm::radians(0.0f + rot_x), glm::vec3(1.0f, 0.0f, 0.0f));
+    rotateYMatrix = glm::rotate(identityMatrix, glm::radians(0.0f + rot_y), glm::vec3(0.0f, 1.0f, 0.0f));
+    rotateZMatrix = glm::rotate(identityMatrix, glm::radians(0.0f + rot_z), glm::vec3(0.0f, 0.0f, 1.0f));
+    model = uni_translate * rotateZMatrix * rotateYMatrix * rotateXMatrix * translateMatrix * local_translateMatrix * scaleMatrix;
+    ourShader.setMat4("model", model);
+    ourShader.setVec4("material.ambient", color);
+    ourShader.setVec4("material.diffuse", color);
+    ourShader.setVec4("material.specular", glm::vec4(0.1f, 0.1f, 0.1f, 0.5f));
+    ourShader.setFloat("material.shininess", 32.0f);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+
+}
+
 void HorizontalWall(unsigned int VAO, Shader ourShader, float x_shift, float y_shift, float z_shift, float len, float ht, float lbx, float lby, float lbz, unsigned int texture = texture0)
 {
     // Modelling Transformation
@@ -4470,8 +5816,8 @@ void Fan_and_switch(unsigned int VAO, BezierCurve Fan_Bati, BezierCurve Fan_Blad
     //FAN BATI+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //------CURVE---START
     lbx = 0.0, lby = 0.0, lbz = 0.0;
-    len = 0.2, ht = 0.2f;
-    width = 0.2;
+    len = 0.4, ht = 0.2f;
+    width = 0.4;
     //---------FN
     x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
     rsx = 0.0, rsy = 0.0, rsz = 0.0;
@@ -4489,11 +5835,11 @@ void Fan_and_switch(unsigned int VAO, BezierCurve Fan_Bati, BezierCurve Fan_Blad
     //FAN BLADE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //------CURVE---START
     lbx = 0.0, lby = 0.0, lbz = 0.0;
-    len = 0.33, ht = 0.275f;
-    width = 0.05;
+    len = 0.7, ht = 0.7f;
+    width = 0.1;
     //---------FN
     x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
-    rsx = 0.13, rsy = 0.0667, rsz = 0.0;
+    rsx = 0.25, rsy = 0.0667, rsz = 0.0;
     //universal translate
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
@@ -5454,7 +6800,7 @@ void AC(unsigned int VAO, BezierCurve AC_Blade_Piller_round, Shader ourShader, f
         else
         {
             rotateAxis_X_AC -= ACspeed1;
-            if ( rotateAxis_X_AC == -60)
+            if ( rotateAxis_X_AC == -80)
             {
                 pos = true;
             }
@@ -5476,15 +6822,15 @@ void AC(unsigned int VAO, BezierCurve AC_Blade_Piller_round, Shader ourShader, f
     float rsx = 0.0, rsy = 0.0, rsz = 0.0;
 
     //Sobar same tai
-    lbx = 1.8, lby = 0.2, lbz = 0.0;
+    lbx = 1.75, lby = 0.1, lbz = -0.02;
 
     //round chakti
     //piller border+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    len = 0.27, ht = 1.6f;
+    len = 0.10, ht = 1.7f;
     width = 0.02;
     //---------FN
     x_sft = 0.0f, y_sft = 0.0f, z_sft = 0.0f;
-    rsx = 0.0, rsy = 0.0, rsz = 0.0;
+    rsx = -0.05, rsy = 0.0, rsz = 0.00;
     //universal translate
     uni_translate = glm::translate(identityMatrix, glm::vec3(x_shift, y_shift, -1.0f * z_shift));
     RS_translateMatrix = glm::translate(identityMatrix, glm::vec3(rsx, rsy, -1.0f * rsz));
@@ -5497,32 +6843,22 @@ void AC(unsigned int VAO, BezierCurve AC_Blade_Piller_round, Shader ourShader, f
     model = uni_translate * translateMatrix*rotateXMatrix* GG_translateMatrix* translateMatrix * rotateZMatrix * RS_translateMatrix * scaleMatrix;
     AC_Blade_Piller_round.drawBezierCurve(ourShader, model);
 
-    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    lbx = 0.0f, lby = 0.0f, lbz = 0.0f;
-    len = 0.5, ht = 0.5;
-    VerticalWall(VAO, ourShader, x_shift, y_shift, z_shift, len, ht, lbx, lby, lbz, texture4);
-
-    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-     lbx = 1.8f, lby = 0.0f, lbz = 0.0f;
-     len = 0.5, ht = 0.5;
-    VerticalWall(VAO, ourShader, x_shift, y_shift, z_shift, len, ht, lbx, lby, lbz, texture4);
-
-    //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    lbx = 0.0f, lby = 0.0f, lbz = 0.3f;
-    len = 1.8, ht = 0.5;
-    HorizontalWall(VAO, ourShader, x_shift, y_shift, z_shift, len, ht, lbx, lby, lbz, texture4);
+    
 
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     lbx = 0.0f, lby = 0.0f, lbz = 0.0f;
     len = 1.8;
-    width = 0.5;
-    GenFloor2(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, texture4);
+    width = 0.45;
+    ht = 0.05;
+    GenSheet(VAO, ourShader, len, width, ht, lbx, lby, lbz, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, x_shift, y_shift, z_shift, off_white, ac);
 
     //box+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    lbx = 0.0f, lby = 0.3f, lbz = 0.0f;
+    lbx = 0.0f, lby = 0.05f, lbz = -0.05f;
     len = 1.8;
     width = 0.5;
-    GenFloor(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, texture4);
+    ht = 0.4;
+    //GenFloor(VAO, ourShader, x_shift, y_shift, z_shift, len, width, lbx, lby, lbz, texture4);
+    GenSheet(VAO, ourShader, len, width, ht, lbx, lby, lbz, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, x_shift, y_shift, z_shift, off_white, ac);
 
 
 
@@ -5847,7 +7183,7 @@ void tape3(unsigned int VAO, BezierCurve Piller_round1, BezierCurve spike2, Shad
 }
 //-------------------===========
 
-void small_tomb(unsigned int VAO, BezierCurve circle, BezierCurve spike, Shader ourShader, float x_shift, float y_shift, float z_shift)
+void small_dome(unsigned int VAO, BezierCurve circle, BezierCurve spike, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
     //declaration
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -5900,7 +7236,7 @@ void small_tomb(unsigned int VAO, BezierCurve circle, BezierCurve spike, Shader 
     spike.drawBezierCurve(ourShader, model);
     //CURVE---------END-------------------------------Curve
 }
-void mid_tomb(unsigned int VAO, BezierCurve circle1, BezierCurve spike, Shader ourShader, float x_shift, float y_shift, float z_shift)
+void mid_dome(unsigned int VAO, BezierCurve circle1, BezierCurve spike, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
     //declaration
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -5949,7 +7285,7 @@ void mid_tomb(unsigned int VAO, BezierCurve circle1, BezierCurve spike, Shader o
     spike.drawBezierCurve(ourShader, model);
     //CURVE---------END-------------------------------Curve
 }
-void Big_tomb(unsigned int VAO, BezierCurve circle2, BezierCurve spike, Shader ourShader, float x_shift, float y_shift, float z_shift)
+void Big_dome(unsigned int VAO, BezierCurve circle2, BezierCurve spike, Shader ourShader, float x_shift, float y_shift, float z_shift)
 {
     //declaration
     glm::mat4 identityMatrix = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -6645,9 +7981,41 @@ void processInput(GLFWwindow* window)
             cout << isTDoor << endl;
         }
     }
-    if (glfwGetKey(window, GLFW_KEY_9) == GLFW_PRESS)                   //Specular Off
+    if (glfwGetKey(window, GLFW_KEY_9) == GLFW_PRESS)                   //jhar bati On/Off
     {
-
+        jhar_light ^= true;
+        Sleep(500);
+        if (jhar_light)
+        {
+            for (int i = 27; i <= 34; i++)
+            {
+                pointLightOn[i] = 1.0;
+            }
+            pointLight27.turnOn();
+            pointLight28.turnOn();
+            pointLight29.turnOn();
+            pointLight30.turnOn();
+            pointLight31.turnOn();
+            pointLight32.turnOn();
+            pointLight33.turnOn();
+            pointLight34.turnOn();
+            
+        }
+        else
+        {
+            for (int i = 27; i <= 34; i++)
+            {
+                pointLightOn[i] = 0.0;
+            }
+            pointLight27.turnOff();
+            pointLight28.turnOff();
+            pointLight29.turnOff();
+            pointLight30.turnOff();
+            pointLight31.turnOff();
+            pointLight32.turnOff();
+            pointLight33.turnOff();
+            pointLight34.turnOff();
+        }
     }
 
     //***************Lighting***************
@@ -6667,38 +8035,6 @@ void processInput(GLFWwindow* window)
             pointLight2.turnAmbientOn();
             pointLight3.turnAmbientOn();
             pointLight4.turnAmbientOn();
-           /* pointLight5.turnAmbientOn();
-            pointLight6.turnAmbientOn();
-            pointLight7.turnAmbientOn();
-            pointLight8.turnAmbientOn();
-            pointLight9.turnAmbientOn();
-            pointLight10.turnAmbientOn();
-            pointLight11.turnAmbientOn();
-            pointLight12.turnAmbientOn();
-            pointLight13.turnAmbientOn();
-            pointLight14.turnAmbientOn();
-            pointLight15.turnAmbientOn();
-            pointLight16.turnAmbientOn();
-            pointLight17.turnAmbientOn();
-            pointLight18.turnAmbientOn();
-            pointLight19.turnAmbientOn();
-            pointLight20.turnAmbientOn();
-            pointLight21.turnAmbientOn();
-            pointLight22.turnAmbientOn();
-            pointLight23.turnAmbientOn();
-            pointLight24.turnAmbientOn();
-            pointLight25.turnAmbientOn();
-            pointLight26.turnAmbientOn();
-            pointLight27.turnAmbientOn();
-            pointLight28.turnAmbientOn();
-            pointLight29.turnAmbientOn();
-            pointLight30.turnAmbientOn();
-            pointLight31.turnAmbientOn();
-            pointLight32.turnAmbientOn();
-            pointLight33.turnAmbientOn();
-            pointLight34.turnAmbientOn();
-            pointLight35.turnAmbientOn();
-            pointLight36.turnAmbientOn();*/
             spotLight.turnAmbientOn();
             directionalLight.turnAmbientOn();
         }
@@ -6709,38 +8045,6 @@ void processInput(GLFWwindow* window)
             pointLight2.turnAmbientOff();
             pointLight3.turnAmbientOff();
             pointLight4.turnAmbientOff();
-           /* pointLight5.turnAmbientOff();
-            pointLight6.turnAmbientOff();
-            pointLight7.turnAmbientOff();
-            pointLight8.turnAmbientOff();
-            pointLight9.turnAmbientOff();
-            pointLight10.turnAmbientOff();
-            pointLight11.turnAmbientOff();
-            pointLight12.turnAmbientOff();
-            pointLight13.turnAmbientOff();
-            pointLight14.turnAmbientOff();
-            pointLight15.turnAmbientOff();
-            pointLight16.turnAmbientOff();
-            pointLight17.turnAmbientOff();
-            pointLight18.turnAmbientOff();
-            pointLight19.turnAmbientOff();
-            pointLight20.turnAmbientOff();
-            pointLight21.turnAmbientOff();
-            pointLight22.turnAmbientOff();
-            pointLight23.turnAmbientOff();
-            pointLight24.turnAmbientOff();
-            pointLight25.turnAmbientOff();
-            pointLight26.turnAmbientOff();
-            pointLight27.turnAmbientOff();
-            pointLight28.turnAmbientOff();
-            pointLight29.turnAmbientOff();
-            pointLight30.turnAmbientOff();
-            pointLight31.turnAmbientOff();
-            pointLight32.turnAmbientOff();
-            pointLight33.turnAmbientOff();
-            pointLight34.turnAmbientOff();
-            pointLight35.turnAmbientOff();
-            pointLight36.turnAmbientOff();*/
             spotLight.turnAmbientOff();
             directionalLight.turnAmbientOff();
         }
@@ -6801,7 +8105,12 @@ void processInput(GLFWwindow* window)
             
             for (int i = 0; i < noOfPointLights; i++)
             {
-                pointLightOn[i] = 1.0;
+                if (i < 27 || i > 34)
+                {
+                    pointLightOn[i] = 1.0;
+                }
+                
+                
             }
             pointLight1.turnOn();
             pointLight2.turnOn();
@@ -6829,14 +8138,6 @@ void processInput(GLFWwindow* window)
             pointLight24.turnOn();
             pointLight25.turnOn();
             pointLight26.turnOn();
-            pointLight27.turnOn();
-            pointLight28.turnOn();
-            pointLight29.turnOn();
-            pointLight30.turnOn();
-            pointLight31.turnOn();
-            pointLight32.turnOn();
-            pointLight33.turnOn();
-            pointLight34.turnOn();
             pointLight35.turnOn();
             pointLight36.turnOn();
         }
@@ -6844,7 +8145,10 @@ void processInput(GLFWwindow* window)
         {
             for (int i = 0; i < noOfPointLights; i++)
             {
-                pointLightOn[i] = 0.0;
+                if (i < 27 || i > 34)
+                {
+                    pointLightOn[i] = 0.0;
+                }
             }
             pointLight1.turnOff();
 
@@ -6879,14 +8183,6 @@ void processInput(GLFWwindow* window)
             pointLight24.turnOff();
             pointLight25.turnOff();
             pointLight26.turnOff();
-            pointLight27.turnOff();
-            pointLight28.turnOff();
-            pointLight29.turnOff();
-            pointLight30.turnOff();
-            pointLight31.turnOff();
-            pointLight32.turnOff();
-            pointLight33.turnOff();
-            pointLight34.turnOff();
             pointLight35.turnOff();
             pointLight36.turnOff();
         }

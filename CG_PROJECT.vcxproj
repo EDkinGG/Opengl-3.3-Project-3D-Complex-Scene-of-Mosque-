@@ -151,32 +151,44 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="fragmentShader.fs" />
+    <None Include="fragmentShaderForBlending.fs" />
     <None Include="fragmentShaderForGouraudShading.fs" />
     <None Include="fragmentShaderForPhongShading.fs" />
     <None Include="lightFragmentShader.fs" />
     <None Include="lightVertexShader.vs" />
     <None Include="vertexShader.vs" />
+    <None Include="vertexShaderForBlending.vs" />
     <None Include="vertexShaderForGouraudShading.vs" />
     <None Include="vertexShaderForPhongShading.vs" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="ac.jpg" />
+    <Image Include="ac_flap.jpg" />
+    <Image Include="al.jpg" />
+    <Image Include="al_books.png" />
+    <Image Include="al_door_1.jpg" />
+    <Image Include="al_door_2.jpg" />
     <Image Include="arch1.png" />
     <Image Include="balcony_tiles.jpg" />
     <Image Include="balcony_tiles1.jpg" />
     <Image Include="balcony_tiles2.jpg" />
     <Image Include="Blank_Wall_Pattern.jpg" />
+    <Image Include="blending_transparent_window.png" />
     <Image Include="brickwall_1.jpg" />
     <Image Include="brickwall_2.jpg" />
     <Image Include="ceilling_mid_1000.jpg" />
     <Image Include="ceilling_mid_1282.jpg" />
     <Image Include="ceilling_mid_870.jpg" />
     <Image Include="con07_1.jpg" />
+    <Image Include="Concrete007.jpg" />
     <Image Include="Concrete007_1K-JPG_Color.jpg" />
     <Image Include="Concrete037_1K-JPG_Color.jpg" />
     <Image Include="concrete1.PNG" />
     <Image Include="concrete2.PNG" />
     <Image Include="concrete3.PNG" />
     <Image Include="flush.jpg" />
+    <Image Include="Glass.png" />
+    <Image Include="Glass1.png" />
     <Image Include="golden.jpg" />
     <Image Include="grass.jpg" />
     <Image Include="grass_2.png" />
@@ -185,6 +197,8 @@
     <Image Include="ground_1k.jpg" />
     <Image Include="ground_2k.jpg" />
     <Image Include="leftdoor.jpg" />
+    <Image Include="low_com.jpg" />
+    <Image Include="Main_Glass.png" />
     <Image Include="Marble012_1K-JPG_Color.jpg" />
     <Image Include="Marble012_1K-JPG_Displacement.jpg" />
     <Image Include="MehrabGG.jpg" />
@@ -220,6 +234,9 @@
     <Image Include="water7.jpg" />
     <Image Include="water8.jpg" />
     <Image Include="water9.jpg" />
+    <Image Include="win_left.png" />
+    <Image Include="win_right.png" />
+    <Image Include="win_win.png" />
     <Image Include="wood.jpg" />
     <Image Include="WWin.PNG" />
   </ItemGroup>

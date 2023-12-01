@@ -85,6 +85,12 @@
     <None Include="vertexShaderForPhongShading.vs">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="vertexShaderForBlending.vs">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="fragmentShaderForBlending.fs">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="transparent.png">
@@ -271,6 +277,51 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="flush.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Concrete007.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="blending_transparent_window.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Glass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Glass1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="win_left.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="win_right.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="win_win.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Main_Glass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ac.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ac_flap.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="al_books.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="al_door_2.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="al_door_1.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="al.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="low_com.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
